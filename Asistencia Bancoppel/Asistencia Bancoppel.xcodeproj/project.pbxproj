@@ -12,7 +12,9 @@
 		628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A885D299AD299009F30E6 /* SplashViewController.swift */; };
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
 		628A8866299AD2A5009F30E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */; };
-		628A886F299AD63A009F30E6 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A886E299AD63A009F30E6 /* SplashView.swift */; };
+		628A886F299AD63A009F30E6 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A886E299AD63A009F30E6 /* GradientBackgroundView.swift */; };
+		62C349EF299C1B0B004B23D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349EE299C1B0B004B23D9 /* LoginViewController.swift */; };
+		62C349F3299C2439004B23D9 /* LoginBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349F2299C2439004B23D9 /* LoginBG.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +25,9 @@
 		628A8862299AD2A5009F30E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		628A8865299AD2A5009F30E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		628A8867299AD2A5009F30E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		628A886E299AD63A009F30E6 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		628A886E299AD63A009F30E6 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
+		62C349EE299C1B0B004B23D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		62C349F2299C2439004B23D9 /* LoginBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBG.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 				628A8862299AD2A5009F30E6 /* Assets.xcassets */,
 				628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */,
 				628A8867299AD2A5009F30E6 /* Info.plist */,
+				628A8875299AF261009F30E6 /* LoginView */,
 			);
 			path = "Asistencia Bancoppel";
 			sourceTree = "<group>";
@@ -70,9 +75,18 @@
 			isa = PBXGroup;
 			children = (
 				628A885D299AD299009F30E6 /* SplashViewController.swift */,
-				628A886E299AD63A009F30E6 /* SplashView.swift */,
+				628A886E299AD63A009F30E6 /* GradientBackgroundView.swift */,
 			);
 			path = SplashView;
+			sourceTree = "<group>";
+		};
+		628A8875299AF261009F30E6 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				62C349F2299C2439004B23D9 /* LoginBG.swift */,
+				62C349EE299C1B0B004B23D9 /* LoginViewController.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,8 +160,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
-				628A886F299AD63A009F30E6 /* SplashView.swift in Sources */,
+				62C349F3299C2439004B23D9 /* LoginBG.swift in Sources */,
+				628A886F299AD63A009F30E6 /* GradientBackgroundView.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
+				62C349EF299C1B0B004B23D9 /* LoginViewController.swift in Sources */,
 				628A885C299AD299009F30E6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
