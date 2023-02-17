@@ -15,6 +15,7 @@
 		628A886F299AD63A009F30E6 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A886E299AD63A009F30E6 /* GradientBackgroundView.swift */; };
 		62C349EF299C1B0B004B23D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349EE299C1B0B004B23D9 /* LoginViewController.swift */; };
 		62C349F3299C2439004B23D9 /* LoginBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349F2299C2439004B23D9 /* LoginBG.swift */; };
+		62C349F7299C4970004B23D9 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		628A886E299AD63A009F30E6 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		62C349EE299C1B0B004B23D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		62C349F2299C2439004B23D9 /* LoginBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBG.swift; sourceTree = "<group>"; };
+		62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +65,11 @@
 				628A8859299AD299009F30E6 /* AppDelegate.swift */,
 				628A885B299AD299009F30E6 /* SceneDelegate.swift */,
 				628A886D299AD407009F30E6 /* SplashView */,
+				628A8875299AF261009F30E6 /* LoginView */,
+				62C349F8299C4A7E004B23D9 /* CreateAccount */,
 				628A8862299AD2A5009F30E6 /* Assets.xcassets */,
 				628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */,
 				628A8867299AD2A5009F30E6 /* Info.plist */,
-				628A8875299AF261009F30E6 /* LoginView */,
 			);
 			path = "Asistencia Bancoppel";
 			sourceTree = "<group>";
@@ -87,6 +90,14 @@
 				62C349EE299C1B0B004B23D9 /* LoginViewController.swift */,
 			);
 			path = LoginView;
+			sourceTree = "<group>";
+		};
+		62C349F8299C4A7E004B23D9 /* CreateAccount */ = {
+			isa = PBXGroup;
+			children = (
+				62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */,
+			);
+			path = CreateAccount;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62C349F7299C4970004B23D9 /* CreateAccountViewController.swift in Sources */,
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
 				62C349F3299C2439004B23D9 /* LoginBG.swift in Sources */,
 				628A886F299AD63A009F30E6 /* GradientBackgroundView.swift in Sources */,

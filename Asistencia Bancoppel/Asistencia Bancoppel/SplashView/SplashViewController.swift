@@ -47,6 +47,16 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         autolayout()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        //Logica para cambio de vista
+        //Timer Provisional
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5){
+            self.view.window?.rootViewController = LoginViewController()
+            
+        }
+    }
 }
 extension SplashViewController {
 

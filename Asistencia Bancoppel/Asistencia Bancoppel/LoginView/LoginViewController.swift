@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
     
     let mailTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "  Correo Electronico"
+        textField.placeholder = "Correo Electronico"
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 5
@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
     
     let passTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "  Contraseña"
+        textField.placeholder = "Contraseña"
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.isSecureTextEntry = true
@@ -79,6 +79,7 @@ class LoginViewController: UIViewController {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(named: "splashGradientBottom")
+        button.setTitleColor(.black, for: .normal)
         button.setTitle("Entrar", for: [])
         button.layer.cornerRadius = 30
         return button
