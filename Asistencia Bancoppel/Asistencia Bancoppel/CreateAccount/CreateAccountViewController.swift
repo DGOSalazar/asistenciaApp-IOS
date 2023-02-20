@@ -10,6 +10,17 @@ import UIKit
 // MARK: CreateAccount 1st View
 class CreateAccountViewController1: UIViewController {
     
+    var mail: String? {
+        return mailTextField.text
+    }
+    var password: String? {
+        return passTextField.text
+    }
+    var confPassword: String? {
+        return confPassTextField.text
+    }
+    
+    
     let logoAsistView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBlue
@@ -22,7 +33,7 @@ class CreateAccountViewController1: UIViewController {
         label.text = "Crear una cuenta"
         label.textColor = UIColor(named: "splashGradientBottom")
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 28)
+        label.font = UIFont(name: "Roboto-Bold", size: 28)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
         
@@ -32,6 +43,7 @@ class CreateAccountViewController1: UIViewController {
         let textField = UITextField()
         textField.placeholder = "Correo Electronico"
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 5
         return textField
@@ -39,8 +51,8 @@ class CreateAccountViewController1: UIViewController {
     
     let mailLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ingresa tu correo Coppel."
-        label.font = .systemFont(ofSize: 12)
+        label.text = "Ingresa tu correo coppel"
+        label.font = UIFont(name: "Roboto-Italic", size: 12)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -49,6 +61,7 @@ class CreateAccountViewController1: UIViewController {
     let passTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Contraseña"
+        textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.isSecureTextEntry = true
@@ -60,7 +73,7 @@ class CreateAccountViewController1: UIViewController {
     let passLabel: UILabel = {
         let label = UILabel()
         label.text = "Debe contener 8 caracteres."
-        label.font = .systemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto-Italic", size: 12)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -69,6 +82,7 @@ class CreateAccountViewController1: UIViewController {
     let confPassTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Confirmar contraseña"
+        textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.isSecureTextEntry = true
@@ -80,7 +94,7 @@ class CreateAccountViewController1: UIViewController {
     let confPassLabel: UILabel = {
         let label = UILabel()
         label.text = "Vuelva a escribir la contraseña."
-        label.font = .systemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto-Italic", size: 12)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -91,7 +105,10 @@ class CreateAccountViewController1: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .secondarySystemBackground
         button.setTitle("Siguiente", for: [])
+        button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 30
+        button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 22)
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .primaryActionTriggered)
         return button
     }()
     
@@ -102,9 +119,14 @@ class CreateAccountViewController1: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        mailTextField.delegate = self
+        passTextField.delegate = self
         autolayout()
+
+        
+        
     }
-    
+// MARK: CreateAccount1 Autolayot
     func autolayout() {
         
         view.addSubview(logoAsistView)
@@ -162,6 +184,115 @@ class CreateAccountViewController1: UIViewController {
         
     }
 }
+// MARK: CreateAccount1 TextField Delegates
+extension CreateAccountViewController1: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        mailTextField.endEditing(true)
+        passTextField.endEditing(true)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+     return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
+}
+
+extension CreateAccountViewController1 {
+    @objc func nextButtonTapped(sender: UIButton) {
+        login()
+    }
+    private func login() {
+        
+        mailLabel.text = "Ingresa tu correo coppel"
+        mailLabel.textColor = .gray
+        mailTextField.layer.borderWidth = 0
+        passLabel.text = "Debe contener 8 caracteres"
+        passLabel.textColor = .gray
+        passTextField.layer.borderWidth = 0
+        confPassLabel.text = "Vuelve a escribir la contraseña"
+        confPassLabel.textColor = .gray
+        confPassTextField.layer.borderWidth = 0
+        
+        
+        
+        
+        guard let mail = mail, let password = password, let confPassword = confPassword else {
+            assertionFailure("No pueden ser nil")
+            return
+        }
+        
+        if password.isEmpty && mail.isEmpty{
+            
+            mailLabel.text = "Ingresa un correo Coppel valido."
+            mailLabel.textColor = .red
+            mailTextField.layer.borderWidth = 1
+            mailTextField.layer.borderColor = UIColor.red.cgColor
+            passLabel.text = "Ingresa una contraseña valida (al menos 8 caracteres)."
+            passLabel.textColor = .red
+            passTextField.layer.borderWidth = 1
+            passTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        if confPassword.isEmpty || confPassword.count < 7 {
+            confPassLabel.text = "Ingresa una contraseña valida (al menos 8 caracteres)."
+            confPassLabel.textColor = .red
+            confPassTextField.layer.borderWidth = 1
+            confPassTextField.layer.borderColor = UIColor.red.cgColor
+
+        }
+        if !checkMailDomain(mail: mail) {
+            mailLabel.text = "Ingresa un correo Coppel valido."
+            mailLabel.textColor = .red
+            mailTextField.layer.borderWidth = 1
+            mailTextField.layer.borderColor = UIColor.red.cgColor
+        }else {
+            mailTextField.layer.borderWidth = 1
+            mailTextField.layer.borderColor = UIColor.green.cgColor
+        }
+        if password != confPassword {
+            confPassLabel.text = "Las contraseñas no coinciden."
+            confPassLabel.textColor = .red
+            confPassTextField.layer.borderWidth = 1
+            confPassTextField.layer.borderColor = UIColor.red.cgColor
+        } else {
+            confPassLabel.text = "Vuelve a escribir la contraseña"
+            confPassTextField.layer.borderWidth = 1
+            confPassTextField.layer.borderColor = UIColor.green.cgColor
+        }
+        if password.count < 8 {
+            passLabel.text = "Ingresa una contraseña valida (al menos 8 caracteres)."
+            passLabel.textColor = .red
+            passTextField.layer.borderWidth = 1
+            passTextField.layer.borderColor = UIColor.red.cgColor
+        }else {
+            passTextField.layer.borderWidth = 1
+            passTextField.layer.borderColor = UIColor.green.cgColor
+        }
+        
+        return
+    }
+    
+    func checkMailDomain(mail: String ) -> Bool {
+        var substring = ""
+        var flag = false
+        for char in mail.lowercased() {
+            if char == "@"{
+                flag = true
+            }
+            if flag == true{
+                substring.append(char)
+            }
+        }
+        
+        if substring != "@coppel.com" { return false}
+        return true
+    }
+}
+
+
 // MARK: CreateAccount 2nd View
 
 class CreateAccountViewController2: UIViewController {
@@ -178,7 +309,7 @@ class CreateAccountViewController2: UIViewController {
         label.text = "Datos Personales"
         label.textColor = UIColor(named: "splashGradientBottom")
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 28)
+        label.font = UIFont(name: "Roboto-Bold", size: 28)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
         
@@ -187,7 +318,7 @@ class CreateAccountViewController2: UIViewController {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Nombre: "
-        label.font = .systemFont(ofSize: 14)
+        label.font = UIFont(name: "Roboto-Regular", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -195,6 +326,7 @@ class CreateAccountViewController2: UIViewController {
     let nameTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 5
         return textField
@@ -203,7 +335,7 @@ class CreateAccountViewController2: UIViewController {
     let lastNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Apellidos: "
-        label.font = .systemFont(ofSize: 14)
+        label.font = UIFont(name: "Roboto-Regular", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -211,6 +343,7 @@ class CreateAccountViewController2: UIViewController {
     let lastNameTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 5
         return textField
@@ -219,7 +352,7 @@ class CreateAccountViewController2: UIViewController {
     let birthDateLabel: UILabel = {
         let label = UILabel()
         label.text = "Fecha de nacimiento: "
-        label.font = .systemFont(ofSize: 14)
+        label.font = UIFont(name: "Roboto-Regular", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -227,6 +360,7 @@ class CreateAccountViewController2: UIViewController {
     let birthDateTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "dd/mm/aaaa"
+        textField.font = UIFont(name: "Roboto-Italic", size: 12)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.textAlignment = .center
@@ -237,7 +371,7 @@ class CreateAccountViewController2: UIViewController {
     let phoneLabel: UILabel = {
         let label = UILabel()
         label.text = "Numero celular: "
-        label.font = .systemFont(ofSize: 14)
+        label.font = UIFont(name: "Roboto-Regular", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -245,6 +379,7 @@ class CreateAccountViewController2: UIViewController {
     let phoneTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 5
         return textField
@@ -256,6 +391,7 @@ class CreateAccountViewController2: UIViewController {
         button.backgroundColor = .secondarySystemBackground
         button.setTitle("Siguiente", for: [])
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 22)
         button.layer.cornerRadius = 30
         return button
     }()
@@ -337,7 +473,22 @@ class CreateAccountViewController2: UIViewController {
             
         ])
         
-        
+    }
+}
+
+// MARK: CreateAccount 3rd View
+
+class CreateAccountViewController3: UIViewController {
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        autolayout()
+    }
+    
+    
+    func autolayout(){
         
     }
+    
 }

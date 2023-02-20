@@ -16,6 +16,9 @@
 		62C349EF299C1B0B004B23D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349EE299C1B0B004B23D9 /* LoginViewController.swift */; };
 		62C349F3299C2439004B23D9 /* LoginBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349F2299C2439004B23D9 /* LoginBG.swift */; };
 		62C349F7299C4970004B23D9 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */; };
+		62C414B929A3EE4B0090A7B8 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62C414AD29A3EE4A0090A7B8 /* Roboto-Italic.ttf */; };
+		62C414C029A3EE4B0090A7B8 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62C414B429A3EE4B0090A7B8 /* Roboto-Bold.ttf */; };
+		62C414C229A3F5930090A7B8 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62C414C129A3F5930090A7B8 /* Roboto-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		62C349EE299C1B0B004B23D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		62C349F2299C2439004B23D9 /* LoginBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBG.swift; sourceTree = "<group>"; };
 		62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		62C414AD29A3EE4A0090A7B8 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		62C414B429A3EE4B0090A7B8 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		62C414C129A3F5930090A7B8 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 		628A8858299AD299009F30E6 /* Asistencia Bancoppel */ = {
 			isa = PBXGroup;
 			children = (
+				62C414A629A3ECC30090A7B8 /* Resources */,
 				628A8859299AD299009F30E6 /* AppDelegate.swift */,
 				628A885B299AD299009F30E6 /* SceneDelegate.swift */,
 				628A886D299AD407009F30E6 /* SplashView */,
@@ -98,6 +105,32 @@
 				62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */,
 			);
 			path = CreateAccount;
+			sourceTree = "<group>";
+		};
+		62C414A629A3ECC30090A7B8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				62C414A829A3ED4C0090A7B8 /* Fonts */,
+				62C414A729A3ECCE0090A7B8 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		62C414A729A3ECCE0090A7B8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		62C414A829A3ED4C0090A7B8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				62C414B429A3EE4B0090A7B8 /* Roboto-Bold.ttf */,
+				62C414C129A3F5930090A7B8 /* Roboto-Regular.ttf */,
+				62C414AD29A3EE4A0090A7B8 /* Roboto-Italic.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,8 +191,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62C414C029A3EE4B0090A7B8 /* Roboto-Bold.ttf in Resources */,
 				628A8866299AD2A5009F30E6 /* LaunchScreen.storyboard in Resources */,
+				62C414C229A3F5930090A7B8 /* Roboto-Regular.ttf in Resources */,
 				628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */,
+				62C414B929A3EE4B0090A7B8 /* Roboto-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

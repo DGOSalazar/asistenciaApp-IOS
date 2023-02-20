@@ -18,6 +18,15 @@ class LoginViewController: UIViewController {
         return imageView
     }()
     
+    let blueAlphaBG: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "splashGradientBottom")?.withAlphaComponent(0.5)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 25
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        return view
+    }()
+    
     let whiteBg: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -39,7 +48,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "¡Bienvenido!"
         label.textColor = UIColor(named: "splashGradientBottom")
-        label.font = .systemFont(ofSize: 40)
+        label.font = UIFont(name: "Roboto-Bold", size: 40)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -48,6 +57,7 @@ class LoginViewController: UIViewController {
     let mailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Correo Electronico"
+        textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 5
@@ -57,6 +67,7 @@ class LoginViewController: UIViewController {
     let passTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Contraseña"
+        textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.isSecureTextEntry = true
@@ -69,7 +80,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "¿Olvidaste tu contraseña?"
         label.textColor = UIColor(named: "splashGradientBottom")
-        label.font = .systemFont(ofSize: 12)
+        label.font = UIFont(name: "Roboto-Italic", size: 12)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -79,7 +90,8 @@ class LoginViewController: UIViewController {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(named: "splashGradientBottom")
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 22)
         button.setTitle("Entrar", for: [])
         button.layer.cornerRadius = 30
         return button
@@ -89,7 +101,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "¿Eres Nuevo?"
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14)
+        label.font = UIFont(name: "Roboto-Regular", size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -98,7 +110,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "Crear una cuenta"
         label.textColor = UIColor(named: "splashGradientBottom")
-        label.font = .systemFont(ofSize: 15)
+        label.font = UIFont(name: "Roboto-Italic", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -119,6 +131,8 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     func autolayout() {
         
+        
+        view.addSubview(blueAlphaBG)
         view.addSubview(logoAsistImageView)
         view.addSubview(whiteBg)
         view.addSubview(logoBancoImageView)
@@ -134,6 +148,12 @@ extension LoginViewController {
             
             logoAsistImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoAsistImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            
+            blueAlphaBG.topAnchor.constraint(equalTo: view.topAnchor),
+            blueAlphaBG.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            blueAlphaBG.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blueAlphaBG.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
             
             whiteBg.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
             whiteBg.leadingAnchor.constraint(equalTo: view.leadingAnchor),
