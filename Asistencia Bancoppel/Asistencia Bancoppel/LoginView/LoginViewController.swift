@@ -112,6 +112,7 @@ class LoginViewController: UIViewController {
         label.textColor = UIColor(named: "splashGradientBottom")
         label.font = UIFont(name: "Roboto-Italic", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -123,9 +124,16 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         autolayout()
+        makeCreateAccClickeable()
 
     }
-    
+    func makeCreateAccClickeable() {
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(createAccTapped))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        createAccLabel.isUserInteractionEnabled = true
+        createAccLabel.addGestureRecognizer(tapGesture)
+    }
 
 }
 extension LoginViewController {
@@ -191,6 +199,12 @@ extension LoginViewController {
             createAccLabel.bottomAnchor.constraint(equalTo: newLabel.bottomAnchor),
             
         ])
+    }
+    
+    @objc func createAccTapped(_ gesture: UITapGestureRecognizer) {
+        let createAccVC = CreateAccountViewController1()
+        createAccVC.modalPresentationStyle = .fullScreen
+        self.present(createAccVC, animated: true)
     }
 }
 extension LoginViewController: UITextFieldDelegate {

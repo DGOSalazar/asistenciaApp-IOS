@@ -15,10 +15,12 @@
 		628A886F299AD63A009F30E6 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A886E299AD63A009F30E6 /* GradientBackgroundView.swift */; };
 		62C349EF299C1B0B004B23D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349EE299C1B0B004B23D9 /* LoginViewController.swift */; };
 		62C349F3299C2439004B23D9 /* LoginBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349F2299C2439004B23D9 /* LoginBG.swift */; };
-		62C349F7299C4970004B23D9 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */; };
+		62C349F7299C4970004B23D9 /* CreateAccountViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C349F6299C4970004B23D9 /* CreateAccountViewController1.swift */; };
 		62C414B929A3EE4B0090A7B8 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62C414AD29A3EE4A0090A7B8 /* Roboto-Italic.ttf */; };
 		62C414C029A3EE4B0090A7B8 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62C414B429A3EE4B0090A7B8 /* Roboto-Bold.ttf */; };
 		62C414C229A3F5930090A7B8 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62C414C129A3F5930090A7B8 /* Roboto-Regular.ttf */; };
+		62C414C429A582EA0090A7B8 /* CreateAccountViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C414C329A582EA0090A7B8 /* CreateAccountViewController2.swift */; };
+		62C414C629A583B10090A7B8 /* CreateAccountViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C414C529A583B10090A7B8 /* CreateAccountViewController3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +34,12 @@
 		628A886E299AD63A009F30E6 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		62C349EE299C1B0B004B23D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		62C349F2299C2439004B23D9 /* LoginBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBG.swift; sourceTree = "<group>"; };
-		62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		62C349F6299C4970004B23D9 /* CreateAccountViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController1.swift; sourceTree = "<group>"; };
 		62C414AD29A3EE4A0090A7B8 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		62C414B429A3EE4B0090A7B8 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		62C414C129A3F5930090A7B8 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		62C414C329A582EA0090A7B8 /* CreateAccountViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController2.swift; sourceTree = "<group>"; };
+		62C414C529A583B10090A7B8 /* CreateAccountViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +106,9 @@
 		62C349F8299C4A7E004B23D9 /* CreateAccount */ = {
 			isa = PBXGroup;
 			children = (
-				62C349F6299C4970004B23D9 /* CreateAccountViewController.swift */,
+				62C349F6299C4970004B23D9 /* CreateAccountViewController1.swift */,
+				62C414C329A582EA0090A7B8 /* CreateAccountViewController2.swift */,
+				62C414C529A583B10090A7B8 /* CreateAccountViewController3.swift */,
 			);
 			path = CreateAccount;
 			sourceTree = "<group>";
@@ -206,9 +212,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62C349F7299C4970004B23D9 /* CreateAccountViewController.swift in Sources */,
+				62C414C629A583B10090A7B8 /* CreateAccountViewController3.swift in Sources */,
+				62C349F7299C4970004B23D9 /* CreateAccountViewController1.swift in Sources */,
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
 				62C349F3299C2439004B23D9 /* LoginBG.swift in Sources */,
+				62C414C429A582EA0090A7B8 /* CreateAccountViewController2.swift in Sources */,
 				628A886F299AD63A009F30E6 /* GradientBackgroundView.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				62C349EF299C1B0B004B23D9 /* LoginViewController.swift in Sources */,
