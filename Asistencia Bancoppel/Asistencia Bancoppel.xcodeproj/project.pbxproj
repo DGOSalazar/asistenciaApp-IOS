@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F439A2429A935D200F9CA1D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F439A2329A935D200F9CA1D /* Colors.xcassets */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
 		628A885C299AD299009F30E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A885B299AD299009F30E6 /* SceneDelegate.swift */; };
 		628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A885D299AD299009F30E6 /* SplashViewController.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F439A2329A935D200F9CA1D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		628A8859299AD299009F30E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		628A885B299AD299009F30E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +37,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F439A2229A92E5F00F9CA1D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				628A8862299AD2A5009F30E6 /* Assets.xcassets */,
+				3F439A2329A935D200F9CA1D /* Colors.xcassets */,
+				628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F439A2529A937F300F9CA1D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				628A8859299AD299009F30E6 /* AppDelegate.swift */,
+				628A885B299AD299009F30E6 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		628A884D299AD299009F30E6 = {
 			isa = PBXGroup;
 			children = (
@@ -54,12 +75,10 @@
 		628A8858299AD299009F30E6 /* Asistencia Bancoppel */ = {
 			isa = PBXGroup;
 			children = (
-				628A8859299AD299009F30E6 /* AppDelegate.swift */,
-				628A885B299AD299009F30E6 /* SceneDelegate.swift */,
-				628A886D299AD407009F30E6 /* SplashView */,
-				628A8862299AD2A5009F30E6 /* Assets.xcassets */,
-				628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */,
 				628A8867299AD2A5009F30E6 /* Info.plist */,
+				3F439A2529A937F300F9CA1D /* Application */,
+				3F439A2229A92E5F00F9CA1D /* Resources */,
+				628A886D299AD407009F30E6 /* SplashView */,
 			);
 			path = "Asistencia Bancoppel";
 			sourceTree = "<group>";
@@ -130,6 +149,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F439A2429A935D200F9CA1D /* Colors.xcassets in Resources */,
 				628A8866299AD2A5009F30E6 /* LaunchScreen.storyboard in Resources */,
 				628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */,
 			);
