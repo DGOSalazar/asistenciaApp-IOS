@@ -47,21 +47,66 @@ class CreateAccountViewController3: UIViewController {
     
     let jobLabel: UILabel = {
         let label = UILabel()
-        label.text = "Nombre: "
-        label.font = UIFont(name: "Roboto-Regular", size: 14)
+        label.text = "Puesto: "
+        label.font = UIFont(name: "Roboto-Regular", size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+
+    let jobTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.font = UIFont(name: "Roboto-Regular", size: 16)
+        textfield.backgroundColor = .secondarySystemBackground
+        textfield.layer.cornerRadius = 5
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        return textfield
+    }()
+    // falta su uipicker
+    
+    let inicLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Iniciativa: "
+        label.font = UIFont(name: "Roboto-Regular", size: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let inicTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.font = UIFont(name: "Roboto-Regular", size: 16)
+        textfield.backgroundColor = .secondarySystemBackground
+        textfield.layer.cornerRadius = 5
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        return textfield
+    }()
+    // falta su uipicker
+
+    let colabLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No de Colaborador: "
+        label.font = UIFont(name: "Roboto-Regular", size: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let colabTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.font = UIFont(name: "Roboto-Regular", size: 16)
+        textfield.backgroundColor = .secondarySystemBackground
+        textfield.layer.cornerRadius = 5
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        return textfield
+    }()
     
     let finishButton: UIButton = {
        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .secondarySystemBackground
         button.setTitle("Finalizar", for: [])
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 22)
         button.layer.cornerRadius = 30
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -70,7 +115,6 @@ class CreateAccountViewController3: UIViewController {
         button.configuration = .plain()
         button.setTitle("Cancelar", for: [])
         button.addTarget(self, action: #selector(cancelButtonTapped), for: .primaryActionTriggered)
-
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -102,6 +146,13 @@ class CreateAccountViewController3: UIViewController {
         view.addSubview(lastStepLabel)
         view.addSubview(uploadImageView)
         view.addSubview(nameLabel)
+        view.addSubview(jobLabel)
+        view.addSubview(jobTextField)
+        view.addSubview(inicLabel)
+        view.addSubview(inicTextField)
+        view.addSubview(colabLabel)
+        view.addSubview(colabTextField)
+
         
         NSLayoutConstraint.activate([
             
@@ -120,6 +171,33 @@ class CreateAccountViewController3: UIViewController {
 
             nameLabel.topAnchor.constraint(equalTo: uploadImageView.bottomAnchor, constant: 30),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            jobLabel.centerYAnchor.constraint(equalTo: jobTextField.centerYAnchor),
+            jobLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            jobLabel.widthAnchor.constraint(equalToConstant: 60),
+            
+            jobTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 30),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: jobTextField.trailingAnchor, multiplier: 5),
+            jobTextField.leadingAnchor.constraint(equalTo: jobLabel.trailingAnchor),
+            jobTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            inicLabel.centerYAnchor.constraint(equalTo: inicTextField.centerYAnchor),
+            inicLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            inicLabel.widthAnchor.constraint(equalToConstant: 80),
+            
+            inicTextField.topAnchor.constraint(equalTo: jobTextField.bottomAnchor, constant: 20),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: inicTextField.trailingAnchor, multiplier: 5),
+            inicTextField.leadingAnchor.constraint(equalTo: inicLabel.trailingAnchor),
+            inicTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            colabLabel.centerYAnchor.constraint(equalTo: colabTextField.centerYAnchor),
+            colabLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            colabLabel.widthAnchor.constraint(equalToConstant: 150),
+            
+            colabTextField.topAnchor.constraint(equalTo: inicTextField.bottomAnchor, constant: 20),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: colabTextField.trailingAnchor, multiplier: 5),
+            colabTextField.leadingAnchor.constraint(equalTo: colabLabel.trailingAnchor),
+            colabTextField.heightAnchor.constraint(equalToConstant: 30),
             
         ])
     }
