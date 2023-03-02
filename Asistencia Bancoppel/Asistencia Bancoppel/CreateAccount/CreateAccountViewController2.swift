@@ -83,7 +83,7 @@ class CreateAccountViewController2: UIViewController {
         return label
     }()
     
-    let birthDatePicker: UIDatePicker = {
+    lazy var birthDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -123,7 +123,7 @@ class CreateAccountViewController2: UIViewController {
         return textField
     }()
     
-    let nextButton: UIButton = {
+    lazy var nextButton: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .secondarySystemBackground
@@ -135,7 +135,7 @@ class CreateAccountViewController2: UIViewController {
         return button
     }()
     
-    let cancelButton: UIButton = {
+    lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.configuration = .plain()
         button.setTitle("Cancelar", for: [])

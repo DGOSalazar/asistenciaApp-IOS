@@ -5,9 +5,13 @@
 //  Created by Juan Ramon on 21/02/23.
 //
 
+
 import UIKit
 
 class CreateAccountViewController3: UIViewController {
+    
+    let inicOptions = ["Saldo Ya", "Creditos", "Abonos Coppel", "Pagare"]
+    let jobOptions = ["Tester/QA", "FrontEnd", "BackEnd", "Analista", "Scrum Master"]
     
     let logoAsistView: UIView = {
         let view = UIView()
@@ -54,15 +58,20 @@ class CreateAccountViewController3: UIViewController {
     }()
     
 
-    let jobTextField: UITextField = {
+    lazy var jobTextField: UITextField = {
         let textfield = UITextField()
         textfield.font = UIFont(name: "Roboto-Regular", size: 16)
         textfield.backgroundColor = .secondarySystemBackground
         textfield.layer.cornerRadius = 5
         textfield.translatesAutoresizingMaskIntoConstraints = false
+        textfield.tag = 1
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        textfield.inputView = pickerView
+        pickerView.backgroundColor = .secondarySystemBackground
         return textfield
     }()
-    // falta su uipicker
     
     let inicLabel: UILabel = {
         let label = UILabel()
@@ -72,12 +81,18 @@ class CreateAccountViewController3: UIViewController {
         return label
     }()
     
-    let inicTextField: UITextField = {
+    lazy var inicTextField: UITextField = {
         let textfield = UITextField()
         textfield.font = UIFont(name: "Roboto-Regular", size: 16)
         textfield.backgroundColor = .secondarySystemBackground
         textfield.layer.cornerRadius = 5
         textfield.translatesAutoresizingMaskIntoConstraints = false
+        textfield.tag = 2
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        textfield.inputView = pickerView
+        pickerView.backgroundColor = .secondarySystemBackground
         return textfield
     }()
     // falta su uipicker
@@ -110,7 +125,7 @@ class CreateAccountViewController3: UIViewController {
         return button
     }()
     
-    let cancelButton: UIButton = {
+    lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.configuration = .plain()
         button.setTitle("Cancelar", for: [])
@@ -122,6 +137,8 @@ class CreateAccountViewController3: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        print(jobTextField.tag)
+        print(inicTextField.tag)
         autolayout()
     }
     
@@ -201,7 +218,39 @@ class CreateAccountViewController3: UIViewController {
             
         ])
     }
+}
+extension CreateAccountViewController3: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
-    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == jobTextField.inputView {
+            return jobOptions.count
+        }
+        if pickerView == inicTextField.inputView {
+            return inicOptions.count
+        }
+        return 0
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == jobTextField.inputView {
+            return jobOptions[row]
+        }
+        if pickerView == inicTextField.inputView {
+            return inicOptions[row]
+        }
+        
+        return ""
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == inicTextField.textInputView {
+            return inicTextField.text = inicOptions[row]
+        }
+        if pickerView == jobTextField.textInputView {
+            return jobTextField.text = jobOptions[row]
+        }
+        
+    }
 }
 

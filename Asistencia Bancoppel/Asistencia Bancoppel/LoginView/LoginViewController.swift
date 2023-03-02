@@ -36,6 +36,16 @@ class LoginViewController: UIViewController {
         return view
     }()
     
+    let welcomeStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 50
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     let logoBancoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logoBancoppelColored")
@@ -52,6 +62,16 @@ class LoginViewController: UIViewController {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    let dataStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 20
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .trailing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     let mailTextField: UITextField = {
@@ -97,6 +117,16 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    let createAccStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 2
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.alignment = .bottom
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     let newLabel: UILabel = {
         let label = UILabel()
         label.text = "¿Eres Nuevo?"
@@ -138,19 +168,24 @@ class LoginViewController: UIViewController {
 }
 extension LoginViewController {
     func autolayout() {
+        dataStackView.addArrangedSubview(mailTextField)
+        dataStackView.addArrangedSubview(passTextField)
+        dataStackView.addArrangedSubview(forgotLabel)
         
+        welcomeStackView.addArrangedSubview(logoBancoImageView)
+        welcomeStackView.addArrangedSubview(welcomeLabel)
+        welcomeStackView.addArrangedSubview(dataStackView)
+        welcomeStackView.addArrangedSubview(loginButton)
+        
+        createAccStackView.addArrangedSubview(newLabel)
+        createAccStackView.addArrangedSubview(createAccLabel)
         
         view.addSubview(blueAlphaBG)
         view.addSubview(logoAsistImageView)
         view.addSubview(whiteBg)
-        view.addSubview(logoBancoImageView)
-        view.addSubview(welcomeLabel)
-        view.addSubview(mailTextField)
-        view.addSubview(passTextField)
-        view.addSubview(forgotLabel)
-        view.addSubview(loginButton)
-        view.addSubview(newLabel)
-        view.addSubview(createAccLabel)
+        view.addSubview(welcomeStackView)
+        view.addSubview(createAccStackView)
+        
         
         NSLayoutConstraint.activate([
             
@@ -168,35 +203,24 @@ extension LoginViewController {
             whiteBg.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             whiteBg.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            logoBancoImageView.centerYAnchor.constraint(equalTo: whiteBg.topAnchor, constant: 50),
-            logoBancoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            welcomeStackView.topAnchor.constraint(equalTo: whiteBg.topAnchor, constant: 50),
+            welcomeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            welcomeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            welcomeLabel.topAnchor.constraint(equalTo: logoBancoImageView.bottomAnchor, constant: 50),
-            welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            mailTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 50),
+            passTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: passTextField.trailingAnchor, multiplier: 5),
+            passTextField.heightAnchor.constraint(equalToConstant: 30),
+
             mailTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: mailTextField.trailingAnchor, multiplier: 5),
             mailTextField.heightAnchor.constraint(equalToConstant: 30),
             
-            passTextField.topAnchor.constraint(equalTo: mailTextField.bottomAnchor, constant: 10),
-            passTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: passTextField.trailingAnchor, multiplier: 5),
-            passTextField.heightAnchor.constraint(equalToConstant: 30),
-           
-            forgotLabel.topAnchor.constraint(equalToSystemSpacingBelow: passTextField.bottomAnchor, multiplier: 1),
-            forgotLabel.trailingAnchor.constraint(equalTo: passTextField.trailingAnchor),
-            
-            loginButton.topAnchor.constraint(equalTo: forgotLabel.bottomAnchor, constant: 50),
-            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 60),
             loginButton.widthAnchor.constraint(equalToConstant: 200),
             
-            newLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50),
-            newLabel.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
+            createAccStackView.topAnchor.constraint(equalTo: welcomeStackView.bottomAnchor, constant: 20),
+            createAccStackView.centerXAnchor.constraint(equalTo: whiteBg.centerXAnchor),
             
-            createAccLabel.leadingAnchor.constraint(equalTo: newLabel.trailingAnchor, constant: 5),
-            createAccLabel.bottomAnchor.constraint(equalTo: newLabel.bottomAnchor),
             
         ])
     }

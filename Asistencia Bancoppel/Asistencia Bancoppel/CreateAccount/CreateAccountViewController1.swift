@@ -100,7 +100,7 @@ class CreateAccountViewController1: UIViewController {
         return label
     }()
     
-    let nextButton: UIButton = {
+    lazy var nextButton: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .secondarySystemBackground
@@ -112,7 +112,7 @@ class CreateAccountViewController1: UIViewController {
         return button
     }()
     
-    let cancelButton: UIButton = {
+    lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.configuration = .plain()
         button.setTitle("Cancelar", for: [])
