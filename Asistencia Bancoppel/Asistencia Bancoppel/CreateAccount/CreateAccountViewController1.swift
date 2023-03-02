@@ -19,8 +19,6 @@ class CreateAccountViewController1: UIViewController {
     var confPassword: String? {
         return confPassTextField.text
     }
-    
-    
     let logoAsistView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBlue
@@ -42,10 +40,10 @@ class CreateAccountViewController1: UIViewController {
     let mailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Correo Electronico"
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 5
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -58,15 +56,23 @@ class CreateAccountViewController1: UIViewController {
         return label
     }()
     
+    let mailStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.alignment = .trailing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     let passTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Contraseña"
         textField.font = UIFont(name: "Roboto-Regular", size: 12)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 5
-
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -79,15 +85,23 @@ class CreateAccountViewController1: UIViewController {
         return label
     }()
     
+    let passStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.alignment = .trailing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     let confPassTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Confirmar contraseña"
         textField.font = UIFont(name: "Roboto-Regular", size: 12)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .secondarySystemBackground
         textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 5
-
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -100,15 +114,34 @@ class CreateAccountViewController1: UIViewController {
         return label
     }()
     
+    let confPassStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.alignment = .trailing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    let dataStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 25
+        stackView.alignment = .trailing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
+    
     lazy var nextButton: UIButton = {
        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .secondarySystemBackground
         button.setTitle("Siguiente", for: [])
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 30
         button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 22)
         button.addTarget(self, action: #selector(nextButtonTapped), for: .primaryActionTriggered)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -117,7 +150,6 @@ class CreateAccountViewController1: UIViewController {
         button.configuration = .plain()
         button.setTitle("Cancelar", for: [])
         button.addTarget(self, action: #selector(cancelButtonTapped), for: .primaryActionTriggered)
-
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -141,13 +173,22 @@ class CreateAccountViewController1: UIViewController {
         
         view.addSubview(logoAsistView)
         view.addSubview(createTitleLabel)
-        view.addSubview(mailTextField)
-        view.addSubview(mailLabel)
-        view.addSubview(passTextField)
-        view.addSubview(passLabel)
-        view.addSubview(confPassTextField)
-        view.addSubview(confPassLabel)
-        view.addSubview(nextButton)
+        
+        mailStackView.addArrangedSubview(mailTextField)
+        mailStackView.addArrangedSubview(mailLabel)
+        dataStackView.addArrangedSubview(mailStackView)
+        
+        passStackView.addArrangedSubview(passTextField)
+        passStackView.addArrangedSubview(passLabel)
+        dataStackView.addArrangedSubview(passStackView)
+        
+        confPassStackView.addArrangedSubview(confPassTextField)
+        confPassStackView.addArrangedSubview(confPassLabel)
+        dataStackView.addArrangedSubview(confPassStackView)
+        
+        view.addSubview(dataStackView)
+         
+         view.addSubview(nextButton)
         view.addSubview(cancelButton)
         
         
@@ -160,31 +201,27 @@ class CreateAccountViewController1: UIViewController {
             createTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             createTitleLabel.topAnchor.constraint(equalTo: logoAsistView.bottomAnchor, constant: 90),
             
-            mailTextField.topAnchor.constraint(equalTo: createTitleLabel.bottomAnchor, constant: 50),
-            mailTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: mailTextField.trailingAnchor, multiplier: 5),
+            mailStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: mailStackView.trailingAnchor, multiplier: 5),
+            
             mailTextField.heightAnchor.constraint(equalToConstant: 30),
+            mailTextField.widthAnchor.constraint(equalTo: mailStackView.widthAnchor),
             
-            mailLabel.topAnchor.constraint(equalTo: mailTextField.bottomAnchor, constant: 3),
-            mailLabel.trailingAnchor.constraint(equalTo: mailTextField.trailingAnchor),
+            passStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: passStackView.trailingAnchor, multiplier: 5),
             
-            passTextField.topAnchor.constraint(equalTo: mailTextField.bottomAnchor, constant: 40),
-            passTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: passTextField.trailingAnchor, multiplier: 5),
             passTextField.heightAnchor.constraint(equalToConstant: 30),
+            passTextField.widthAnchor.constraint(equalTo: passStackView.widthAnchor),
             
-            passLabel.topAnchor.constraint(equalTo: passTextField.bottomAnchor, constant: 3),
-            passLabel.trailingAnchor.constraint(equalTo: passTextField.trailingAnchor),
+            confPassStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: confPassStackView.trailingAnchor, multiplier: 5),
             
-            confPassTextField.topAnchor.constraint(equalTo: passTextField.bottomAnchor, constant: 40),
-            confPassTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: confPassTextField.trailingAnchor, multiplier: 5),
             confPassTextField.heightAnchor.constraint(equalToConstant: 30),
+            confPassTextField.widthAnchor.constraint(equalTo: confPassStackView.widthAnchor),
             
-            confPassLabel.topAnchor.constraint(equalTo: confPassTextField.bottomAnchor, constant: 3),
-            confPassLabel.trailingAnchor.constraint(equalTo: confPassTextField.trailingAnchor),
-            
-            nextButton.topAnchor.constraint(equalTo: confPassTextField.bottomAnchor, constant: 100),
+            dataStackView.topAnchor.constraint(equalTo: createTitleLabel.bottomAnchor, constant: 50),
+                        
+            nextButton.topAnchor.constraint(equalTo: dataStackView.bottomAnchor, constant: 100),
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.heightAnchor.constraint(equalToConstant: 60),
             nextButton.widthAnchor.constraint(equalToConstant: 200),
@@ -193,8 +230,6 @@ class CreateAccountViewController1: UIViewController {
             cancelButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
         ])
-        
-        
         
     }
 }
@@ -235,14 +270,19 @@ extension CreateAccountViewController1 {
     }
     private func check() -> Bool {
         
+        let tfError = ["Ingresa un correo Coppel valido.",
+                       "Ingresa una contraseña valida (al menos 8 caracteres).",
+                       "Las contraseñas no coinciden.",
+                       "Vuelve a escribir la contraseña"]
+        
         var flag = true
         mailLabel.text = "Ingresa tu correo coppel"
         mailLabel.textColor = .gray
         mailTextField.layer.borderWidth = 0
-        passLabel.text = "Debe contener 8 caracteres"
+        passLabel.text = "Debe contener 8 caracteres."
         passLabel.textColor = .gray
         passTextField.layer.borderWidth = 0
-        confPassLabel.text = "Vuelve a escribir la contraseña"
+        confPassLabel.text = "Vuelva a escribir la contraseña."
         confPassLabel.textColor = .gray
         confPassTextField.layer.borderWidth = 0
         
@@ -255,11 +295,11 @@ extension CreateAccountViewController1 {
         
         if password.isEmpty && mail.isEmpty{
             
-            mailLabel.text = "Ingresa un correo Coppel valido."
+            mailLabel.text = tfError[0]
             mailLabel.textColor = .red
             mailTextField.layer.borderWidth = 1
             mailTextField.layer.borderColor = UIColor.red.cgColor
-            passLabel.text = "Ingresa una contraseña valida (al menos 8 caracteres)."
+            passLabel.text = tfError[1]
             passLabel.textColor = .red
             passTextField.layer.borderWidth = 1
             passTextField.layer.borderColor = UIColor.red.cgColor
@@ -267,7 +307,7 @@ extension CreateAccountViewController1 {
         }
         
         if confPassword.isEmpty || confPassword.count < 7 {
-            confPassLabel.text = "Ingresa una contraseña valida (al menos 8 caracteres)."
+            confPassLabel.text = tfError[1]
             confPassLabel.textColor = .red
             confPassTextField.layer.borderWidth = 1
             confPassTextField.layer.borderColor = UIColor.red.cgColor
@@ -275,7 +315,7 @@ extension CreateAccountViewController1 {
         }
         
         if !checkMailDomain(mail: mail) {
-            mailLabel.text = "Ingresa un correo Coppel valido."
+            mailLabel.text = tfError[0]
             mailLabel.textColor = .red
             mailTextField.layer.borderWidth = 1
             mailTextField.layer.borderColor = UIColor.red.cgColor
@@ -286,18 +326,18 @@ extension CreateAccountViewController1 {
         }
         
         if password != confPassword {
-            confPassLabel.text = "Las contraseñas no coinciden."
+            confPassLabel.text = tfError[2]
             confPassLabel.textColor = .red
             confPassTextField.layer.borderWidth = 1
             confPassTextField.layer.borderColor = UIColor.red.cgColor
             flag = false
         } else {
-            confPassLabel.text = "Vuelve a escribir la contraseña"
+            confPassLabel.text = tfError[3]
             confPassTextField.layer.borderWidth = 1
             confPassTextField.layer.borderColor = UIColor.red.cgColor
         }
         if password.count < 8 {
-            passLabel.text = "Ingresa una contraseña valida (al menos 8 caracteres)."
+            passLabel.text = tfError[1]
             passLabel.textColor = .red
             passTextField.layer.borderWidth = 1
             passTextField.layer.borderColor = UIColor.red.cgColor
