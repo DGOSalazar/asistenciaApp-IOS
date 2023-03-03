@@ -8,10 +8,6 @@
 		<string>Roboto-Bold.ttf</string>
 		<string>Roboto-Regular.ttf</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string></string>
-	<key>CFBundleExecutable</key>
-	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

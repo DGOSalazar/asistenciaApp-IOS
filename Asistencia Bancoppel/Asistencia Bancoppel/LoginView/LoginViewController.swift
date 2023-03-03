@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class LoginViewController: UIViewController {
     
@@ -153,6 +154,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Analytics.logEvent("SplashScreen", parameters: ["message": "Integracion de Firebase completa"])
         autolayout()
         makeCreateAccClickeable()
 

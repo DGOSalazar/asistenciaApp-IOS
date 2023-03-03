@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class SplashViewController: UIViewController {
 
@@ -52,6 +53,7 @@ class SplashViewController: UIViewController {
 
         //Logica para cambio de vista
         //Timer Provisional
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 5){
             self.view.window?.rootViewController = LoginViewController()
             

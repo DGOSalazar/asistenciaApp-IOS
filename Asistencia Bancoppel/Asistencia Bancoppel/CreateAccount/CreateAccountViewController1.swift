@@ -43,6 +43,7 @@ class CreateAccountViewController1: UIViewController {
         textField.font = UIFont(name: "Roboto-Regular", size: 12)
         textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 5
+        textField.adjustsFontSizeToFitWidth = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -205,7 +206,6 @@ class CreateAccountViewController1: UIViewController {
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: mailStackView.trailingAnchor, multiplier: 5),
             
             mailTextField.heightAnchor.constraint(equalToConstant: 30),
-            mailTextField.widthAnchor.constraint(equalTo: mailStackView.widthAnchor),
             
             passStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: passStackView.trailingAnchor, multiplier: 5),
