@@ -13,6 +13,16 @@ class CreateAccountViewController3: UIViewController {
     let inicOptions = ["Saldo Ya", "Creditos", "Abonos Coppel", "Pagare"]
     let jobOptions = ["Tester/QA", "FrontEnd", "BackEnd", "Analista", "Scrum Master"]
     
+    var job: String? {
+        return jobTextField.text
+    }
+    var inic: String? {
+        return inicTextField.text
+    }
+    var colab: String? {
+        return colabTextField.text
+    }
+    
     let logoAsistView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBlue
@@ -115,10 +125,10 @@ class CreateAccountViewController3: UIViewController {
     }()
     
     let finishButton: UIButton = {
-       let button = UIButton()
-        button.backgroundColor = .secondarySystemBackground
+        let button = UIButton()
         button.setTitle("Finalizar", for: [])
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(named: "splashGradientBottom")
         button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 22)
         button.layer.cornerRadius = 30
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -153,8 +163,36 @@ class CreateAccountViewController3: UIViewController {
     }
     
     func check() -> Bool {
+        var flag = true
+        //honeLabel.text = "Ingresa tu correo coppel"
+        jobTextField.layer.borderWidth = 0
+        inicTextField.layer.borderWidth = 0
+        colabTextField.layer.borderWidth = 0
+
+        guard let job = job, let colab = colab, let inic = inic
+        else {
+            assertionFailure("No pueden ser nil")
+            return false
+        }
+        if job.isEmpty {
+            flag = false
+            jobTextField.layer.borderWidth = 1
+            jobTextField.layer.borderColor = UIColor.red.cgColor
+            
+        }
+        if colab.isEmpty {
+            flag = false
+            colabTextField.layer.borderWidth = 1
+            colabTextField.layer.borderColor = UIColor.red.cgColor
+
+        }
+        if inic.isEmpty {
+            flag = false
+            inicTextField.layer.borderWidth = 1
+            inicTextField.layer.borderColor = UIColor.red.cgColor
+        }
         
-        return true
+        return flag
     }
     
     
@@ -169,7 +207,9 @@ class CreateAccountViewController3: UIViewController {
         view.addSubview(inicTextField)
         view.addSubview(colabLabel)
         view.addSubview(colabTextField)
-
+        view.addSubview(finishButton)
+        view.addSubview(cancelButton)
+        
         
         NSLayoutConstraint.activate([
             
@@ -216,6 +256,15 @@ class CreateAccountViewController3: UIViewController {
             colabTextField.leadingAnchor.constraint(equalTo: colabLabel.trailingAnchor),
             colabTextField.heightAnchor.constraint(equalToConstant: 30),
             
+            finishButton.heightAnchor.constraint(equalToConstant: 60),
+            finishButton.widthAnchor.constraint(equalToConstant: 200),
+            finishButton.topAnchor.constraint(equalTo: colabTextField.bottomAnchor, constant: 45),
+            finishButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            
+            cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            cancelButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
         ])
     }
 }
@@ -244,10 +293,10 @@ extension CreateAccountViewController3: UIPickerViewDelegate, UIPickerViewDataSo
         return ""
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == inicTextField.textInputView {
+        if pickerView == inicTextField.inputView {
             return inicTextField.text = inicOptions[row]
         }
-        if pickerView == jobTextField.textInputView {
+        if pickerView == jobTextField.inputView {
             return jobTextField.text = jobOptions[row]
         }
         
