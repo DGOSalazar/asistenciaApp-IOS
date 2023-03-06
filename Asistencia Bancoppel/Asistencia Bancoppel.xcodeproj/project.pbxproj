@@ -178,6 +178,7 @@
 				628A8853299AD299009F30E6 /* Frameworks */,
 				628A8854299AD299009F30E6 /* Resources */,
 				CFC6E1A4E1327FAA53CAFBFE /* [CP] Embed Pods Frameworks */,
+				E6039B5029B29FCD00383308 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -276,6 +277,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Asistencia Bancoppel/Pods-Asistencia Bancoppel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E6039B5029B29FCD00383308 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
