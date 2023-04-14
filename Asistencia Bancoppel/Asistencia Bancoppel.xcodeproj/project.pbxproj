@@ -15,6 +15,11 @@
 		3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3629A946FF00F9CA1D /* AccountCell.swift */; };
 		3F439A3B29A9497300F9CA1D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3A29A9497300F9CA1D /* Account.swift */; };
 		3F439A3D29A94AED00F9CA1D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3C29A94AED00F9CA1D /* MainViewController.swift */; };
+		5235453B29E8BD05002BECAB /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235453A29E8BD05002BECAB /* AccountCreationViewController.swift */; };
+		5235454029E8C364002BECAB /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235453F29E8C364002BECAB /* MainButton.swift */; };
+		5235454329E8DC99002BECAB /* AccountCreationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */; };
+		5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454429E8DCA9002BECAB /* PersonalDataPageViewController.swift */; };
+		5235454729E8DCB9002BECAB /* LastStepPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454629E8DCB9002BECAB /* LastStepPageViewController.swift */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
 		628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A885D299AD299009F30E6 /* SplashViewController.swift */; };
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
@@ -30,6 +35,11 @@
 		3F439A3629A946FF00F9CA1D /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		3F439A3A29A9497300F9CA1D /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		3F439A3C29A94AED00F9CA1D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5235453A29E8BD05002BECAB /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
+		5235453F29E8C364002BECAB /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
+		5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationPageViewController.swift; sourceTree = "<group>"; };
+		5235454429E8DCA9002BECAB /* PersonalDataPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataPageViewController.swift; sourceTree = "<group>"; };
+		5235454629E8DCB9002BECAB /* LastStepPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepPageViewController.swift; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		628A8859299AD299009F30E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		628A885D299AD299009F30E6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +89,7 @@
 		3F439A2C29A93FA000F9CA1D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5235453C29E8C29C002BECAB /* Components */,
 				3F439A2D29A9434200F9CA1D /* Extensions */,
 			);
 			path = Common;
@@ -95,6 +106,7 @@
 		3F439A3029A945AC00F9CA1D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5235453629E8BCC3002BECAB /* AccountCreation */,
 				3F439A3C29A94AED00F9CA1D /* MainViewController.swift */,
 				3F439A3129A945E800F9CA1D /* AccountHome */,
 			);
@@ -141,6 +153,73 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5235453629E8BCC3002BECAB /* AccountCreation */ = {
+			isa = PBXGroup;
+			children = (
+				5235453929E8BCDF002BECAB /* ViewModel */,
+				5235453829E8BCDB002BECAB /* Model */,
+				5235453729E8BCD6002BECAB /* View */,
+			);
+			path = AccountCreation;
+			sourceTree = "<group>";
+		};
+		5235453729E8BCD6002BECAB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5235454129E8DC68002BECAB /* Pages */,
+				5235453A29E8BD05002BECAB /* AccountCreationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5235453829E8BCDB002BECAB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5235453929E8BCDF002BECAB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5235453C29E8C29C002BECAB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5235453D29E8C2A2002BECAB /* Buttons */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5235453D29E8C2A2002BECAB /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				5235453E29E8C32C002BECAB /* MainButton */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		5235453E29E8C32C002BECAB /* MainButton */ = {
+			isa = PBXGroup;
+			children = (
+				5235453F29E8C364002BECAB /* MainButton.swift */,
+			);
+			path = MainButton;
+			sourceTree = "<group>";
+		};
+		5235454129E8DC68002BECAB /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */,
+				5235454429E8DCA9002BECAB /* PersonalDataPageViewController.swift */,
+				5235454629E8DCB9002BECAB /* LastStepPageViewController.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		628A884D299AD299009F30E6 = {
@@ -252,13 +331,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5235454329E8DC99002BECAB /* AccountCreationPageViewController.swift in Sources */,
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
+				5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */,
 				3F439A2B29A93EC700F9CA1D /* Fonts.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* Account.swift in Sources */,
+				5235454729E8DCB9002BECAB /* LastStepPageViewController.swift in Sources */,
 				3F439A2929A93DA900F9CA1D /* GlobalConstants.swift in Sources */,
+				5235454029E8C364002BECAB /* MainButton.swift in Sources */,
+				5235453B29E8BD05002BECAB /* AccountCreationViewController.swift in Sources */,
 				3F439A2F29A9435300F9CA1D /* UIViewController+Extensions.swift in Sources */,
 				3F439A3D29A94AED00F9CA1D /* MainViewController.swift in Sources */,
 			);
