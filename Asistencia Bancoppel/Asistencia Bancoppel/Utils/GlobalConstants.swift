@@ -12,6 +12,7 @@ enum GlobalConstants {
     private enum Colors {
         static let grayBex1 = "GrayBex1"
         static let grayBex2 = "GrayBex2"
+        static let grayBex3 = "GrayBex3"
         static let grayBex10 = "GrayBex10"
         
         static let blueBex3 = "BlueBex3"
@@ -31,6 +32,7 @@ enum GlobalConstants {
     enum BancoppelColors {
         static let grayBex1 = UIColor(named: GlobalConstants.Colors.grayBex1) ?? .clear
         static let grayBex2 = UIColor(named: GlobalConstants.Colors.grayBex2) ?? .clear
+        static let grayBex3 = UIColor(named: GlobalConstants.Colors.grayBex3) ?? .clear
         static let grayBex10 = UIColor(named: GlobalConstants.Colors.grayBex10) ?? .clear
         
         static let blueBex3 = UIColor(named: GlobalConstants.Colors.blueBex3) ?? .clear
