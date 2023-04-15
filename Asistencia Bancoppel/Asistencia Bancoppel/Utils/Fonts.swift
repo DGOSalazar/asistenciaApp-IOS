@@ -16,6 +16,7 @@ enum Fonts: String {
     case SFProBold = "SFProText-Bold"
     case RobotoBold = "RobotoBold"
     case Roboto = "Roboto"
+    case RobotoItalic = "RobotoItalic"
 
     func of(size: CGFloat) -> UIFont {
         let font = UIFont(name: rawValue, size: size - 1) ?? UIFont.systemFont(ofSize: size - 1)
