@@ -112,7 +112,7 @@ extension AccountCell {
             vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.yellowBex3
             
         case .DevelomentAndroid:
-            vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.greenBex7
+            vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.greenBex3
             
         case .BussinessAnalyst:
             vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.pinkBex4

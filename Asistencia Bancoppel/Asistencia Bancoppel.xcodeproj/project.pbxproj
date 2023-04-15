@@ -20,6 +20,10 @@
 		5235454329E8DC99002BECAB /* AccountCreationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */; };
 		5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454429E8DCA9002BECAB /* PersonalDataPageViewController.swift */; };
 		5235454729E8DCB9002BECAB /* LastStepPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454629E8DCB9002BECAB /* LastStepPageViewController.swift */; };
+		526BEC4E29E9A39800554701 /* BottomTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BEC4D29E9A39800554701 /* BottomTitleTextField.swift */; };
+		526BEC5029E9B53E00554701 /* LeftTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BEC4F29E9B53E00554701 /* LeftTitleTextField.swift */; };
+		527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2D29EA0C190083567F /* DatePickerTextField.swift */; };
+		527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2F29EA15960083567F /* GenericPickerTextField.swift */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
 		628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A885D299AD299009F30E6 /* SplashViewController.swift */; };
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
@@ -40,6 +44,10 @@
 		5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationPageViewController.swift; sourceTree = "<group>"; };
 		5235454429E8DCA9002BECAB /* PersonalDataPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataPageViewController.swift; sourceTree = "<group>"; };
 		5235454629E8DCB9002BECAB /* LastStepPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepPageViewController.swift; sourceTree = "<group>"; };
+		526BEC4D29E9A39800554701 /* BottomTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTitleTextField.swift; sourceTree = "<group>"; };
+		526BEC4F29E9B53E00554701 /* LeftTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftTitleTextField.swift; sourceTree = "<group>"; };
+		527DED2D29EA0C190083567F /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
+		527DED2F29EA15960083567F /* GenericPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPickerTextField.swift; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		628A8859299AD299009F30E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		628A885D299AD299009F30E6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 		5235453C29E8C29C002BECAB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				526BEC4C29E9A23F00554701 /* TextFields */,
 				5235453D29E8C2A2002BECAB /* Buttons */,
 			);
 			path = Components;
@@ -220,6 +229,17 @@
 				5235454629E8DCB9002BECAB /* LastStepPageViewController.swift */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		526BEC4C29E9A23F00554701 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				526BEC4D29E9A39800554701 /* BottomTitleTextField.swift */,
+				526BEC4F29E9B53E00554701 /* LeftTitleTextField.swift */,
+				527DED2D29EA0C190083567F /* DatePickerTextField.swift */,
+				527DED2F29EA15960083567F /* GenericPickerTextField.swift */,
+			);
+			path = TextFields;
 			sourceTree = "<group>";
 		};
 		628A884D299AD299009F30E6 = {
@@ -332,13 +352,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5235454329E8DC99002BECAB /* AccountCreationPageViewController.swift in Sources */,
+				527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */,
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
+				526BEC4E29E9A39800554701 /* BottomTitleTextField.swift in Sources */,
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
+				527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */,
 				5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */,
 				3F439A2B29A93EC700F9CA1D /* Fonts.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* Account.swift in Sources */,
+				526BEC5029E9B53E00554701 /* LeftTitleTextField.swift in Sources */,
 				5235454729E8DCB9002BECAB /* LastStepPageViewController.swift in Sources */,
 				3F439A2929A93DA900F9CA1D /* GlobalConstants.swift in Sources */,
 				5235454029E8C364002BECAB /* MainButton.swift in Sources */,
