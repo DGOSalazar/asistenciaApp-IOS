@@ -22,6 +22,8 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
     private var pickerData: [T] = []
     private var pickerDataTitles: [String] = []
     private var currentGeneric: T? = nil
+    private var currentRow: Int? = 0
+    private var iconReference: UIImageView? = nil
     
     
     lazy var txtfContent: UITextField = {
@@ -31,8 +33,18 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
         textfield.textColor = GlobalConstants.BancoppelColors.grayBex10
         textfield.leftView = UIView(frame: .init(x: 0, y: 0, width: 13, height: 0))
         textfield.leftViewMode = .always
-        textfield.rightView = UIView(frame: .init(x: 0, y: 0, width: 13, height: 0))
+        
+        let icon = UIImageView(frame: .init(x: 8, y: 0, width: 13.2, height: 30) )
+        icon.image = UIImage(named: "picker_arrow_icon")
+        icon.contentMode = .scaleAspectFit
+        icon.contentMode = .center
+        icon.tintColor = GlobalConstants.BancoppelColors.grayBex4
+        let iconContainer = UIView(frame: .init(x: 0, y: 0, width: 29.2, height: 30))
+        iconContainer.addSubview(icon)
+        textfield.rightView = iconContainer
         textfield.rightViewMode = .always
+        self.iconReference = icon
+        
         textfield.layer.cornerRadius = 5
         textfield.backgroundColor = GlobalConstants.BancoppelColors.grayBex1
         textfield.returnKeyType = .done
@@ -84,7 +96,7 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
     }()
     
     
-    internal init(title: String, placeholder: String, dataTitles: [String], genericData: [T], delegate: GenericPickerTextFieldDelegate?, identifier: String = "") {
+    internal init(title: String, placeholder: String, dataTitles: [String], genericData: [T], delegate: GenericPickerTextFieldDelegate?, identifier: String = "", textAlignment: NSTextAlignment = .right) {
         super.init(frame: .zero)
         
         self.identifier = identifier
@@ -95,6 +107,7 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
         txtfContent.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                                attributes: [NSAttributedString.Key.foregroundColor: GlobalConstants.BancoppelColors.grayBex4,
                                                                             NSAttributedString.Key.font: Fonts.RobotoItalic.of(size: 16)])
+        txtfContent.textAlignment = textAlignment
         self.delegate = delegate
         
         self.setComponents()
@@ -134,16 +147,33 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
     
     @objc func doneButtonPressed() {
         DispatchQueue.main.async {
+            self.updateData()
             self.delegate?.genericPickerTextFieldDone(identifier: self.identifier)
         }
     }
     
-
-    func formatDate(date: Date) -> String {
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = self.dateFormat
-        return dateFormat.string(from: date)
+    private func updateData() {
+        DispatchQueue.main.async {
+            guard let nonNilRow = self.currentRow else {
+                return
+            }
+            
+            if nonNilRow <= (self.pickerData.count - 1) {
+                self.currentGeneric = self.pickerData[nonNilRow]
+                self.txtfContent.text = self.pickerDataTitles[nonNilRow]
+                self.iconReference?.tintColor = GlobalConstants.BancoppelColors.grayBex10
+            } else {
+                self.currentGeneric = nil
+                self.currentRow = nil
+                self.txtfContent.text = ""
+                self.iconReference?.tintColor = GlobalConstants.BancoppelColors.grayBex4
+            }
+            
+            self.delegate?.genericPickerTextFieldDidChange(identifier: self.identifier, data: self.currentGeneric)
+        }
     }
+    
+
     
     internal func setFailureStatus(message: String) {
         DispatchQueue.main.async {
@@ -190,11 +220,17 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if row <= (self.pickerData.count - 1) {
-            self.currentGeneric = self.pickerData[row]
-        } else {
-            self.currentGeneric = nil
-        }
-        self.delegate?.genericPickerTextFieldDidChange(identifier: identifier, data: currentGeneric)
+        self.currentRow = row
+        self.updateData()
     }
+    
+    override func becomeFirstResponder() -> Bool {
+        super.becomeFirstResponder()
+        return self.txtfContent.becomeFirstResponder()
+    }
+    override func resignFirstResponder() -> Bool {
+        super.resignFirstResponder()
+        return self.txtfContent.resignFirstResponder()
+    }
+    
 }
