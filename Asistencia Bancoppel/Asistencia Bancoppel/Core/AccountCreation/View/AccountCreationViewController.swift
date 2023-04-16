@@ -62,7 +62,7 @@ internal class AccountCreationViewController: UIViewController {
             ivwLogo.topAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.topAnchor, constant: 50),
             ivwLogo.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 50),
             ivwLogo.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -50),
-            ivwLogo.heightAnchor.constraint(equalToConstant: 43),
+            ivwLogo.heightAnchor.constraint(equalToConstant: 50),
             
             pvwcPager.view.topAnchor.constraint(equalTo: ivwLogo.bottomAnchor, constant: 30),
             pvwcPager.view.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 30),
