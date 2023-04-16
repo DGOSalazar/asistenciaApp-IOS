@@ -244,6 +244,7 @@ class AccountHomeViewController: UIViewController {
         ])
     }
     
+    @objc func showRegistration() {
 }
  
 extension AccountHomeViewController: UITableViewDataSource, UITableViewDelegate {

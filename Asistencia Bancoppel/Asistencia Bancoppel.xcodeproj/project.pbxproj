@@ -20,6 +20,7 @@
 		5235454329E8DC99002BECAB /* AccountCreationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */; };
 		5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454429E8DCA9002BECAB /* PersonalDataPageViewController.swift */; };
 		5235454729E8DCB9002BECAB /* LastStepPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454629E8DCB9002BECAB /* LastStepPageViewController.swift */; };
+		5261ECDE29EC92AA0086BA29 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261ECDD29EC92AA0086BA29 /* String+Extension.swift */; };
 		526BEC4E29E9A39800554701 /* BottomTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BEC4D29E9A39800554701 /* BottomTitleTextField.swift */; };
 		526BEC5029E9B53E00554701 /* LeftTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BEC4F29E9B53E00554701 /* LeftTitleTextField.swift */; };
 		527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2D29EA0C190083567F /* DatePickerTextField.swift */; };
@@ -45,6 +46,7 @@
 		5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationPageViewController.swift; sourceTree = "<group>"; };
 		5235454429E8DCA9002BECAB /* PersonalDataPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataPageViewController.swift; sourceTree = "<group>"; };
 		5235454629E8DCB9002BECAB /* LastStepPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepPageViewController.swift; sourceTree = "<group>"; };
+		5261ECDD29EC92AA0086BA29 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		526BEC4D29E9A39800554701 /* BottomTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTitleTextField.swift; sourceTree = "<group>"; };
 		526BEC4F29E9B53E00554701 /* LeftTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftTitleTextField.swift; sourceTree = "<group>"; };
 		527DED2D29EA0C190083567F /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				3F439A2E29A9435300F9CA1D /* UIViewController+Extensions.swift */,
+				5261ECDD29EC92AA0086BA29 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
 				527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */,
 				5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */,
+				5261ECDE29EC92AA0086BA29 /* String+Extension.swift in Sources */,
 				3F439A2B29A93EC700F9CA1D /* Fonts.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
