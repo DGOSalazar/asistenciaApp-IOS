@@ -107,6 +107,10 @@ internal class LeftTitleTextField: UIView {
         ])
     }
     
+    internal func getText() -> String {
+        return txtfContent.text ?? ""
+    }
+    
     
     @objc func textFieldDidChange() {
         delegate?.leftTitleTextFieldDidChange(identifier: identifier, text: txtfContent.text ?? "")
@@ -118,7 +122,6 @@ internal class LeftTitleTextField: UIView {
             self.txtfContent.layer.borderColor = GlobalConstants.BancoppelColors.redBex10.cgColor
             self.lbError.text = message
             self.lbError.isHidden = false
-            self.lbTitle.isHidden = true
         }
     }
     
@@ -126,7 +129,6 @@ internal class LeftTitleTextField: UIView {
         DispatchQueue.main.async {
             self.lbError.text = ""
             self.lbError.isHidden = true
-            self.lbTitle.isHidden = false
             self.txtfContent.layer.borderWidth = 1
             self.txtfContent.layer.borderColor = GlobalConstants.BancoppelColors.greenBex5.cgColor
         }
@@ -137,7 +139,6 @@ internal class LeftTitleTextField: UIView {
         DispatchQueue.main.async {
             self.lbError.text = ""
             self.lbError.isHidden = true
-            self.lbTitle.isHidden = false
             self.txtfContent.layer.borderWidth = 0
             self.txtfContent.layer.borderColor = UIColor.clear.cgColor
         }
