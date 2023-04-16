@@ -19,6 +19,17 @@ extension UIViewController {
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
     }
     
+    func hideKeyboardWhenTapped() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = true
+        tap.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
     func setTabBarImage(imageName: String, title: String, imageSet: String) {
         let image = UIImage(named: imageName)
         tabBarItem = UITabBarItem(title: title, image: image, tag: 0)
