@@ -46,8 +46,9 @@ internal class DatePickerTextField: UIView {
     lazy var dtpDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.backgroundColor = .systemBackground
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
         datePicker.locale = .init(identifier: "es_MX")
         let maxDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())
         datePicker.maximumDate = maxDate
@@ -129,7 +130,9 @@ internal class DatePickerTextField: UIView {
         ])
     }
     
-    
+    internal func getText() -> String {
+        return txtfContent.text ?? ""
+    }
     
     @objc func datePickerDidChange() {
         DispatchQueue.main.async {
@@ -140,6 +143,7 @@ internal class DatePickerTextField: UIView {
     
     @objc func doneButtonPressed() {
         DispatchQueue.main.async {
+            self.datePickerDidChange()
             self.delegate?.datePickerTextFieldDone?(identifier: self.identifier)
         }
     }
@@ -157,7 +161,6 @@ internal class DatePickerTextField: UIView {
             self.txtfContent.layer.borderColor = GlobalConstants.BancoppelColors.redBex10.cgColor
             self.lbError.text = message
             self.lbError.isHidden = false
-            self.lbTitle.isHidden = true
         }
     }
     
@@ -165,7 +168,6 @@ internal class DatePickerTextField: UIView {
         DispatchQueue.main.async {
             self.lbError.text = ""
             self.lbError.isHidden = true
-            self.lbTitle.isHidden = false
             self.txtfContent.layer.borderWidth = 1
             self.txtfContent.layer.borderColor = GlobalConstants.BancoppelColors.greenBex5.cgColor
         }
@@ -176,7 +178,6 @@ internal class DatePickerTextField: UIView {
         DispatchQueue.main.async {
             self.lbError.text = ""
             self.lbError.isHidden = true
-            self.lbTitle.isHidden = false
             self.txtfContent.layer.borderWidth = 0
             self.txtfContent.layer.borderColor = UIColor.clear.cgColor
         }
