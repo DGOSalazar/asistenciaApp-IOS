@@ -181,4 +181,13 @@ internal class DatePickerTextField: UIView {
             self.txtfContent.layer.borderColor = UIColor.clear.cgColor
         }
     }
+    
+    override func becomeFirstResponder() -> Bool {
+        super.becomeFirstResponder()
+        return self.txtfContent.becomeFirstResponder()
+    }
+    override func resignFirstResponder() -> Bool {
+        super.resignFirstResponder()
+        return self.txtfContent.resignFirstResponder()
+    }
 }
