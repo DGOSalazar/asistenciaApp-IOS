@@ -81,7 +81,7 @@ internal class AccountCreationPageViewController: UIViewController {
     
     
     lazy var btNext: MainButton = {
-        let button = MainButton(title: "Siguiente", enable: true)
+        let button = MainButton(title: "Siguiente", enable: false)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(btNextPressed), for: .touchUpInside)
         return button
@@ -92,6 +92,7 @@ internal class AccountCreationPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.hideKeyboardWhenTapped()
         setComponents()
         setAutolayout()
     }
@@ -154,11 +155,88 @@ internal class AccountCreationPageViewController: UIViewController {
     @objc private func btNextPressed() {
         delegate?.notifyAccountCreationPageNext()
     }
+    
+    private func validateEmail() -> Bool {
+        let email = txtfEmail.getText().lowercased()
+        guard !email.isEmpty, email.contains("@") else {
+            txtfEmail.setDefaultStatus()
+            return false
+        }
+        
+        guard email.isCoppelEmail() else {
+            txtfEmail.setFailureStatus(message: "Ingresa un correo Coppel válido.")
+            return false
+        }
+        
+        txtfEmail.setSuccessStatus()
+        return true
+    }
+    
+    private func validatedCredential() -> Bool {
+        let credential = txtfCredential.getText()
+        
+        if !txtfCredentialConfirmation.getText().isEmpty {
+            _ = validatedConfirmCredential()
+        }
+        
+        guard !credential.isEmpty else {
+            txtfCredential.setDefaultStatus()
+            return false
+        }
+        
+        guard credential.count >= 8 else {
+            txtfCredential.setFailureStatus(message: "Ingresa una contraseña válida (al menos 8 caracteres).")
+            return false
+        }
+        
+        txtfCredential.setSuccessStatus()
+        
+        return true
+    }
+    
+    private func validatedConfirmCredential() -> Bool{
+        let confirmCredential = txtfCredentialConfirmation.getText()
+        
+        guard !confirmCredential.isEmpty else {
+            txtfCredentialConfirmation.setDefaultStatus()
+            return false
+        }
+        
+        guard confirmCredential.count >= 8 else {
+            txtfCredentialConfirmation.setFailureStatus(message: "Ingresa una contraseña válida (al menos 8 caracteres).")
+            return false
+        }
+        
+        guard confirmCredential == txtfCredential.getText() else {
+            txtfCredentialConfirmation.setFailureStatus(message: "La contraseñas no coinciden.")
+            return false
+        }
+        
+        txtfCredentialConfirmation.setSuccessStatus()
+        return true
+    }
+    
+    private func validateData() -> Bool {
+        let isValidEmail = validateEmail()
+        let isValidCredential = validatedCredential()
+        let isValidConfirmCredential = validatedConfirmCredential()
+        return (isValidEmail && isValidCredential && isValidConfirmCredential)
+    }
 }
 
 extension AccountCreationPageViewController: BottomTitleTextFieldDelegate {
     func bottomTitleTextFieldDidChange(identifier: String, text: String) {
-        print("\(identifier): \(text)")
+        btNext.setStatus(enable: validateData())
+    }
+    
+    func bottomTitleTextFieldDone(identifier: String) {
+        if identifier == txtfEmail.identifier {
+            _ = txtfCredential.becomeFirstResponder()
+        } else if identifier == txtfCredential.identifier {
+            _ = txtfCredentialConfirmation.becomeFirstResponder()
+        } else if identifier == txtfCredentialConfirmation.identifier {
+            _ = txtfCredentialConfirmation.resignFirstResponder()
+        }
     }
 }
 
