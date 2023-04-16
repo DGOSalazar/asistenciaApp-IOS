@@ -73,12 +73,32 @@ internal class LastStepPageViewController: UIViewController {
         return view
     }()
     
+    lazy var btLoadPhoto: UploadPhotoButton = {
+        let button = UploadPhotoButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(btUploadPhotoPressed))
+        return button
+    }()
+    
+    lazy var lbUserName: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Héctor González Martínez"
+        label.textColor = GlobalConstants.BancoppelColors.blueBex7
+        label.font = Fonts.RobotoBold.of(size: 18)
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 1
+        label.minimumScaleFactor = 0.5
+        label.textAlignment = .center
+        return label
+    }()
+    
     lazy var txtfCharge: GenericPickerTextField = {
         let titles = charges.map { $0.title }
         let textField = GenericPickerTextField(title: "Puesto:",
                                                placeholder: "Selecciona una opción",
                                                dataTitles: titles,
-                                               data: charges,
+                                               genericData: charges,
                                                delegate: self,
                                                identifier: "charge")
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -91,7 +111,7 @@ internal class LastStepPageViewController: UIViewController {
         let textField = GenericPickerTextField(title: "Iniciativa:",
                                                placeholder: "Selecciona una opción",
                                                dataTitles: titles,
-                                               data: initiatives,
+                                               genericData: initiatives,
                                                delegate: self,
                                                identifier: "initative")
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +151,8 @@ internal class LastStepPageViewController: UIViewController {
         vwContainer.addSubview(vwContent)
         
         vwContent.addSubview(vwDataContainer)
+        vwDataContainer.addSubview(btLoadPhoto)
+        vwDataContainer.addSubview(lbUserName)
         vwDataContainer.addSubview(txtfCharge)
         vwDataContainer.addSubview(txtfInitiative)
         vwDataContainer.addSubview(txtfColaboratorNumber)
@@ -160,15 +182,24 @@ internal class LastStepPageViewController: UIViewController {
             vwDataContainer.trailingAnchor.constraint(equalTo: vwContent.trailingAnchor),
             vwDataContainer.bottomAnchor.constraint(lessThanOrEqualTo: vwContent.bottomAnchor),
             
-            txtfCharge.topAnchor.constraint(equalTo: vwDataContainer.topAnchor),
+            
+            btLoadPhoto.topAnchor.constraint(equalTo: vwDataContainer.topAnchor),
+            btLoadPhoto.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
+            btLoadPhoto.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
+            
+            lbUserName.topAnchor.constraint(equalTo: btLoadPhoto.bottomAnchor, constant: 30),
+            lbUserName.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
+            lbUserName.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
+            
+            txtfCharge.topAnchor.constraint(equalTo: lbUserName.bottomAnchor, constant: 30),
             txtfCharge.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             txtfCharge.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             
-            txtfInitiative.topAnchor.constraint(equalTo: txtfCharge.bottomAnchor, constant: 20),
+            txtfInitiative.topAnchor.constraint(equalTo: txtfCharge.bottomAnchor),
             txtfInitiative.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             txtfInitiative.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             
-            txtfColaboratorNumber.topAnchor.constraint(equalTo: txtfInitiative.bottomAnchor, constant: 20),
+            txtfColaboratorNumber.topAnchor.constraint(equalTo: txtfInitiative.bottomAnchor),
             txtfColaboratorNumber.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             txtfColaboratorNumber.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             txtfColaboratorNumber.bottomAnchor.constraint(equalTo: vwDataContainer.bottomAnchor),
@@ -183,6 +214,9 @@ internal class LastStepPageViewController: UIViewController {
     @objc private func btNextPressed() {
         delegate?.notifyLastStepPageFinish()
     }
+    
+    @objc private func btUploadPhotoPressed() {
+    }
 }
 
 
@@ -196,7 +230,11 @@ extension LastStepPageViewController: LeftTitleTextFieldDelegate {
 
 extension LastStepPageViewController: GenericPickerTextFieldDelegate {
     func genericPickerTextFieldDone(identifier: String) {
-        print("\(identifier)")
+        if identifier == txtfCharge.identifier {
+            _ = self.txtfInitiative.becomeFirstResponder()
+        } else if identifier == txtfInitiative.identifier {
+            _ = self.txtfInitiative.resignFirstResponder()
+        }
     }
     
     func genericPickerTextFieldDidChange<T>(identifier: String, data: T?) {
