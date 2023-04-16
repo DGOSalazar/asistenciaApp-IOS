@@ -24,6 +24,7 @@
 		526BEC5029E9B53E00554701 /* LeftTitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BEC4F29E9B53E00554701 /* LeftTitleTextField.swift */; };
 		527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2D29EA0C190083567F /* DatePickerTextField.swift */; };
 		527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2F29EA15960083567F /* GenericPickerTextField.swift */; };
+		5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285705129EB459300213F47 /* UploadPhotoButton.swift */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
 		628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A885D299AD299009F30E6 /* SplashViewController.swift */; };
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		526BEC4F29E9B53E00554701 /* LeftTitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftTitleTextField.swift; sourceTree = "<group>"; };
 		527DED2D29EA0C190083567F /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		527DED2F29EA15960083567F /* GenericPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPickerTextField.swift; sourceTree = "<group>"; };
+		5285705129EB459300213F47 /* UploadPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoButton.swift; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		628A8859299AD299009F30E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		628A885D299AD299009F30E6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		5235453D29E8C2A2002BECAB /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				5285705029EB458500213F47 /* UploadPhotoButton */,
 				5235453E29E8C32C002BECAB /* MainButton */,
 			);
 			path = Buttons;
@@ -240,6 +243,14 @@
 				527DED2F29EA15960083567F /* GenericPickerTextField.swift */,
 			);
 			path = TextFields;
+			sourceTree = "<group>";
+		};
+		5285705029EB458500213F47 /* UploadPhotoButton */ = {
+			isa = PBXGroup;
+			children = (
+				5285705129EB459300213F47 /* UploadPhotoButton.swift */,
+			);
+			path = UploadPhotoButton;
 			sourceTree = "<group>";
 		};
 		628A884D299AD299009F30E6 = {
@@ -355,6 +366,7 @@
 				527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */,
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
 				526BEC4E29E9A39800554701 /* BottomTitleTextField.swift in Sources */,
+				5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */,
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
 				527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */,
 				5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */,
