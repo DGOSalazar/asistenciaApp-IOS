@@ -39,6 +39,7 @@ internal class AccountCreationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.hideKeyboardWhenTapped()
         
         setComponents()
         setAutolayout()
@@ -143,6 +144,6 @@ extension AccountCreationViewController: PersonalDataPageDelegate {
 
 extension AccountCreationViewController: LastStepPageViewDelegate {
     func notifyLastStepPageFinish() {
-        
+        self.dismiss(animated: true)
     }
 }
