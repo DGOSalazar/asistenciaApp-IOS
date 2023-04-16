@@ -60,7 +60,6 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
     
     lazy var dtpPicker: UIPickerView = {
         let datePicker = UIPickerView()
-        datePicker.backgroundColor = .systemBackground
         datePicker.delegate = self
         datePicker.dataSource = self
 
@@ -144,6 +143,9 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
     }
     
 
+    internal func getGenericValue() -> T? {
+        return currentGeneric
+    }
     
     @objc func doneButtonPressed() {
         DispatchQueue.main.async {
@@ -181,7 +183,6 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
             self.txtfContent.layer.borderColor = GlobalConstants.BancoppelColors.redBex10.cgColor
             self.lbError.text = message
             self.lbError.isHidden = false
-            self.lbTitle.isHidden = true
         }
     }
     
@@ -189,7 +190,6 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
         DispatchQueue.main.async {
             self.lbError.text = ""
             self.lbError.isHidden = true
-            self.lbTitle.isHidden = false
             self.txtfContent.layer.borderWidth = 1
             self.txtfContent.layer.borderColor = GlobalConstants.BancoppelColors.greenBex5.cgColor
         }
@@ -200,7 +200,6 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
         DispatchQueue.main.async {
             self.lbError.text = ""
             self.lbError.isHidden = true
-            self.lbTitle.isHidden = false
             self.txtfContent.layer.borderWidth = 0
             self.txtfContent.layer.borderColor = UIColor.clear.cgColor
         }
