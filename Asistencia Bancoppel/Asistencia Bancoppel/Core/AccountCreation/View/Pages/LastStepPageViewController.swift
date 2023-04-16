@@ -140,6 +140,7 @@ internal class LastStepPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.hideKeyboardWhenTapped()
         setComponents()
         setAutolayout()
     }
@@ -217,12 +218,31 @@ internal class LastStepPageViewController: UIViewController {
     
     @objc private func btUploadPhotoPressed() {
     }
+    
+    private func validateCharge() -> Bool {
+        return (txtfCharge.getGenericValue() != nil)
+    }
+    
+    private func validateInitiative() -> Bool {
+        return (txtfInitiative.getGenericValue() != nil)
+    }
+    
+    private func validateCollaboratorNumber() -> Bool {
+        return !txtfColaboratorNumber.getText().isEmpty
+    }
+    
+    private func validateData() -> Bool {
+        let isValidCharge = validateCharge()
+        let isValidInitiative = validateInitiative()
+        let isValidCollaboratorNumer = validateCollaboratorNumber()
+        return (isValidCharge && isValidInitiative && isValidCollaboratorNumer)
+    }
 }
 
 
 extension LastStepPageViewController: LeftTitleTextFieldDelegate {
     func leftTitleTextFieldDidChange(identifier: String, text: String) {
-        print("\(identifier): \(text)")
+        btFinish.setStatus(enable: validateData())
     }
 }
 
@@ -231,17 +251,15 @@ extension LastStepPageViewController: LeftTitleTextFieldDelegate {
 extension LastStepPageViewController: GenericPickerTextFieldDelegate {
     func genericPickerTextFieldDone(identifier: String) {
         if identifier == txtfCharge.identifier {
-            _ = self.txtfInitiative.becomeFirstResponder()
+            _ = txtfInitiative.becomeFirstResponder()
         } else if identifier == txtfInitiative.identifier {
-            _ = self.txtfInitiative.resignFirstResponder()
+            _ = txtfColaboratorNumber.becomeFirstResponder()
+        } else if identifier == txtfColaboratorNumber.identifier {
+            _ = txtfColaboratorNumber.resignFirstResponder()
         }
     }
     
     func genericPickerTextFieldDidChange<T>(identifier: String, data: T?) {
-        if identifier == txtfCharge.identifier {
-            print("\(identifier): \((data as? Charge)?.title)")
-        } else if identifier == txtfInitiative.identifier {
-            print("\(identifier): \((data as? Initiative)?.title)")
-        }
+        btFinish.setStatus(enable: validateData())
     }
 }
