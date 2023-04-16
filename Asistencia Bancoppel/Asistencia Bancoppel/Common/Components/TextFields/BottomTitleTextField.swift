@@ -106,6 +106,11 @@ internal class BottomTitleTextField: UIView {
     }
     
     
+    internal func getText() -> String {
+        return txtfContent.text ?? ""
+    }
+    
+    
     @objc func textFieldDidChange() {
         delegate?.bottomTitleTextFieldDidChange(identifier: identifier, text: txtfContent.text ?? "")
     }
