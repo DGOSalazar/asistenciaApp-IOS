@@ -86,7 +86,7 @@ internal class PersonalDataPageViewController: UIViewController {
     }()
     
     lazy var btNext: MainButton = {
-        let button = MainButton(title: "Siguiente", enable: true)
+        let button = MainButton(title: "Siguiente", enable: false)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(btNextPressed), for: .touchUpInside)
         return button
@@ -97,6 +97,7 @@ internal class PersonalDataPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.hideKeyboardWhenTapped()
         setComponents()
         setAutolayout()
     }
@@ -164,20 +165,91 @@ internal class PersonalDataPageViewController: UIViewController {
     }
     
     @objc private func btNextPressed() {
+        guard validateData() else {
+            return
+        }
         delegate?.notifyPersonalDataNext()
+    }
+    
+    private func validateName() -> Bool {
+        guard !txtfName.getText().isEmpty else {
+            txtfName.setDefaultStatus()
+            return false
+        }
+        
+        txtfName.setSuccessStatus()
+        return true
+    }
+    
+    private func validateLastname() -> Bool {
+        guard !txtfLastnames.getText().isEmpty else {
+            txtfLastnames.setDefaultStatus()
+            return false
+        }
+        
+        txtfLastnames.setSuccessStatus()
+        return true
+    }
+    
+    private func validateBirthDate() -> Bool {
+        guard !txtfBirthDate.getText().isEmpty else {
+            txtfBirthDate.setDefaultStatus()
+            return false
+        }
+        
+        txtfBirthDate.setSuccessStatus()
+        return true
+    }
+    
+    private func validatePhoneNumber() -> Bool {
+        let cellphone = txtfCellphone.getText()
+        
+        guard !cellphone.isEmpty else {
+            txtfCellphone.setDefaultStatus()
+            return false
+        }
+        
+        guard cellphone.isPhoneNumber() else {
+            txtfCellphone.setFailureStatus(message: "Número inválido.")
+            return false
+        }
+        
+        txtfCellphone.setSuccessStatus()
+        return true
+    }
+    
+    private func validateData() -> Bool {
+        let isValidName = validateName()
+        let isValidLastname = validateLastname()
+        let isValidBirthDate = validateBirthDate()
+        let isValidPhoneNumber = validatePhoneNumber()
+        return (isValidName && isValidLastname && isValidBirthDate && isValidPhoneNumber)
     }
 }
 
 
 extension PersonalDataPageViewController: LeftTitleTextFieldDelegate {
     func leftTitleTextFieldDidChange(identifier: String, text: String) {
-        print("\(identifier): \(text)")
+        btNext.setStatus(enable: validateData())
+    }
+    
+    func leftTitleTextFieldDone(identifier: String) {
+        if identifier == txtfName.identifier {
+            _ = txtfLastnames.becomeFirstResponder()
+        } else if identifier == txtfLastnames.identifier {
+            _ = txtfBirthDate.becomeFirstResponder()
+        } else if identifier == txtfCellphone.identifier {
+            _ = txtfCellphone.resignFirstResponder()
+        }
     }
 }
 
 extension PersonalDataPageViewController: DatePickerTextFieldDelegate {
     func datePickerTextFieldDidChange(identifier: String, text: String) {
-        print("\(identifier): \(text)")
+        btNext.setStatus(enable: validateData())
+    }
+    func datePickerTextFieldDone(identifier: String) {
+        _ = txtfCellphone.becomeFirstResponder()
     }
 }
 
