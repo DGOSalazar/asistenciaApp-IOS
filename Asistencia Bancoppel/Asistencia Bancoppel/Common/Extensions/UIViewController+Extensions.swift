@@ -11,13 +11,13 @@ import UIKit
 extension UIViewController {
     
     //Extensions to give an image to the tabBarItem
-    func setStatusBar() {
+    /*func setStatusBar() {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithTransparentBackground() // to hide Navigation Bar Line also
         navBarAppearance.backgroundColor = GlobalConstants.BancoppelColors.grayBex1
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-    }
+    }*/
     
     func setTabBarImage(imageName: String, title: String, imageSet: String) {
         let image = UIImage(named: imageName)
