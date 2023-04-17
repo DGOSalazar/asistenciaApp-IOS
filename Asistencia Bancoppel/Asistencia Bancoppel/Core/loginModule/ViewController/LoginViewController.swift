@@ -236,9 +236,9 @@ extension LoginViewController {
     }
     
     @objc func createAccTapped(_ gesture: UITapGestureRecognizer) {
-        //let createAccVC = CreateAccountViewController1()
+        let createAccVC = AccountCreationViewController()
         //createAccVC.modalPresentationStyle = .fullScreen
-       // self.present(createAccVC, animated: true)
+        self.present(createAccVC, animated: true)
     }
 }
 extension LoginViewController: UITextFieldDelegate {
