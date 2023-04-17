@@ -13,11 +13,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        //Firebase Connection
+        //FirebaseApp.configure()
+        
+        
         // Override point for customization after application launch.
-        initializeWindow()
+        //initializeWindow()
+        window = UIWindow(frame: UIScreen.main.bounds)
+            let viewController = SplashViewController()
+            window?.rootViewController = viewController
+            window?.makeKeyAndVisible()
+        
         return true
     }
     
+    /*
     func initializeWindow(){
         let navController: UITabBarController = MainViewController()
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -26,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.backgroundColor = .systemBackground
         }
         window?.rootViewController = navController
-    }
+    }*/
     
 }
 
