@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController: UITabBarController = MainViewController()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.backgroundColor = .systemBackground
+        if #available(iOS 13.0, *) {
+            window?.backgroundColor = .systemBackground
+        }
         window?.rootViewController = navController
     }
     

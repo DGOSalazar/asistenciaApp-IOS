@@ -103,7 +103,9 @@ class AccountHomeViewController: UIViewController {
     private let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
-        datePicker.preferredDatePickerStyle = .inline
+        if #available(iOS 14.0, *) {
+            datePicker.preferredDatePickerStyle = .inline
+        }
         datePicker.datePickerMode = .date
         datePicker.layer.masksToBounds = false;
         datePicker.layer.shadowOffset = CGSize(width: .zero, height: 8.0)
