@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     func isCoppelEmail() -> Bool{
-        let emailRegEx = "[A-Z0-9a-z.%+-]+@(coppel.com)"
+        let emailRegEx = "[A-Z0-9a-z.%+_-]+@(coppel.com)"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: self)
     }
