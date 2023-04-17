@@ -87,31 +87,29 @@ internal class AccountCreationViewController: UIViewController {
         pages.append(viewController1)
         pages.append(viewController2)
         pages.append(viewController3)
-        //pvwcPager.setViewControllers(pages, direction: .forward, animated: true)
         pvwcPager.setViewControllers([pages[0]], direction: .forward, animated: true)
     }
 }
 
 
-extension AccountCreationViewController: UIPageViewControllerDelegate {
-    
-}
 
-extension AccountCreationViewController: UIPageViewControllerDataSource {
+extension AccountCreationViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.firstIndex(of: viewController), currentIndex > 0 else {
+        /*guard let currentIndex = pages.firstIndex(of: viewController), currentIndex > 0 else {
             return nil
         }
         
-        return pages[currentIndex - 1]
+        return pages[currentIndex - 1]*/
+        return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.firstIndex(of: viewController), currentIndex < (pages.count - 1) else {
+        /*guard let currentIndex = pages.firstIndex(of: viewController), currentIndex < (pages.count - 1) else {
             return nil
         }
         
-        return pages[currentIndex + 1]
+        return pages[currentIndex + 1]*/
+        return nil
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
@@ -125,7 +123,6 @@ extension AccountCreationViewController: UIPageViewControllerDataSource {
             return 0
         }
     }
-    
 }
 
 
