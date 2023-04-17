@@ -29,8 +29,11 @@ class AccountCell: UITableViewCell {
         image.clipsToBounds = true
         image.backgroundColor = GlobalConstants.BancoppelColors.grayBex2
         image.translatesAutoresizingMaskIntoConstraints = false
-        let containerImage = UIImage(systemName: "person.fill")!.withTintColor(.white, renderingMode: .alwaysOriginal)
-        image.image = containerImage
+        if #available(iOS 13.0, *) {
+            let containerImage = UIImage(systemName: "person.fill")!.withTintColor(.white, renderingMode: .alwaysOriginal)
+            image.image = containerImage
+        }
+        
         return image
     }()
     
