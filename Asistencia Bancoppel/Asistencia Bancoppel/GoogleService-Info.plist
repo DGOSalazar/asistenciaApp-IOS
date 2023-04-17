@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>49426387858-mulirehb13oh0qs6brvvcpar1fvuhtuv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.49426387858-mulirehb13oh0qs6brvvcpar1fvuhtuv</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>49426387858-718uohbm8dnts1c4klhiqnuk1stfgoud.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBCELkr08ZG2siTDcUiZfrgte8AdWf0qzk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>49426387858</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Asistencia-Bancoppel</string>
+	<key>PROJECT_ID</key>
+	<string>attendance-app-5620a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>attendance-app-5620a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:49426387858:ios:cf1dae22f54d64d643e74b</string>
+	<key>DATABASE_URL</key>
+	<string>https://attendance-app-5620a-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
