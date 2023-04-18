@@ -21,7 +21,8 @@ internal class AccountCreationViewController: UIViewController {
     lazy var ivwLogo: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .blue
+        imageView.image = UIImage(named: "logoCoppelAsistenciaColored")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -61,8 +62,8 @@ internal class AccountCreationViewController: UIViewController {
             vwContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
             ivwLogo.topAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.topAnchor, constant: 50),
-            ivwLogo.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 50),
-            ivwLogo.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -50),
+            ivwLogo.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 80),
+            ivwLogo.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -80),
             ivwLogo.heightAnchor.constraint(equalToConstant: 50),
             
             pvwcPager.view.topAnchor.constraint(equalTo: ivwLogo.bottomAnchor, constant: 30),
