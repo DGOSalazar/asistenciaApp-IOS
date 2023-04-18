@@ -61,8 +61,8 @@ internal class LastStepPageViewController: UIViewController {
     }()
     
     
-    lazy var vwContent: UIView = {
-        let view = UIView()
+    lazy var vwContent: UIScrollView = {
+        let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -172,16 +172,16 @@ internal class LastStepPageViewController: UIViewController {
             lbTitle.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor),
             lbTitle.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor),
             
-            vwContent.topAnchor.constraint(equalTo: lbTitle.bottomAnchor),
+            vwContent.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: 20),
             vwContent.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 20),
             vwContent.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -20),
-            vwContent.bottomAnchor.constraint(equalTo: btFinish.topAnchor),
+            vwContent.bottomAnchor.constraint(equalTo: btFinish.topAnchor, constant: -20),
             
-            vwDataContainer.topAnchor.constraint(greaterThanOrEqualTo: vwContent.topAnchor),
-            vwDataContainer.centerYAnchor.constraint(equalTo: vwContent.centerYAnchor),
+            vwDataContainer.topAnchor.constraint(equalTo: vwContent.topAnchor),
             vwDataContainer.leadingAnchor.constraint(equalTo: vwContent.leadingAnchor),
             vwDataContainer.trailingAnchor.constraint(equalTo: vwContent.trailingAnchor),
-            vwDataContainer.bottomAnchor.constraint(lessThanOrEqualTo: vwContent.bottomAnchor),
+            vwDataContainer.bottomAnchor.constraint(equalTo: vwContent.bottomAnchor),
+            vwDataContainer.widthAnchor.constraint(equalTo: vwContent.widthAnchor),
             
             
             btLoadPhoto.topAnchor.constraint(equalTo: vwDataContainer.topAnchor),
