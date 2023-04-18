@@ -62,4 +62,15 @@ enum GlobalConstants {
         static let bancoppelWhite = "logo_bancoppel_blanco_gde"
         static let menuLoginWhite = "menu_login_white"
     }
+    
+    
+    enum Firebase {
+        enum Collections {
+            static let dayCollection = "DayCollection"
+            static let dayConfirmCollection = "DayConfirmCollection"
+            static let notifyCollection = "NotifyCollection"
+            static let usersCollection = "UsersCollection"
+            static let officeLocationCollection = "office-location"
+        }
+    }
 }
