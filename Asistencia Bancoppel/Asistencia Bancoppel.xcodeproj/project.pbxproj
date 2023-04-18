@@ -27,6 +27,7 @@
 		527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2F29EA15960083567F /* GenericPickerTextField.swift */; };
 		5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285705129EB459300213F47 /* UploadPhotoButton.swift */; };
 		52FE749429EE095B00823646 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52FE749329EE095B00823646 /* GoogleService-Info.plist */; };
+		52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE749629EE0D9000823646 /* FirebaseManager.swift */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
 		628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A885D299AD299009F30E6 /* SplashViewController.swift */; };
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		527DED2F29EA15960083567F /* GenericPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPickerTextField.swift; sourceTree = "<group>"; };
 		5285705129EB459300213F47 /* UploadPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoButton.swift; sourceTree = "<group>"; };
 		52FE749329EE095B00823646 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52FE749629EE0D9000823646 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		628A8859299AD299009F30E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		628A885D299AD299009F30E6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		3F439A2629A93D4C00F9CA1D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				52FE749529EE0D8500823646 /* Singletons */,
 				3F439A2829A93DA900F9CA1D /* GlobalConstants.swift */,
 				3F439A2A29A93EC700F9CA1D /* Fonts.swift */,
 			);
@@ -268,6 +271,14 @@
 				5285705129EB459300213F47 /* UploadPhotoButton.swift */,
 			);
 			path = UploadPhotoButton;
+			sourceTree = "<group>";
+		};
+		52FE749529EE0D8500823646 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				52FE749629EE0D9000823646 /* FirebaseManager.swift */,
+			);
+			path = Singletons;
 			sourceTree = "<group>";
 		};
 		628A884D299AD299009F30E6 = {
@@ -490,6 +501,7 @@
 				5261ECDE29EC92AA0086BA29 /* String+Extension.swift in Sources */,
 				3F439A2B29A93EC700F9CA1D /* Fonts.swift in Sources */,
 				FA3BC0DE29EDD6460024FEE0 /* GardientBackgroundView.swift in Sources */,
+				52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* Account.swift in Sources */,
