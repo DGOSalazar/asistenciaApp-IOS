@@ -65,7 +65,7 @@ internal class BottomTitleTextField: UIView {
         self.identifier = identifier
         lbTitle.text = title
         txtfContent.attributedPlaceholder = NSAttributedString(string: placeholder,
-                                                               attributes: [NSAttributedString.Key.foregroundColor: GlobalConstants.BancoppelColors.grayBex4,
+                                                               attributes: [NSAttributedString.Key.foregroundColor: GlobalConstants.BancoppelColors.grayBex5,
                                                                             NSAttributedString.Key.font: Fonts.RobotoItalic.of(size: 16)])
         txtfContent.isSecureTextEntry = isSecure
         self.delegate = delegate

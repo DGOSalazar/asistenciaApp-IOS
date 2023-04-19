@@ -55,7 +55,7 @@ internal class UploadPhotoButton: UIView {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Fonts.RobotoRegular.of(size: 15)
-        label.textColor = GlobalConstants.BancoppelColors.grayBex4
+        label.textColor = GlobalConstants.BancoppelColors.grayBex5
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5

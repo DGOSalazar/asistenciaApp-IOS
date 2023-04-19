@@ -42,7 +42,7 @@ internal class CustomCalendarView: UIView {
     lazy var mainContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .gray
+        view.backgroundColor = GlobalConstants.BancoppelColors.grayBex5
         view.layer.cornerRadius = 25
         view.clipsToBounds = true
         return view
@@ -59,7 +59,7 @@ internal class CustomCalendarView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "left_arrow_icon"), for: .normal)
-        button.tintColor = .systemBlue
+        button.tintColor = GlobalConstants.BancoppelColors.blueBex7
         button.addTarget(self, action: #selector(previousMonth), for: .touchUpInside)
         return button
     }()
@@ -67,7 +67,7 @@ internal class CustomCalendarView: UIView {
     lazy var dateTitleLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemBlue
+        label.textColor = GlobalConstants.BancoppelColors.blueBex7
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 1
@@ -81,7 +81,7 @@ internal class CustomCalendarView: UIView {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "right_arrow_icon"), for: .normal)
-        button.tintColor = .systemBlue
+        button.tintColor = GlobalConstants.BancoppelColors.blueBex7
         button.addTarget(self, action: #selector(nextMonth), for: .touchUpInside)
         return button
     }()
@@ -122,7 +122,7 @@ internal class CustomCalendarView: UIView {
         collectionView.register(CustomCalendarViewCell.self, forCellWithReuseIdentifier: CustomCalendarViewCell.identifier)
         
         collectionView.isScrollEnabled = false
-        collectionView.backgroundColor = .gray
+        collectionView.backgroundColor = GlobalConstants.BancoppelColors.grayBex5
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self

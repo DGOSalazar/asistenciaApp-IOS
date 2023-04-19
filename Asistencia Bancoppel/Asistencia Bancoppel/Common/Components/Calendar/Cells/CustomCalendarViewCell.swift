@@ -68,7 +68,7 @@ class CustomCalendarViewCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         view.layer.borderWidth = 3
-        view.layer.borderColor = UIColor.systemYellow.cgColor
+        view.layer.borderColor = GlobalConstants.BancoppelColors.yellowBex3.cgColor
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.25
         view.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -163,7 +163,8 @@ class CustomCalendarViewCell: UICollectionViewCell {
             }
             self.availableSpotsLabel.text = "\(number > 0 ? number : 0) Disponibles"
             self.availableSpotsContainerView.layer.cornerRadius = (self.availableSpotsContainerView.bounds.height / 2)
-            self.availableSpotsContainerView.backgroundColor = number > 0 ? .systemBlue : .lightGray
+            let color = (number > 0 ? GlobalConstants.BancoppelColors.blueBex5 : GlobalConstants.BancoppelColors.grayBex7)
+            self.availableSpotsContainerView.backgroundColor = color
             self.availableSpotsContainerView.isHidden = false
         }
     }

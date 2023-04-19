@@ -38,7 +38,7 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
         icon.image = UIImage(named: "picker_arrow_icon")
         icon.contentMode = .scaleAspectFit
         icon.contentMode = .center
-        icon.tintColor = GlobalConstants.BancoppelColors.grayBex4
+        icon.tintColor = GlobalConstants.BancoppelColors.grayBex5
         let iconContainer = UIView(frame: .init(x: 0, y: 0, width: 29.2, height: 30))
         iconContainer.addSubview(icon)
         textfield.rightView = iconContainer
@@ -104,7 +104,7 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
         
         lbTitle.text = title
         txtfContent.attributedPlaceholder = NSAttributedString(string: placeholder,
-                                                               attributes: [NSAttributedString.Key.foregroundColor: GlobalConstants.BancoppelColors.grayBex4,
+                                                               attributes: [NSAttributedString.Key.foregroundColor: GlobalConstants.BancoppelColors.grayBex5,
                                                                             NSAttributedString.Key.font: Fonts.RobotoItalic.of(size: 16)])
         txtfContent.textAlignment = textAlignment
         self.delegate = delegate
@@ -168,7 +168,7 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
                 self.currentGeneric = nil
                 self.currentRow = nil
                 self.txtfContent.text = ""
-                self.iconReference?.tintColor = GlobalConstants.BancoppelColors.grayBex4
+                self.iconReference?.tintColor = GlobalConstants.BancoppelColors.grayBex5
             }
             
             self.delegate?.genericPickerTextFieldDidChange(identifier: self.identifier, data: self.currentGeneric)

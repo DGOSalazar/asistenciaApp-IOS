@@ -18,9 +18,9 @@ internal enum CustomCalendarCellStyleEnum {
     func getBackgroundColor() -> UIColor {
         switch self {
         case .disabled:
-            return UIColor.lightGray
+            return GlobalConstants.BancoppelColors.grayBex4
         case .current:
-            return UIColor.systemBlue
+            return GlobalConstants.BancoppelColors.blueBex5
         case .enabled:
             return UIColor.white
         case .unavailable:
@@ -31,13 +31,13 @@ internal enum CustomCalendarCellStyleEnum {
     func getFontColor() -> UIColor {
         switch self {
         case .disabled:
-            return UIColor.gray
+            return GlobalConstants.BancoppelColors.grayBex5
         case .current:
-            return UIColor.black
+            return GlobalConstants.BancoppelColors.grayBex10
         case .enabled:
-            return UIColor.black
+            return GlobalConstants.BancoppelColors.grayBex10
         case .unavailable:
-            return UIColor.lightGray
+            return GlobalConstants.BancoppelColors.grayBex4
         }
     }
 }
