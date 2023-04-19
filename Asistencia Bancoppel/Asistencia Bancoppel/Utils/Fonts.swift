@@ -8,12 +8,8 @@
 import UIKit
 
 enum Fonts: String {
-    case SFProBook = "SFProText-Regular"
     case RobotoRegular = "RobotoRegular"
-    case SFProHeavy = "SFProText-Heavy"
-    case SFProMedium = "SFProText-Medium"
     case RobotoMedium = "RobotoMedium"
-    case SFProBold = "SFProText-Bold"
     case RobotoBold = "RobotoBold"
     case Roboto = "Roboto"
     case RobotoItalic = "RobotoItalic"
