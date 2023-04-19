@@ -100,7 +100,7 @@ class AccountHomeViewController: UIViewController {
     }()
     
     
-    private let datePicker: UIDatePicker = {
+    /*private let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 14.0, *) {
@@ -114,6 +114,14 @@ class AccountHomeViewController: UIViewController {
         datePicker.layer.shadowOpacity = 0.5
         datePicker.backgroundColor = .white
         return datePicker
+    }()*/
+    
+    lazy var customCalendarView: CustomCalendarView = {
+        let calendar = CustomCalendarView(profilePhoto: nil,
+                                          delegate: nil)
+        calendar.translatesAutoresizingMaskIntoConstraints = false
+        
+        return calendar
     }()
     
     
@@ -183,7 +191,7 @@ class AccountHomeViewController: UIViewController {
         vwHeader.addSubview(btnMenu)
         view.addSubview(scvContainer)
         scvContainer.addSubview(vwContainer)
-        vwContainer.addSubview(datePicker)
+        vwContainer.addSubview(customCalendarView)
         vwContainer.addSubview(stvDataOfTheDay)
         stvDataOfTheDay.addArrangedSubview(lbPersonsInTheOffice)
         stvDataOfTheDay.addArrangedSubview(lbNumberOfPeople)
@@ -230,11 +238,11 @@ class AccountHomeViewController: UIViewController {
             vwContainer.leadingAnchor.constraint(equalTo: scvContainer.leadingAnchor),
             vwContainer.bottomAnchor.constraint(equalTo: scvContainer.bottomAnchor),
 
-            datePicker.topAnchor.constraint(equalTo: vwContainer.topAnchor, constant: 34),
-            datePicker.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -28),
-            datePicker.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 28),
+            customCalendarView.topAnchor.constraint(equalTo: vwContainer.topAnchor, constant: 34),
+            customCalendarView.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -28),
+            customCalendarView.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 28),
             
-            stvDataOfTheDay.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 34),
+            stvDataOfTheDay.topAnchor.constraint(equalTo: customCalendarView.bottomAnchor, constant: 34),
             stvDataOfTheDay.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 32),
             
             tbvPeople.topAnchor.constraint(equalTo: stvDataOfTheDay.bottomAnchor, constant: 16),
