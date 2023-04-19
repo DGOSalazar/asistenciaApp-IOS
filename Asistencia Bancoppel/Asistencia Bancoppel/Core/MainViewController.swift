@@ -11,6 +11,9 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = .systemBackground
+        }
         setupViews()
         setupTabBar()
     }
