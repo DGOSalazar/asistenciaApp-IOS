@@ -74,9 +74,8 @@ internal class LastStepPageViewController: UIViewController {
     }()
     
     lazy var btLoadPhoto: UploadPhotoButton = {
-        let button = UploadPhotoButton()
+        let button = UploadPhotoButton(presenter: self, delegate: self)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(btUploadPhotoPressed))
         return button
     }()
     
@@ -261,5 +260,11 @@ extension LastStepPageViewController: GenericPickerTextFieldDelegate {
     
     func genericPickerTextFieldDidChange<T>(identifier: String, data: T?) {
         btFinish.setStatus(enable: validateData())
+    }
+}
+
+extension LastStepPageViewController: UploadPhotoButtonDelegate {
+    func notifyPhotoSelected(photo: UIImage) {
+        print(photo)
     }
 }
