@@ -56,8 +56,9 @@ class SplashViewController: UIViewController {
         //Timer Provisional
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5){
-            self.view.window?.rootViewController = LoginViewController()
-            
+            let navigationController = UINavigationController(rootViewController: LoginViewController())
+            navigationController.isNavigationBarHidden = true
+            self.view.window?.rootViewController = navigationController
         }
     }
 }
