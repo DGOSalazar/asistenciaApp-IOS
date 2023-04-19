@@ -125,8 +125,8 @@ class CustomCalendarViewCell: UICollectionViewCell {
             availableSpotsContainerView.bottomAnchor.constraint(equalTo: mainContainerView.bottomAnchor, constant: -4),
             
             availableSpotsLabel.topAnchor.constraint(equalTo: availableSpotsContainerView.topAnchor, constant: 2),
-            availableSpotsLabel.leadingAnchor.constraint(equalTo: availableSpotsContainerView.leadingAnchor, constant: 7),
-            availableSpotsLabel.trailingAnchor.constraint(equalTo: availableSpotsContainerView.trailingAnchor, constant: -7),
+            availableSpotsLabel.leadingAnchor.constraint(equalTo: availableSpotsContainerView.leadingAnchor, constant: 5),
+            availableSpotsLabel.trailingAnchor.constraint(equalTo: availableSpotsContainerView.trailingAnchor, constant: -5),
             availableSpotsLabel.bottomAnchor.constraint(equalTo: availableSpotsContainerView.bottomAnchor, constant: -2),
             
             

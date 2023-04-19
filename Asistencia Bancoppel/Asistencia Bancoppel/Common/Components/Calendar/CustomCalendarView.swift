@@ -104,6 +104,7 @@ internal class CustomCalendarView: UIView {
             dayLabel.font = UIFont.systemFont(ofSize: 14)
             dayLabel.textAlignment = .center
             dayLabel.numberOfLines = 1
+            dayLabel.backgroundColor = .white
             
             stack.addArrangedSubview(dayLabel)
         }
