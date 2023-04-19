@@ -123,6 +123,7 @@ class LoginViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 22)
         button.setTitle("Entrar", for: [])
         button.layer.cornerRadius = 30
+        button.addTarget(nil, action: #selector(loginTapped), for: .touchUpInside)
         return button
     }()
     
@@ -237,8 +238,14 @@ extension LoginViewController {
     
     @objc func createAccTapped(_ gesture: UITapGestureRecognizer) {
         let createAccVC = AccountCreationViewController()
-        //createAccVC.modalPresentationStyle = .fullScreen
         self.present(createAccVC, animated: true)
+    }
+    
+    @objc func loginTapped() {
+        DispatchQueue.main.async {
+            let mainViewController = MainViewController()
+            self.navigationController?.pushViewController(mainViewController, animated: true)
+        }
     }
 }
 extension LoginViewController: UITextFieldDelegate {
