@@ -22,6 +22,7 @@ enum GlobalConstants {
         static let blueBex4 = "BlueBex4"
         static let blueBex5 = "BlueBex5"
         static let blueBex7 = "BlueBex7"
+        static let blueBex10 = "BlueBex10"
         
         static let greenBex3 = "GreenBex3"
         static let greenBex5 = "GreenBex5"
@@ -50,6 +51,7 @@ enum GlobalConstants {
         static let blueBex4 = UIColor(named: GlobalConstants.Colors.blueBex4) ?? .clear
         static let blueBex5 = UIColor(named: GlobalConstants.Colors.blueBex5) ?? .clear
         static let blueBex7 = UIColor(named: GlobalConstants.Colors.blueBex7) ?? .clear
+        static let blueBex10 = UIColor(named: GlobalConstants.Colors.blueBex10) ?? .clear
         
         static let greenBex3 = UIColor(named: GlobalConstants.Colors.greenBex3) ?? .clear
         static let greenBex5 = UIColor(named: GlobalConstants.Colors.greenBex5) ?? .clear
