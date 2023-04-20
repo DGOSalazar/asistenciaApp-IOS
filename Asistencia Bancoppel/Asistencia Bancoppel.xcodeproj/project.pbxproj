@@ -21,6 +21,10 @@
 		522AE74829F0729B0091AD6C /* CustomCalendarMonthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74729F0729B0091AD6C /* CustomCalendarMonthModel.swift */; };
 		522AE74A29F072AA0091AD6C /* CustomCalendarDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74929F072AA0091AD6C /* CustomCalendarDayModel.swift */; };
 		522AE74C29F072EC0091AD6C /* CustomCalendarCellStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74B29F072EC0091AD6C /* CustomCalendarCellStyleEnum.swift */; };
+		522AE74E29F08E110091AD6C /* AccountCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74D29F08E110091AD6C /* AccountCreationViewModel.swift */; };
+		522AE75029F08E730091AD6C /* AccountCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74F29F08E730091AD6C /* AccountCreationModel.swift */; };
+		522AE75229F090720091AD6C /* CustomObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE75129F090720091AD6C /* CustomObservable.swift */; };
+		522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE75429F0AABF0091AD6C /* CustomLoader.swift */; };
 		5235453B29E8BD05002BECAB /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235453A29E8BD05002BECAB /* AccountCreationViewController.swift */; };
 		5235454029E8C364002BECAB /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235453F29E8C364002BECAB /* MainButton.swift */; };
 		5235454329E8DC99002BECAB /* AccountCreationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */; };
@@ -59,6 +63,10 @@
 		522AE74729F0729B0091AD6C /* CustomCalendarMonthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarMonthModel.swift; sourceTree = "<group>"; };
 		522AE74929F072AA0091AD6C /* CustomCalendarDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarDayModel.swift; sourceTree = "<group>"; };
 		522AE74B29F072EC0091AD6C /* CustomCalendarCellStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarCellStyleEnum.swift; sourceTree = "<group>"; };
+		522AE74D29F08E110091AD6C /* AccountCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewModel.swift; sourceTree = "<group>"; };
+		522AE74F29F08E730091AD6C /* AccountCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationModel.swift; sourceTree = "<group>"; };
+		522AE75129F090720091AD6C /* CustomObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomObservable.swift; sourceTree = "<group>"; };
+		522AE75429F0AABF0091AD6C /* CustomLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoader.swift; sourceTree = "<group>"; };
 		5235453A29E8BD05002BECAB /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
 		5235453F29E8C364002BECAB /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationPageViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +130,7 @@
 				52FE749529EE0D8500823646 /* Singletons */,
 				3F439A2829A93DA900F9CA1D /* GlobalConstants.swift */,
 				3F439A2A29A93EC700F9CA1D /* Fonts.swift */,
+				522AE75129F090720091AD6C /* CustomObservable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -226,6 +235,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		522AE75329F0A9F50091AD6C /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+				522AE75429F0AABF0091AD6C /* CustomLoader.swift */,
+			);
+			path = Loaders;
+			sourceTree = "<group>";
+		};
 		5235453629E8BCC3002BECAB /* AccountCreation */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +265,7 @@
 		5235453829E8BCDB002BECAB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				522AE74F29F08E730091AD6C /* AccountCreationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,6 +273,7 @@
 		5235453929E8BCDF002BECAB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				522AE74D29F08E110091AD6C /* AccountCreationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -262,6 +281,7 @@
 		5235453C29E8C29C002BECAB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				522AE75329F0A9F50091AD6C /* Loaders */,
 				522AE73E29F06D3A0091AD6C /* Calendar */,
 				526BEC4C29E9A23F00554701 /* TextFields */,
 				5235453D29E8C2A2002BECAB /* Buttons */,
@@ -539,6 +559,7 @@
 				5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */,
 				FA3BC0DA29EDD54E0024FEE0 /* LoginBackgroundView.swift in Sources */,
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
+				522AE75029F08E730091AD6C /* AccountCreationModel.swift in Sources */,
 				527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */,
 				5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */,
 				5261ECDE29EC92AA0086BA29 /* String+Extension.swift in Sources */,
@@ -547,6 +568,8 @@
 				52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */,
 				522AE74A29F072AA0091AD6C /* CustomCalendarDayModel.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
+				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
+				522AE74E29F08E110091AD6C /* AccountCreationViewModel.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* Account.swift in Sources */,
@@ -560,6 +583,7 @@
 				522AE74829F0729B0091AD6C /* CustomCalendarMonthModel.swift in Sources */,
 				522AE74C29F072EC0091AD6C /* CustomCalendarCellStyleEnum.swift in Sources */,
 				522AE74529F0716D0091AD6C /* CustomCalendarViewCell.swift in Sources */,
+				522AE75229F090720091AD6C /* CustomObservable.swift in Sources */,
 				3F439A3D29A94AED00F9CA1D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
