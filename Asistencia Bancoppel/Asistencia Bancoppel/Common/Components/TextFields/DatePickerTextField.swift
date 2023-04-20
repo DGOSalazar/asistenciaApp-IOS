@@ -19,12 +19,17 @@ internal class DatePickerTextField: UIView {
     internal weak var delegate: DatePickerTextFieldDelegate?
     internal var identifier: String = ""
     private var dateFormat = ""
+    internal var textFont: UIFont = .robotoMedium(ofSize: 16) {
+        didSet {
+            txtfContent.font = textFont
+        }
+    }
     
     
     lazy var txtfContent: UITextField = {
        let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
-        textfield.font = Fonts.RobotoRegular.of(size: 16)
+        textfield.font = .robotoMedium(ofSize: 16)
         textfield.textColor = GlobalConstants.BancoppelColors.grayBex10
         textfield.leftView = UIView(frame: .init(x: 0, y: 0, width: 13, height: 0))
         textfield.leftViewMode = .always
@@ -62,7 +67,7 @@ internal class DatePickerTextField: UIView {
     lazy var lbTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Fonts.RobotoRegular.of(size: 16)
+        label.font = .robotoRegular(ofSize: 16)
         label.textColor = GlobalConstants.BancoppelColors.grayBex10
         label.setContentHuggingPriority(.init(999), for: .horizontal)
         label.numberOfLines = 1
@@ -75,7 +80,7 @@ internal class DatePickerTextField: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
-        label.font = Fonts.RobotoItalic.of(size: 12)
+        label.font = .robotoItalic(ofSize: 12)
         label.textColor = GlobalConstants.BancoppelColors.redBex10
         label.isHidden = true
         label.setContentCompressionResistancePriority(.init(999), for: .vertical)
@@ -94,7 +99,7 @@ internal class DatePickerTextField: UIView {
         lbTitle.text = title
         txtfContent.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                                attributes: [NSAttributedString.Key.foregroundColor: GlobalConstants.BancoppelColors.grayBex5,
-                                                                            NSAttributedString.Key.font: Fonts.RobotoItalic.of(size: 16)])
+                                                                            NSAttributedString.Key.font: UIFont.robotoItalic(ofSize: 16)])
         self.delegate = delegate
         
         self.setComponents()
