@@ -2,7 +2,7 @@
 //  FirebaseManager.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 17/04/23.
+//  Created by Luis Díaz on 17/04/23.
 //
 
 import Foundation
@@ -177,5 +177,39 @@ extension FirebaseManager {
             return nil
         }
         return dictionary
+    }
+}
+
+
+extension FirebaseManager {
+    public func uploadPhoto(photo: UIImage,
+                            email: String,
+                            success: @escaping (_ url: String) -> (),
+                            failure: @escaping (_ error: String) -> ()) {
+        
+        let path = "profilePhotos/usersPhotos/\(email)"
+        
+        let storage = Storage.storage().reference()
+        guard  let imageData = photo.jpegData(compressionQuality: 1) else {
+            return
+        }
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        storage.child(path).putData(imageData, metadata: metaData) { (_, error) in
+            if let _ = error {
+                failure(error?.localizedDescription ?? "Unknown error")
+                return
+            }
+            storage.child(path).downloadURL { url, error in
+                guard let nonNilFullURL = url else{
+                    failure(error?.localizedDescription ?? "Unknown Error")
+                    return
+                }
+                
+                success(nonNilFullURL.absoluteString)
+            }
+        }
     }
 }
