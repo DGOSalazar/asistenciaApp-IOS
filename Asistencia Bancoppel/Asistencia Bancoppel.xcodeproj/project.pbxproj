@@ -25,6 +25,12 @@
 		522AE75029F08E730091AD6C /* AccountCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74F29F08E730091AD6C /* AccountCreationModel.swift */; };
 		522AE75229F090720091AD6C /* CustomObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE75129F090720091AD6C /* CustomObservable.swift */; };
 		522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE75429F0AABF0091AD6C /* CustomLoader.swift */; };
+		522AE75829F0C12E0091AD6C /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE75729F0C12E0091AD6C /* Font+Extension.swift */; };
+		522AE75A29F0C6120091AD6C /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 522AE75929F0C6120091AD6C /* LICENSE.txt */; };
+		522AE75C29F0C61C0091AD6C /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 522AE75B29F0C61B0091AD6C /* Roboto-Italic.ttf */; };
+		522AE76029F0C63D0091AD6C /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 522AE75D29F0C63D0091AD6C /* Roboto-Medium.ttf */; };
+		522AE76129F0C63D0091AD6C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 522AE75E29F0C63D0091AD6C /* Roboto-Regular.ttf */; };
+		522AE76229F0C63D0091AD6C /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 522AE75F29F0C63D0091AD6C /* Roboto-Bold.ttf */; };
 		5235453B29E8BD05002BECAB /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235453A29E8BD05002BECAB /* AccountCreationViewController.swift */; };
 		5235454029E8C364002BECAB /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235453F29E8C364002BECAB /* MainButton.swift */; };
 		5235454329E8DC99002BECAB /* AccountCreationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */; };
@@ -67,6 +73,12 @@
 		522AE74F29F08E730091AD6C /* AccountCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationModel.swift; sourceTree = "<group>"; };
 		522AE75129F090720091AD6C /* CustomObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomObservable.swift; sourceTree = "<group>"; };
 		522AE75429F0AABF0091AD6C /* CustomLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoader.swift; sourceTree = "<group>"; };
+		522AE75729F0C12E0091AD6C /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		522AE75929F0C6120091AD6C /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		522AE75B29F0C61B0091AD6C /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		522AE75D29F0C63D0091AD6C /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		522AE75E29F0C63D0091AD6C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		522AE75F29F0C63D0091AD6C /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5235453A29E8BD05002BECAB /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
 		5235453F29E8C364002BECAB /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		5235454229E8DC99002BECAB /* AccountCreationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationPageViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +121,7 @@
 		3F439A2229A92E5F00F9CA1D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				522AE75629F0C1140091AD6C /* Fonts */,
 				628A8862299AD2A5009F30E6 /* Assets.xcassets */,
 				3F439A2329A935D200F9CA1D /* Colors.xcassets */,
 				628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */,
@@ -150,6 +163,7 @@
 				3F439A2E29A9435300F9CA1D /* UIViewController+Extensions.swift */,
 				5261ECDD29EC92AA0086BA29 /* String+Extension.swift */,
 				522AE74129F070720091AD6C /* Date+Extension.swift */,
+				522AE75729F0C12E0091AD6C /* Font+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -241,6 +255,18 @@
 				522AE75429F0AABF0091AD6C /* CustomLoader.swift */,
 			);
 			path = Loaders;
+			sourceTree = "<group>";
+		};
+		522AE75629F0C1140091AD6C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				522AE75F29F0C63D0091AD6C /* Roboto-Bold.ttf */,
+				522AE75D29F0C63D0091AD6C /* Roboto-Medium.ttf */,
+				522AE75E29F0C63D0091AD6C /* Roboto-Regular.ttf */,
+				522AE75B29F0C61B0091AD6C /* Roboto-Italic.ttf */,
+				522AE75929F0C6120091AD6C /* LICENSE.txt */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		5235453629E8BCC3002BECAB /* AccountCreation */ = {
@@ -496,8 +522,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F439A2429A935D200F9CA1D /* Colors.xcassets in Resources */,
+				522AE75C29F0C61C0091AD6C /* Roboto-Italic.ttf in Resources */,
+				522AE76129F0C63D0091AD6C /* Roboto-Regular.ttf in Resources */,
 				52FE749429EE095B00823646 /* GoogleService-Info.plist in Resources */,
+				522AE76029F0C63D0091AD6C /* Roboto-Medium.ttf in Resources */,
+				522AE76229F0C63D0091AD6C /* Roboto-Bold.ttf in Resources */,
 				628A8866299AD2A5009F30E6 /* LaunchScreen.storyboard in Resources */,
+				522AE75A29F0C6120091AD6C /* LICENSE.txt in Resources */,
 				628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,6 +608,7 @@
 				5235454729E8DCB9002BECAB /* LastStepPageViewController.swift in Sources */,
 				3F439A2929A93DA900F9CA1D /* GlobalConstants.swift in Sources */,
 				5235454029E8C364002BECAB /* MainButton.swift in Sources */,
+				522AE75829F0C12E0091AD6C /* Font+Extension.swift in Sources */,
 				5235453B29E8BD05002BECAB /* AccountCreationViewController.swift in Sources */,
 				3F439A2F29A9435300F9CA1D /* UIViewController+Extensions.swift in Sources */,
 				FA3BC0D729EDD5000024FEE0 /* LoginViewController.swift in Sources */,
