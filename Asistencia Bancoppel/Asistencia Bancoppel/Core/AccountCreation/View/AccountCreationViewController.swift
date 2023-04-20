@@ -163,6 +163,11 @@ extension AccountCreationViewController: PersonalDataPageDelegate {
 }
 
 extension AccountCreationViewController: LastStepPageViewDelegate {
+    func notifyGetUsername() -> String {
+        let userFullname = ((model.name ?? "") + " " + (model.lastName1 ?? "") + " " + (model.lastName2 ?? ""))
+        return userFullname
+    }
+    
     func notifyLastStepPageFinish(charge: String, team: String, collaboratorNumber: Int, photo: UIImage) {
         model.position = charge
         model.team = team

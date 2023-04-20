@@ -42,6 +42,7 @@
 		527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2D29EA0C190083567F /* DatePickerTextField.swift */; };
 		527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2F29EA15960083567F /* GenericPickerTextField.swift */; };
 		5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285705129EB459300213F47 /* UploadPhotoButton.swift */; };
+		52E32B9829F19DE0006CAEF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */; };
 		52FE749429EE095B00823646 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52FE749329EE095B00823646 /* GoogleService-Info.plist */; };
 		52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE749629EE0D9000823646 /* FirebaseManager.swift */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
@@ -92,6 +93,7 @@
 		527DED2D29EA0C190083567F /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		527DED2F29EA15960083567F /* GenericPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPickerTextField.swift; sourceTree = "<group>"; };
 		5285705129EB459300213F47 /* UploadPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoButton.swift; sourceTree = "<group>"; };
+		52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		52FE749329EE095B00823646 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52FE749629EE0D9000823646 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 				5261ECDD29EC92AA0086BA29 /* String+Extension.swift */,
 				522AE74129F070720091AD6C /* Date+Extension.swift */,
 				522AE75729F0C12E0091AD6C /* Font+Extension.swift */,
+				52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				FA3BC0DE29EDD6460024FEE0 /* GardientBackgroundView.swift in Sources */,
 				52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */,
 				522AE74A29F072AA0091AD6C /* CustomCalendarDayModel.swift in Sources */,
+				52E32B9829F19DE0006CAEF9 /* UIView+Extension.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
 				522AE74E29F08E110091AD6C /* AccountCreationViewModel.swift in Sources */,
