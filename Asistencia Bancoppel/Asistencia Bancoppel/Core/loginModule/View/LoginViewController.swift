@@ -10,6 +10,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    private var viewModel = LoginViewModel()
+    private var succesLoged = false
+    
     let logoAsistImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logoAsistencia")
@@ -163,9 +166,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mailTextField.delegate = self
+        passTextField.delegate = self
       //  Analytics.logEvent("SplashScreen", parameters: ["message": "Integracion de Firebase completa"])
         autolayout()
         makeCreateAccClickeable()
+        bind()
 
     }
     func makeCreateAccClickeable() {
@@ -174,6 +180,26 @@ class LoginViewController: UIViewController {
         tapGesture.numberOfTouchesRequired = 1
         createAccLabel.isUserInteractionEnabled = true
         createAccLabel.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    private func bind() {
+        self.viewModel.loginObservable.observe = { loged in
+            CustomLoader.hide()
+           // self.succesLoged = loged ?? false
+           // DispatchQueue.main.async {
+            if loged == true {
+                let mainViewController = MainViewController()
+                self.navigationController?.pushViewController(mainViewController, animated: true)
+            } else {
+                let alerta = UIAlertController(title: "Credenciales incorrectas", message: "Por favor, ingrese las credenciales correctas.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alerta.addAction(okAction)
+                self.present(alerta, animated: true, completion: nil)
+            }
+                
+            //}
+        }
     }
 
 }
@@ -242,17 +268,21 @@ extension LoginViewController {
     }
     
     @objc func loginTapped() {
-        DispatchQueue.main.async {
-            let mainViewController = MainViewController()
-            self.navigationController?.pushViewController(mainViewController, animated: true)
+        CustomLoader.show()
+        guard let mail = mailTextField.text,
+              let pass = passTextField.text else {
+            CustomLoader.hide()
+            print("Ingresar las credenciales correctas...")
+            return
         }
+        viewModel.makeLogin(email: mail, credential: pass)
     }
 }
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         mailTextField.endEditing(true)
-        //passwordTextfield.endEditing(true)
+        passTextField.endEditing(true)
         return true
     }
     
