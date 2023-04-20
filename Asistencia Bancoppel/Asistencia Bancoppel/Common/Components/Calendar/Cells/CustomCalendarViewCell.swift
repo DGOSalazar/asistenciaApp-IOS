@@ -39,7 +39,7 @@ class CustomCalendarViewCell: UICollectionViewCell {
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = .robotoRegular(ofSize: 12)
         return label
     }()
     
@@ -57,7 +57,7 @@ class CustomCalendarViewCell: UICollectionViewCell {
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.font = UIFont.italicSystemFont(ofSize: 8)
+        label.font = .robotoItalic(ofSize: 8)
         label.textColor = .white
         label.text = " "
         return label

@@ -30,7 +30,7 @@ internal class PersonalDataPageViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Datos personales"
         label.textColor = GlobalConstants.BancoppelColors.blueBex7
-        label.font = Fonts.RobotoBold.of(size: 28)
+        label.font = .robotoBold(ofSize: 28)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
@@ -56,6 +56,8 @@ internal class PersonalDataPageViewController: UIViewController {
                                             delegate: self,
                                             identifier: "name")
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.inputValidation = .spaAlphabetic
+        textField.maxLength = 40
         return textField
     }()
     
@@ -65,6 +67,8 @@ internal class PersonalDataPageViewController: UIViewController {
                                             delegate: self,
                                             identifier: "lastnames")
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.inputValidation = .spaAlphabetic
+        textField.maxLength = 40
         return textField
     }()
     
@@ -83,6 +87,9 @@ internal class PersonalDataPageViewController: UIViewController {
                                             delegate: self,
                                             identifier: "cellphone")
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.inputValidation = .numeric
+        textField.keyboardType = .phonePad
+        textField.maxLength = 10
         return textField
     }()
     

@@ -30,7 +30,7 @@ internal class AccountCreationPageViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Crear una cuenta"
         label.textColor = GlobalConstants.BancoppelColors.blueBex7
-        label.font = Fonts.RobotoBold.of(size: 28)
+        label.font = .robotoBold(ofSize: 28)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
@@ -56,6 +56,9 @@ internal class AccountCreationPageViewController: UIViewController {
                                             delegate: self,
                                             identifier: "email")
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.keyboardType = .emailAddress
+        textField.inputValidation = .email
+        textField.maxLength = 40
         return textField
     }()
     
@@ -66,6 +69,8 @@ internal class AccountCreationPageViewController: UIViewController {
                                             identifier: "credential",
                                             isSecure: true)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.allowSpaces = false
+        textField.maxLength = 40
         return textField
     }()
     
@@ -76,6 +81,8 @@ internal class AccountCreationPageViewController: UIViewController {
                                             identifier: "confirmCredential",
                                             isSecure: true)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.allowSpaces = false
+        textField.maxLength = 40
         return textField
     }()
     

@@ -11,7 +11,7 @@ class MainButton: UIButton {
     internal init(title: String, enable: Bool) {
         super.init(frame: .zero)
         
-        self.titleLabel?.font = Fonts.RobotoBold.of(size: 22)
+        self.titleLabel?.font = .robotoBold(ofSize: 22)
         self.layer.cornerRadius = 29.5
         self.updateTitle(title: title, enable: enable)
     }

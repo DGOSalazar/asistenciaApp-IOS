@@ -130,11 +130,31 @@ extension AccountCreationViewController: UIPageViewControllerDataSource, UIPageV
     }
     
     private func bind(){
-        self.viewModel.accountCreationObaservable.observe = { success in
+        self.viewModel.accountCreationObaservable.observe = { errorMessage in
             CustomLoader.hide()
-            if success == true {
-                self.dismiss(animated: true)
+
+            guard let nonNilErrorMessage = errorMessage else {
+                self.showAlert(message: "Cuenta creada con éxito.")
+                return
             }
+            
+            self.showAlert(message: nonNilErrorMessage ?? "", isError: true)
+        }
+    }
+    
+    private func showAlert(message: String, isError: Bool = false) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: isError ? "Error" : "Información",
+                                          message: message,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { _ in
+                guard !isError else {
+                    return
+                }
+                self.dismiss(animated: true)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }

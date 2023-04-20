@@ -73,7 +73,7 @@ internal class CustomCalendarView: UIView {
         label.numberOfLines = 1
         label.text = "\(selectedDate.getMonthName()) \(selectedDate.getYear())"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = .robotoBold(ofSize: 12)
         return label
     }()
     
@@ -101,7 +101,7 @@ internal class CustomCalendarView: UIView {
             dayLabel.textColor = .black
             dayLabel.adjustsFontSizeToFitWidth = true
             dayLabel.minimumScaleFactor = 0.5
-            dayLabel.font = UIFont.systemFont(ofSize: 14)
+            dayLabel.font = .robotoRegular(ofSize: 14)
             dayLabel.textAlignment = .center
             dayLabel.numberOfLines = 1
             dayLabel.backgroundColor = .white

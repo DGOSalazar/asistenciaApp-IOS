@@ -10,7 +10,7 @@ import UIKit
 
 
 class AccountCreationViewModel {
-    var accountCreationObaservable = CustomObservable<Bool>()
+    var accountCreationObaservable = CustomObservable<String?>()
     
     func registerAccount(accountRequest: AccountCreationModel, credential: String, photo: UIImage) {
         registerAuth(accountRequest: accountRequest, credential: credential, photo: photo)
@@ -21,7 +21,7 @@ class AccountCreationViewModel {
                                       credential: credential) { [weak self] in
             self?.uploadPhoto(accountRequest: accountRequest, photo: photo)
         } failure: { [weak self] error in
-            self?.accountCreationObaservable.value = false
+            self?.accountCreationObaservable.value = error
         }
     }
     
@@ -31,7 +31,7 @@ class AccountCreationViewModel {
             newRequest.profilePhoto = url
             self?.saveUserData(accountRequest: newRequest)
         } failure: { [weak self] error in
-            self?.accountCreationObaservable.value = false
+            self?.accountCreationObaservable.value = error
         }
     }
     
@@ -39,9 +39,9 @@ class AccountCreationViewModel {
         FirebaseManager.shared.saveData(collection: GlobalConstants.Firebase.Collections.usersCollection,
                                         document: accountRequest.email ?? "",
                                         data: accountRequest) { [weak self] in
-            self?.accountCreationObaservable.value = true
+            self?.accountCreationObaservable.value = nil
         } failure: { [weak self] error in
-            self?.accountCreationObaservable.value = false
+            self?.accountCreationObaservable.value = error
         }
     }
 }

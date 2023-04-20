@@ -59,7 +59,7 @@ internal class LastStepPageViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "¡Último paso!"
         label.textColor = GlobalConstants.BancoppelColors.blueBex7
-        label.font = Fonts.RobotoBold.of(size: 28)
+        label.font = .robotoBold(ofSize: 28)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
@@ -90,7 +90,7 @@ internal class LastStepPageViewController: UIViewController {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = GlobalConstants.BancoppelColors.blueBex7
-        label.font = Fonts.RobotoBold.of(size: 18)
+        label.font = .robotoBold(ofSize: 18)
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 1
         label.minimumScaleFactor = 0.5
@@ -129,6 +129,11 @@ internal class LastStepPageViewController: UIViewController {
                                            delegate: self,
                                            identifier: "colaboratorNumber")
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.textFont = .robotoMedium(ofSize: 16)
+        textField.keyboardType = .numberPad
+        textField.inputValidation = .numeric
+        textField.maxLength = 8
+        textField.textAlignment = .right
         return textField
     }()
     
