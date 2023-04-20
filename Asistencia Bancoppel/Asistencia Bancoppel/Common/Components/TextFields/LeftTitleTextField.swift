@@ -18,6 +18,14 @@ import UIKit
 internal class LeftTitleTextField: UIView {
     internal weak var delegate: LeftTitleTextFieldDelegate?
     internal var identifier: String = ""
+    internal var inputValidation: TextFieldInputValidationEnum = .none
+    internal var allowSpaces: Bool = true
+    internal var maxLength: Int = 50
+    internal var keyboardType: UIKeyboardType = .default {
+        didSet {
+            txtfContent.keyboardType = keyboardType
+        }
+    }
     
     
     lazy var txtfContent: UITextField = {
@@ -64,16 +72,29 @@ internal class LeftTitleTextField: UIView {
     }()
     
     
-    internal init(title: String, placeholder: String, delegate: LeftTitleTextFieldDelegate?, identifier: String = "", isSecure: Bool = false) {
+    internal init(title: String,
+                  placeholder: String,
+                  delegate: LeftTitleTextFieldDelegate?,
+                  identifier: String = "",
+                  maxLength: Int = 50,
+                  keyboardType: UIKeyboardType = .default,
+                  inputValidation: TextFieldInputValidationEnum = .none,
+                  allowSpaces: Bool = true,
+                  isSecure: Bool = false) {
         super.init(frame: .zero)
         
-        self.identifier = identifier
         lbTitle.text = title
         txtfContent.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                                attributes: [NSAttributedString.Key.foregroundColor: GlobalConstants.BancoppelColors.grayBex5,
                                                                             NSAttributedString.Key.font: Fonts.RobotoItalic.of(size: 16)])
-        txtfContent.isSecureTextEntry = isSecure
         self.delegate = delegate
+        self.identifier = identifier
+        self.maxLength = maxLength
+        self.keyboardType = keyboardType
+        txtfContent.keyboardType = keyboardType
+        self.inputValidation = inputValidation
+        self.allowSpaces = allowSpaces
+        txtfContent.isSecureTextEntry = isSecure
         
         self.setComponents()
         self.setAutolayout()
@@ -148,9 +169,25 @@ internal class LeftTitleTextField: UIView {
         super.becomeFirstResponder()
         return self.txtfContent.becomeFirstResponder()
     }
+    
     override func resignFirstResponder() -> Bool {
         super.resignFirstResponder()
         return self.txtfContent.resignFirstResponder()
+    }
+    
+    private func validateSpaces(_ replacementString: String, _ range: NSRange) -> Bool {
+        if (((!allowSpaces) || (range.location == 0)) && (replacementString == " ")) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    private func validateLenght(_ replacementString: String, _ range: NSRange) -> Bool {
+        let currentString = (txtfContent.text ?? "") as NSString
+        let newString = currentString.replacingCharacters(in: range, with: replacementString)
+
+        return newString.count <= maxLength
     }
 }
 
@@ -159,5 +196,39 @@ extension LeftTitleTextField: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         delegate?.leftTitleTextFieldDone?(identifier: identifier)
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == "" {
+            return true
+        }
+        
+        guard validateLenght(string, range) else {
+            return false
+        }
+        
+        guard validateSpaces(string, range) else {
+            return false
+        }
+        
+        switch inputValidation {
+        case .alphanumeric:
+            return string.isAlphanumeric()
+        case .spaAlphanumeric:
+            return string.isSpaAlphanumeric()
+        case .alphabetic:
+            return string.isAlphabetic()
+        case .spaAlphabetic:
+            return string.isSpaAlphabetic()
+        case .numeric:
+            return string.isNumeric()
+        case .email:
+            guard string != "@" else {
+                return true
+            }
+            return string.isEmailAllowedChar()
+        case .none:
+            return true
+        }
     }
 }

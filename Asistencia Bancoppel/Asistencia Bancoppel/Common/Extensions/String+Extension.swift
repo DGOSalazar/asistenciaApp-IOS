@@ -28,4 +28,40 @@ extension String {
         let cleanUppercased = cleanLowercased.replacingOccurrences(of: "Á", with: "A").replacingOccurrences(of: "É", with: "E").replacingOccurrences(of: "Í", with: "I").replacingOccurrences(of: "Ó", with: "O").replacingOccurrences(of: "Ú", with: "U")
         return cleanUppercased
     }
+    
+    
+    func isAlphanumeric() -> Bool {
+        let regex = "[A-Za-z0-9 ]"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: self)
+    }
+    
+    func isSpaAlphanumeric() -> Bool {
+        let regex = "[A-Za-z0-9 ñÑáéíóúÁÉÍÓÚüÜ]"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: self)
+    }
+    
+    func isAlphabetic() -> Bool {
+        let regex = "[A-Za-z ]"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: self)
+    }
+    
+    func isSpaAlphabetic() -> Bool {
+        let regex = "[A-Za-z ñÑáéíóúÁÉÍÓÚüÜ]"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: self)
+    }
+    
+    func isNumeric() -> Bool {
+        let regex = "[0-9 ]"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: self)
+    }
+    func isEmailAllowedChar() -> Bool {
+        let regex = "[A-Za-z0-9.%+_-]"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: self)
+    }
 }
