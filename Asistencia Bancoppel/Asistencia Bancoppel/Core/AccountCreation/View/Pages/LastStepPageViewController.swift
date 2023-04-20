@@ -21,12 +21,15 @@ struct Initiative {
 
 internal protocol LastStepPageViewDelegate: AnyObject {
     func notifyLastStepPageFinish(charge: String, team: String, collaboratorNumber: Int, photo: UIImage)
+    func notifyGetUsername() -> String
 }
 
 
 internal class LastStepPageViewController: UIViewController {
     internal weak var delegate: LastStepPageViewDelegate?
     private var profilePhoto: UIImage?
+    internal var userName: String = ""
+    
     private var charges: [Charge] = [Charge(title: "Tester/QA", id: 0),
                                      Charge(title: "Android Dev", id: 1),
                                      Charge(title: "IOS Dev", id: 2),
@@ -86,7 +89,6 @@ internal class LastStepPageViewController: UIViewController {
     lazy var lbUserName: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Héctor González Martínez"
         label.textColor = GlobalConstants.BancoppelColors.blueBex7
         label.font = Fonts.RobotoBold.of(size: 18)
         label.adjustsFontSizeToFitWidth = true
@@ -146,6 +148,11 @@ internal class LastStepPageViewController: UIViewController {
         self.hideKeyboardWhenTapped()
         setComponents()
         setAutolayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        lbUserName.text = delegate?.notifyGetUsername() ?? ""
     }
     
     private func setComponents() {
