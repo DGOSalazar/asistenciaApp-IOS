@@ -2,7 +2,7 @@
 //  GenericPickerTextField.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 14/04/23.
+//  Created by Luis Díaz on 14/04/23.
 //
 
 import Foundation

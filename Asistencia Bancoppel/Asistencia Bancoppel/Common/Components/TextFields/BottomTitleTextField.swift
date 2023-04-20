@@ -2,7 +2,7 @@
 //  BottomTitleTextField.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 14/04/23.
+//  Created by Luis Díaz on 14/04/23.
 //
 
 import Foundation
@@ -44,6 +44,9 @@ internal class BottomTitleTextField: UIView {
         label.font = Fonts.RobotoItalic.of(size: 12)
         label.textColor = GlobalConstants.BancoppelColors.grayBex10
         label.setContentCompressionResistancePriority(.init(999), for: .vertical)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
@@ -55,6 +58,9 @@ internal class BottomTitleTextField: UIView {
         label.textColor = GlobalConstants.BancoppelColors.redBex10
         label.isHidden = true
         label.setContentCompressionResistancePriority(.init(999), for: .vertical)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     

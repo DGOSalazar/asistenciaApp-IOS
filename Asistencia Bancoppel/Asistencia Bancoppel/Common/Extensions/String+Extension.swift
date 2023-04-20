@@ -2,7 +2,7 @@
 //  String+Extension.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 16/04/23.
+//  Created by Luis Díaz on 16/04/23.
 //
 
 import Foundation
