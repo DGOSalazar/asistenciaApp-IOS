@@ -20,23 +20,27 @@ struct Initiative {
 
 
 internal protocol LastStepPageViewDelegate: AnyObject {
-    func notifyLastStepPageFinish()
+    func notifyLastStepPageFinish(charge: String, team: String, collaboratorNumber: Int, photo: UIImage)
 }
 
 
 internal class LastStepPageViewController: UIViewController {
     internal weak var delegate: LastStepPageViewDelegate?
+    private var profilePhoto: UIImage?
     private var charges: [Charge] = [Charge(title: "Tester/QA", id: 0),
-                                     Charge(title: "Developer", id: 1),
-                                     Charge(title: "Project Manager", id: 2),
-                                     Charge(title: "Scrum Master", id: 3),
-                                     Charge(title: "Manager", id: 4)]
+                                     Charge(title: "Android Dev", id: 1),
+                                     Charge(title: "IOS Dev", id: 2),
+                                     Charge(title: "Backend Dev", id: 3),
+                                     Charge(title: "Scrum Master", id: 4),
+                                     Charge(title: "Business Analyst", id: 5),
+                                     Charge(title: "Otro", id: 6)]
     
-    private var initiatives: [Initiative] = [Initiative(title: "Tester/QA2", id: 0),
-                                             Initiative(title: "Developer2", id: 1),
-                                             Initiative(title: "Project Manager2", id: 2),
-                                             Initiative(title: "Scrum Master2", id: 3),
-                                             Initiative(title: "Manager2", id: 4)]
+    private var initiatives: [Initiative] = [Initiative(title: "Alpha", id: 0),
+                                             Initiative(title: "Beta", id: 1),
+                                             Initiative(title: "Gamma", id: 2),
+                                             Initiative(title: "Delta", id: 3),
+                                             Initiative(title: "Epsilon", id: 4),
+                                             Initiative(title: "Otro", id: 5)]
     
     
     
@@ -212,29 +216,47 @@ internal class LastStepPageViewController: UIViewController {
     }
     
     @objc private func btNextPressed() {
-        delegate?.notifyLastStepPageFinish()
+        guard validateData() else {
+            return
+        }
+        
+        delegate?.notifyLastStepPageFinish(charge: txtfCharge.getGenericValue()?.title ?? "",
+                                           team: txtfInitiative.getGenericValue()?.title ?? "",
+                                           collaboratorNumber: Int(txtfColaboratorNumber.getText()) ?? 0,
+                                           photo: profilePhoto ?? UIImage())
     }
     
     @objc private func btUploadPhotoPressed() {
     }
     
+    private func validatePhoto() -> Bool {
+        return profilePhoto != nil
+    }
+    
     private func validateCharge() -> Bool {
-        return (txtfCharge.getGenericValue() != nil)
+        let charge = txtfCharge.getGenericValue()
+        return (charge != nil && (charge?.title.isEmpty == false))
     }
     
     private func validateInitiative() -> Bool {
-        return (txtfInitiative.getGenericValue() != nil)
+        let team = txtfInitiative.getGenericValue()
+        return (team != nil && (team?.title.isEmpty == false))
     }
     
     private func validateCollaboratorNumber() -> Bool {
-        return !txtfColaboratorNumber.getText().isEmpty
+        let collaboratorNumber = txtfColaboratorNumber.getText()
+        guard let _ = Int(collaboratorNumber), !collaboratorNumber.isEmpty else {
+            return false
+        }
+        return true
     }
     
     private func validateData() -> Bool {
         let isValidCharge = validateCharge()
         let isValidInitiative = validateInitiative()
         let isValidCollaboratorNumer = validateCollaboratorNumber()
-        return (isValidCharge && isValidInitiative && isValidCollaboratorNumer)
+        let isValidPhoto = validatePhoto()
+        return (isValidCharge && isValidInitiative && isValidCollaboratorNumer && isValidPhoto)
     }
 }
 
@@ -265,6 +287,6 @@ extension LastStepPageViewController: GenericPickerTextFieldDelegate {
 
 extension LastStepPageViewController: UploadPhotoButtonDelegate {
     func notifyPhotoSelected(photo: UIImage) {
-        print(photo)
+        profilePhoto = photo
     }
 }

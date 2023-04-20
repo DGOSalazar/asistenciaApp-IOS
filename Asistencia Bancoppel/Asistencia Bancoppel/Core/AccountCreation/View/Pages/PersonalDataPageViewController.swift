@@ -9,13 +9,14 @@ import Foundation
 import UIKit
 
 internal protocol PersonalDataPageDelegate: AnyObject {
-    func notifyPersonalDataNext()
+    func notifyPersonalDataNext(name: String, firstLastname: String, secondLastname: String, birthDate: String, cellphone: String)
 }
 
 
 internal class PersonalDataPageViewController: UIViewController {
     internal weak var delegate: PersonalDataPageDelegate?
-    
+    private var firstLastname: String = ""
+    private var secondLastname: String = ""
     
     lazy var vwContainer: UIView = {
        let view = UIView()
@@ -168,7 +169,12 @@ internal class PersonalDataPageViewController: UIViewController {
         guard validateData() else {
             return
         }
-        delegate?.notifyPersonalDataNext()
+        
+        delegate?.notifyPersonalDataNext(name: txtfName.getText(),
+                                         firstLastname: firstLastname,
+                                         secondLastname: secondLastname,
+                                         birthDate: txtfBirthDate.getText(),
+                                         cellphone: txtfCellphone.getText())
     }
     
     private func validateName() -> Bool {
@@ -182,9 +188,20 @@ internal class PersonalDataPageViewController: UIViewController {
     }
     
     private func validateLastname() -> Bool {
-        guard !txtfLastnames.getText().isEmpty else {
+        let lastnames = txtfLastnames.getText()
+        let auxLastnames = lastnames.split(separator: " ")
+ 
+        guard !lastnames.isEmpty, auxLastnames.count <= 2 else {
             txtfLastnames.setDefaultStatus()
             return false
+        }
+        
+        if auxLastnames.count == 2 {
+            firstLastname = String(auxLastnames.first ?? "")
+            secondLastname = String(auxLastnames.last ?? "")
+        } else {
+            firstLastname = lastnames
+            secondLastname = ""
         }
         
         txtfLastnames.setSuccessStatus()

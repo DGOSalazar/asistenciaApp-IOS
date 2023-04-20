@@ -11,6 +11,9 @@ import UIKit
 
 internal class AccountCreationViewController: UIViewController {
     private var pages: [UIViewController] = []
+    private let viewModel = AccountCreationViewModel()
+    private var model = AccountCreationModel()
+    private var credential: String?
     
     lazy var vwContainer: UIView = {
        let view = UIView()
@@ -45,6 +48,7 @@ internal class AccountCreationViewController: UIViewController {
         setComponents()
         setAutolayout()
         setPager()
+        bind()
     }
     
     
@@ -124,24 +128,47 @@ extension AccountCreationViewController: UIPageViewControllerDataSource, UIPageV
             return 0
         }
     }
+    
+    private func bind(){
+        self.viewModel.accountCreationObaservable.observe = { success in
+            CustomLoader.hide()
+            if success {
+                self.dismiss(animated: true)
+            }
+        }
+    }
 }
 
 
 
 extension AccountCreationViewController: AccountCreationPageDelegate {
-    func notifyAccountCreationPageNext() {
+    func notifyAccountCreationPageNext(email: String, credential: String) {
+        model.email = email.lowercased()
+        self.credential = credential
+        
         pvwcPager.setViewControllers([pages[1]], direction: .forward, animated: true)
     }
 }
 
 extension AccountCreationViewController: PersonalDataPageDelegate {
-    func notifyPersonalDataNext() {
+    func notifyPersonalDataNext(name: String, firstLastname: String, secondLastname: String, birthDate: String, cellphone: String) {
+        model.name = name
+        model.lastName1 = firstLastname
+        model.lastName2 = secondLastname
+        model.birthDay = birthDate
+        model.phone = cellphone
+        
         pvwcPager.setViewControllers([pages[2]], direction: .forward, animated: true)
     }
 }
 
 extension AccountCreationViewController: LastStepPageViewDelegate {
-    func notifyLastStepPageFinish() {
-        self.dismiss(animated: true)
+    func notifyLastStepPageFinish(charge: String, team: String, collaboratorNumber: Int, photo: UIImage) {
+        model.position = charge
+        model.team = team
+        model.employee = collaboratorNumber
+
+        CustomLoader.show()
+        viewModel.registerAccount(accountRequest: model, credential: credential ?? "", photo: photo)
     }
 }

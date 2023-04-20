@@ -10,7 +10,7 @@ import UIKit
 
 
 internal protocol AccountCreationPageDelegate: AnyObject {
-    func notifyAccountCreationPageNext()
+    func notifyAccountCreationPageNext(email: String, credential: String)
 }
 
 
@@ -153,7 +153,12 @@ internal class AccountCreationPageViewController: UIViewController {
     }
     
     @objc private func btNextPressed() {
-        delegate?.notifyAccountCreationPageNext()
+        guard validateData() else {
+            return
+        }
+        
+        delegate?.notifyAccountCreationPageNext(email: txtfEmail.getText(),
+                                                credential: txtfCredential.getText())
     }
     
     private func validateEmail() -> Bool {
