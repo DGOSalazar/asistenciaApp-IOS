@@ -31,6 +31,11 @@ internal class BottomTitleTextField: UIView {
             txtfContent.font = textFont
         }
     }
+    internal var textAlignment: NSTextAlignment = .left {
+        didSet {
+            txtfContent.textAlignment = textAlignment
+        }
+    }
     
     
     

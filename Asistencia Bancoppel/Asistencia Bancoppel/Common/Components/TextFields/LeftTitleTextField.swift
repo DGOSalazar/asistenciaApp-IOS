@@ -31,6 +31,11 @@ internal class LeftTitleTextField: UIView {
             txtfContent.font = textFont
         }
     }
+    internal var textAlignment: NSTextAlignment = .left {
+        didSet {
+            txtfContent.textAlignment = textAlignment
+        }
+    }
     
     
     lazy var txtfContent: UITextField = {
