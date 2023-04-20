@@ -132,7 +132,7 @@ extension AccountCreationViewController: UIPageViewControllerDataSource, UIPageV
     private func bind(){
         self.viewModel.accountCreationObaservable.observe = { success in
             CustomLoader.hide()
-            if success {
+            if success == true {
                 self.dismiss(animated: true)
             }
         }
