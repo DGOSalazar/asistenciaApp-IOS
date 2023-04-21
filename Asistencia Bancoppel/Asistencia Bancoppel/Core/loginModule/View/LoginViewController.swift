@@ -61,8 +61,8 @@ class LoginViewController: UIViewController {
     let welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "¡Bienvenido!"
-        label.textColor = UIColor(named: "splashGradientBottom")
-        label.font = UIFont(name: "Roboto-Bold", size: 40)
+        label.textColor = GlobalConstants.BancoppelColors.blueBex7
+        label.font = .robotoBold(ofSize: 40)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
     let mailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Correo Electronico"
-        textField.font = UIFont(name: "Roboto-Regular", size: 12)
+        textField.font = .robotoItalic(ofSize: 16)
         textField.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 13.0, *) {
             textField.backgroundColor = .secondarySystemBackground
@@ -95,7 +95,7 @@ class LoginViewController: UIViewController {
     let passTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Contraseña"
-        textField.font = UIFont(name: "Roboto-Regular", size: 12)
+        textField.font = .robotoItalic(ofSize: 16)
         textField.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 13.0, *) {
             textField.backgroundColor = .secondarySystemBackground
@@ -111,8 +111,8 @@ class LoginViewController: UIViewController {
     let forgotLabel: UILabel = {
         let label = UILabel()
         label.text = "¿Olvidaste tu contraseña?"
-        label.textColor = UIColor(named: "splashGradientBottom")
-        label.font = UIFont(name: "Roboto-Italic", size: 12)
+        label.textColor = GlobalConstants.BancoppelColors.blueBex7
+        label.font = .robotoBold(ofSize: 12)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -144,7 +144,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "¿Eres Nuevo?"
         label.textAlignment = .center
-        label.font = UIFont(name: "Roboto-Regular", size: 12)
+        label.font = .robotoRegular(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -152,8 +152,8 @@ class LoginViewController: UIViewController {
     let createAccLabel: UILabel = {
         let label = UILabel()
         label.text = "Crear una cuenta"
-        label.textColor = UIColor(named: "splashGradientBottom")
-        label.font = UIFont(name: "Roboto-Italic", size: 15)
+        label.textColor = GlobalConstants.BancoppelColors.blueBex7
+        label.font = .robotoBold(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
