@@ -78,35 +78,30 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    let mailTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Correo Electronico"
-        textField.font = .robotoItalic(ofSize: 16)
+    lazy var mailTextField: BottomTitleTextField = {
+       let textField = BottomTitleTextField(title: "",
+                                            placeholder: "Correo electrónico",
+                                            delegate: self,
+                                            identifier: "email")
         textField.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 13.0, *) {
-            textField.backgroundColor = .secondarySystemBackground
-        } else {
-            print("Not aviable version of iOS")
-        }
-        textField.layer.cornerRadius = 5
+        textField.keyboardType = .emailAddress
+        textField.inputValidation = .email
+        textField.maxLength = 40
         return textField
     }()
     
-    let passTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Contraseña"
-        textField.font = .robotoItalic(ofSize: 16)
+    lazy var passTextField: BottomTitleTextField = {
+       let textField = BottomTitleTextField(title: "",
+                                            placeholder: "Contraseña",
+                                            delegate: self,
+                                            identifier: "credential",
+                                            isSecure: true)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 13.0, *) {
-            textField.backgroundColor = .secondarySystemBackground
-        } else {
-          print("Not aviable version of iOS")
-        }
-        textField.isSecureTextEntry = true
-        textField.layer.cornerRadius = 5
-
+        textField.allowSpaces = false
+        textField.maxLength = 40
         return textField
     }()
+    
 
     let forgotLabel: UILabel = {
         let label = UILabel()
@@ -186,11 +181,9 @@ class LoginViewController: UIViewController {
     private func bind() {
         self.viewModel.loginObservable.observe = { loged in
             CustomLoader.hide()
-           // self.succesLoged = loged ?? false
-           // DispatchQueue.main.async {
             if loged == true {
                 let mainViewController = MainViewController()
-                mainViewController.setUp(email: self.mailTextField.text ?? "")
+                mainViewController.setUp(email: self.mailTextField.getText())
                 self.navigationController?.pushViewController(mainViewController, animated: true)
             } else {
                 let alerta = UIAlertController(title: "Credenciales incorrectas", message: "Por favor, ingrese las credenciales correctas.", preferredStyle: .alert)
@@ -198,8 +191,6 @@ class LoginViewController: UIViewController {
                     alerta.addAction(okAction)
                 self.present(alerta, animated: true, completion: nil)
             }
-                
-            //}
         }
     }
 
@@ -247,19 +238,12 @@ extension LoginViewController {
             
             passTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: passTextField.trailingAnchor, multiplier: 5),
-            passTextField.heightAnchor.constraint(equalToConstant: 30),
-
             mailTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: mailTextField.trailingAnchor, multiplier: 5),
-            mailTextField.heightAnchor.constraint(equalToConstant: 30),
-            
             loginButton.heightAnchor.constraint(equalToConstant: 60),
             loginButton.widthAnchor.constraint(equalToConstant: 200),
-            
             createAccStackView.topAnchor.constraint(equalTo: welcomeStackView.bottomAnchor, constant: 20),
             createAccStackView.centerXAnchor.constraint(equalTo: whiteBg.centerXAnchor),
-            
-            
         ])
     }
     
@@ -269,14 +253,51 @@ extension LoginViewController {
     }
     
     @objc func loginTapped() {
-        CustomLoader.show()
-        guard let mail = mailTextField.text,
-              let pass = passTextField.text else {
-            CustomLoader.hide()
-            print("Ingresar las credenciales correctas...")
+        guard validateData() else {
+            print("Error campos vacios o invalidos")
             return
         }
-        viewModel.makeLogin(email: mail, credential: pass)
+        viewModel.makeLogin(email: mailTextField.getText(), credential: passTextField.getText())
+    }
+    
+    private func validateData() -> Bool {
+        let isValidEmail = validateEmail()
+        let isValidCredential = validatedCredential()
+        return (isValidEmail && isValidCredential)
+    }
+    
+    private func validateEmail() -> Bool {
+        let email = mailTextField.getText().lowercased()
+        guard !email.isEmpty, email.contains("@") else {
+            mailTextField.setDefaultStatus()
+            return false
+        }
+        
+        guard email.isCoppelEmail() else {
+            mailTextField.setFailureStatus(message: "Ingresa un correo Coppel válido.")
+            return false
+        }
+        
+        mailTextField.setSuccessStatus()
+        return true
+    }
+    
+    private func validatedCredential() -> Bool {
+        let credential = passTextField.getText()
+        
+        guard !credential.isEmpty else {
+            passTextField.setDefaultStatus()
+            return false
+        }
+        
+        guard credential.count >= 8 else {
+            passTextField.setFailureStatus(message: "Ingresa una contraseña válida (al menos 8 caracteres).")
+            return false
+        }
+        
+        passTextField.setSuccessStatus()
+        
+        return true
     }
 }
 extension LoginViewController: UITextFieldDelegate {
@@ -293,5 +314,21 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
     }
+}
+
+extension LoginViewController: BottomTitleTextFieldDelegate {
+    func bottomTitleTextFieldDidChange(identifier: String, text: String) {
+        
+    }
+    
+    
+    func bottomTitleTextFieldDone(identifier: String) {
+        if identifier == mailTextField.identifier {
+            _ = mailTextField.becomeFirstResponder()
+        } else if identifier == passTextField.identifier {
+            _ = passTextField.becomeFirstResponder()
+        }
+    }
+    
 }
 
