@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3F439A2429A935D200F9CA1D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F439A2329A935D200F9CA1D /* Colors.xcassets */; };
 		3F439A2929A93DA900F9CA1D /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A2829A93DA900F9CA1D /* GlobalConstants.swift */; };
-		3F439A2B29A93EC700F9CA1D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A2A29A93EC700F9CA1D /* Fonts.swift */; };
 		3F439A2F29A9435300F9CA1D /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A2E29A9435300F9CA1D /* UIViewController+Extensions.swift */; };
 		3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3329A9464100F9CA1D /* AccountHomeViewController.swift */; };
 		3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3629A946FF00F9CA1D /* AccountCell.swift */; };
@@ -50,6 +49,8 @@
 		52FA7AD529F2F14900225D10 /* CustomTabButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */; };
 		52FA7AD729F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD629F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift */; };
 		52FA7AD929F2FFA200225D10 /* MainPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD829F2FFA200225D10 /* MainPagerViewController.swift */; };
+		52FA7ADC29F34B9300225D10 /* DeviceSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7ADB29F34B9300225D10 /* DeviceSize.swift */; };
+		52FA7AE229F34E6000225D10 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AE129F34E6000225D10 /* Dimensions.swift */; };
 		52FE749429EE095B00823646 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52FE749329EE095B00823646 /* GoogleService-Info.plist */; };
 		52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE749629EE0D9000823646 /* FirebaseManager.swift */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
@@ -67,7 +68,6 @@
 /* Begin PBXFileReference section */
 		3F439A2329A935D200F9CA1D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		3F439A2829A93DA900F9CA1D /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
-		3F439A2A29A93EC700F9CA1D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		3F439A2E29A9435300F9CA1D /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		3F439A3329A9464100F9CA1D /* AccountHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHomeViewController.swift; sourceTree = "<group>"; };
 		3F439A3629A946FF00F9CA1D /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
@@ -108,6 +108,8 @@
 		52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButtonModel.swift; sourceTree = "<group>"; };
 		52FA7AD629F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButtonShadowStyleEnum.swift; sourceTree = "<group>"; };
 		52FA7AD829F2FFA200225D10 /* MainPagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagerViewController.swift; sourceTree = "<group>"; };
+		52FA7ADB29F34B9300225D10 /* DeviceSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSize.swift; sourceTree = "<group>"; };
+		52FA7AE129F34E6000225D10 /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		52FE749329EE095B00823646 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52FE749629EE0D9000823646 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,11 +163,11 @@
 		3F439A2629A93D4C00F9CA1D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				52FA7ADA29F34B5E00225D10 /* Dimensions */,
 				52FE749529EE0D8500823646 /* Singletons */,
 				5235453C29E8C29C002BECAB /* Components */,
 				3F439A2D29A9434200F9CA1D /* Extensions */,
 				3F439A2829A93DA900F9CA1D /* GlobalConstants.swift */,
-				3F439A2A29A93EC700F9CA1D /* Fonts.swift */,
 				522AE75129F090720091AD6C /* CustomObservable.swift */,
 			);
 			path = Utils;
@@ -415,6 +417,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		52FA7ADA29F34B5E00225D10 /* Dimensions */ = {
+			isa = PBXGroup;
+			children = (
+				52FA7ADB29F34B9300225D10 /* DeviceSize.swift */,
+				52FA7AE129F34E6000225D10 /* Dimensions.swift */,
+			);
+			path = Dimensions;
+			sourceTree = "<group>";
+		};
 		52FE749529EE0D8500823646 /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +647,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52FA7ADC29F34B9300225D10 /* DeviceSize.swift in Sources */,
 				5235454329E8DC99002BECAB /* AccountCreationPageViewController.swift in Sources */,
 				527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */,
 				52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */,
@@ -643,6 +655,7 @@
 				52FA7AD729F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift in Sources */,
 				526BEC4E29E9A39800554701 /* BottomTitleTextField.swift in Sources */,
 				52FA7AD529F2F14900225D10 /* CustomTabButtonModel.swift in Sources */,
+				52FA7AE229F34E6000225D10 /* Dimensions.swift in Sources */,
 				522AE74029F06D580091AD6C /* CustomCalendarView.swift in Sources */,
 				5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */,
 				FA3BC0DA29EDD54E0024FEE0 /* LoginBackgroundView.swift in Sources */,
@@ -653,7 +666,6 @@
 				5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */,
 				52E7CAA629F1FC9E0039E921 /* Account.swift in Sources */,
 				5261ECDE29EC92AA0086BA29 /* String+Extension.swift in Sources */,
-				3F439A2B29A93EC700F9CA1D /* Fonts.swift in Sources */,
 				FA3BC0DE29EDD6460024FEE0 /* GardientBackgroundView.swift in Sources */,
 				52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */,
 				522AE74A29F072AA0091AD6C /* CustomCalendarDayModel.swift in Sources */,

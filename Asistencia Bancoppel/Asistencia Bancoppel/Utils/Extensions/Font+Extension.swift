@@ -11,6 +11,7 @@ import UIKit
 
 public extension UIFont {
     private static var areFontsRegistered: Bool = false
+    private static var responsiveModifier: CGFloat = (DeviceSize.size == .large ? 0.0 : (DeviceSize.size == .medium ? 0.5 : 1.0))
     
     private static func registerFontsIfNeeded() {
         guard !self.areFontsRegistered else {
@@ -30,18 +31,25 @@ public extension UIFont {
     
     static func robotoRegular(ofSize: CGFloat) -> UIFont {
         self.registerFontsIfNeeded()
-        return UIFont(name: "Roboto-Regular", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize, weight: .regular)
+        return UIFont(name: "Roboto-Regular",
+                      size: ofSize - self.responsiveModifier) ?? UIFont.systemFont(ofSize: ofSize - self.responsiveModifier,
+                                                                                   weight: .regular)
     }
     static func robotoItalic(ofSize: CGFloat) -> UIFont {
         self.registerFontsIfNeeded()
-        return UIFont(name: "Roboto-Italic", size: ofSize) ?? UIFont.italicSystemFont(ofSize: ofSize)
+        return UIFont(name: "Roboto-Italic",
+                      size: ofSize - self.responsiveModifier) ?? UIFont.italicSystemFont(ofSize: ofSize - self.responsiveModifier)
     }
     static func robotoMedium(ofSize: CGFloat) -> UIFont {
         self.registerFontsIfNeeded()
-        return UIFont(name: "Roboto-Medium", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize, weight: .medium)
+        return UIFont(name: "Roboto-Medium",
+                      size: ofSize - self.responsiveModifier) ?? UIFont.systemFont(ofSize: ofSize - self.responsiveModifier,
+                                                                                   weight: .medium)
     }
     static func robotoBold(ofSize: CGFloat) -> UIFont {
         self.registerFontsIfNeeded()
-        return UIFont(name: "Roboto-Bold", size: ofSize) ?? UIFont.systemFont(ofSize: ofSize, weight: .bold)
+        return UIFont(name: "Roboto-Bold",
+                      size: ofSize - self.responsiveModifier) ?? UIFont.systemFont(ofSize: ofSize - self.responsiveModifier,
+                                                                                   weight: .bold)
     }
 }
