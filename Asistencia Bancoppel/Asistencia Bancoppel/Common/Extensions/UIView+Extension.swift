@@ -2,7 +2,7 @@
 //  UIView.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 20/04/23.
+//  Created by Luis Díaz on 20/04/23.
 //
 
 import Foundation
