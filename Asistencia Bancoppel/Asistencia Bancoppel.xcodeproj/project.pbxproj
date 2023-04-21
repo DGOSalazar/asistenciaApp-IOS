@@ -46,6 +46,11 @@
 		52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */; };
 		52E7CAA429F1F9A80039E921 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */; };
 		52E7CAA629F1FC9E0039E921 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA529F1FC9E0039E921 /* Account.swift */; };
+		52FA7AD029F2EA0600225D10 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7ACF29F2EA0600225D10 /* CustomTabBarView.swift */; };
+		52FA7AD229F2EC8D00225D10 /* CustomTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD129F2EC8D00225D10 /* CustomTabButton.swift */; };
+		52FA7AD529F2F14900225D10 /* CustomTabButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */; };
+		52FA7AD729F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD629F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift */; };
+		52FA7AD929F2FFA200225D10 /* MainPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD829F2FFA200225D10 /* MainPagerViewController.swift */; };
 		52FE749429EE095B00823646 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52FE749329EE095B00823646 /* GoogleService-Info.plist */; };
 		52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE749629EE0D9000823646 /* FirebaseManager.swift */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
@@ -100,6 +105,11 @@
 		52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputValidationEnum.swift; sourceTree = "<group>"; };
 		52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		52E7CAA529F1FC9E0039E921 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		52FA7ACF29F2EA0600225D10 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
+		52FA7AD129F2EC8D00225D10 /* CustomTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButton.swift; sourceTree = "<group>"; };
+		52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButtonModel.swift; sourceTree = "<group>"; };
+		52FA7AD629F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButtonShadowStyleEnum.swift; sourceTree = "<group>"; };
+		52FA7AD829F2FFA200225D10 /* MainPagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagerViewController.swift; sourceTree = "<group>"; };
 		52FE749329EE095B00823646 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52FE749629EE0D9000823646 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +194,7 @@
 		3F439A3029A945AC00F9CA1D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				52FA7ACC29F2E75300225D10 /* MainPager */,
 				5235453629E8BCC3002BECAB /* AccountCreation */,
 				FA3BC0D529EDD4DB0024FEE0 /* loginModule */,
 				3F439A3C29A94AED00F9CA1D /* MainViewController.swift */,
@@ -314,6 +325,7 @@
 		5235453C29E8C29C002BECAB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				52FA7ACD29F2E93800225D10 /* TabBars */,
 				522AE75329F0A9F50091AD6C /* Loaders */,
 				522AE73E29F06D3A0091AD6C /* Calendar */,
 				526BEC4C29E9A23F00554701 /* TextFields */,
@@ -375,6 +387,41 @@
 				52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		52FA7ACC29F2E75300225D10 /* MainPager */ = {
+			isa = PBXGroup;
+			children = (
+				52FA7AD829F2FFA200225D10 /* MainPagerViewController.swift */,
+			);
+			path = MainPager;
+			sourceTree = "<group>";
+		};
+		52FA7ACD29F2E93800225D10 /* TabBars */ = {
+			isa = PBXGroup;
+			children = (
+				52FA7ACE29F2E96400225D10 /* CustomTabBar */,
+			);
+			path = TabBars;
+			sourceTree = "<group>";
+		};
+		52FA7ACE29F2E96400225D10 /* CustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				52FA7AD329F2F13100225D10 /* Models */,
+				52FA7ACF29F2EA0600225D10 /* CustomTabBarView.swift */,
+				52FA7AD129F2EC8D00225D10 /* CustomTabButton.swift */,
+			);
+			path = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		52FA7AD329F2F13100225D10 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */,
+				52FA7AD629F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		52FE749529EE0D8500823646 /* Singletons */ = {
@@ -604,7 +651,9 @@
 				527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */,
 				52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */,
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
+				52FA7AD729F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift in Sources */,
 				526BEC4E29E9A39800554701 /* BottomTitleTextField.swift in Sources */,
+				52FA7AD529F2F14900225D10 /* CustomTabButtonModel.swift in Sources */,
 				522AE74029F06D580091AD6C /* CustomCalendarView.swift in Sources */,
 				5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */,
 				FA3BC0DA29EDD54E0024FEE0 /* LoginBackgroundView.swift in Sources */,
@@ -621,6 +670,8 @@
 				522AE74A29F072AA0091AD6C /* CustomCalendarDayModel.swift in Sources */,
 				52E32B9829F19DE0006CAEF9 /* UIView+Extension.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
+				52FA7AD929F2FFA200225D10 /* MainPagerViewController.swift in Sources */,
+				52FA7AD029F2EA0600225D10 /* CustomTabBarView.swift in Sources */,
 				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
 				522AE74E29F08E110091AD6C /* AccountCreationViewModel.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
@@ -634,6 +685,7 @@
 				522AE75829F0C12E0091AD6C /* Font+Extension.swift in Sources */,
 				5235453B29E8BD05002BECAB /* AccountCreationViewController.swift in Sources */,
 				3F439A2F29A9435300F9CA1D /* UIViewController+Extensions.swift in Sources */,
+				52FA7AD229F2EC8D00225D10 /* CustomTabButton.swift in Sources */,
 				FA3BC0D729EDD5000024FEE0 /* LoginViewController.swift in Sources */,
 				522AE74829F0729B0091AD6C /* CustomCalendarMonthModel.swift in Sources */,
 				FA56BC6B29F10039004CE981 /* LoginModel.swift in Sources */,
