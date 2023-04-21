@@ -113,15 +113,10 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    let loginButton: UIButton = {
-       let button = UIButton()
+    lazy var loginButton: MainButton = {
+        let button = MainButton(title: "Entrar", enable: true)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(named: "splashGradientBottom")
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 22)
-        button.setTitle("Entrar", for: [])
-        button.layer.cornerRadius = 30
-        button.addTarget(nil, action: #selector(loginTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         return button
     }()
     
@@ -240,8 +235,8 @@ extension LoginViewController {
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: passTextField.trailingAnchor, multiplier: 5),
             mailTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: mailTextField.trailingAnchor, multiplier: 5),
-            loginButton.heightAnchor.constraint(equalToConstant: 60),
-            loginButton.widthAnchor.constraint(equalToConstant: 200),
+            loginButton.heightAnchor.constraint(equalToConstant: 59),
+            loginButton.widthAnchor.constraint(equalTo: welcomeStackView.widthAnchor, multiplier: 0.6),
             createAccStackView.topAnchor.constraint(equalTo: welcomeStackView.bottomAnchor, constant: 20),
             createAccStackView.centerXAnchor.constraint(equalTo: whiteBg.centerXAnchor),
         ])
@@ -257,7 +252,7 @@ extension LoginViewController {
             return
         }
         CustomLoader.show()
-        viewModel.makeLogin(email: mailTextField.getText(), credential: passTextField.getText())
+        viewModel.makeLogin(email: mailTextField.getText().lowercased(), credential: passTextField.getText())
     }
     
     private func validateData() -> Bool {

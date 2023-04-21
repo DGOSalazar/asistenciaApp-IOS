@@ -221,7 +221,7 @@ internal class LastStepPageViewController: UIViewController {
             txtfColaboratorNumber.bottomAnchor.constraint(equalTo: vwDataContainer.bottomAnchor),
             
             btFinish.heightAnchor.constraint(equalToConstant: 59),
-            btFinish.widthAnchor.constraint(equalToConstant: 200),
+            btFinish.widthAnchor.constraint(equalTo: vwContainer.widthAnchor, multiplier: 0.6),
             btFinish.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
             btFinish.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -20),
         ])

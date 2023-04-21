@@ -13,6 +13,9 @@ class MainButton: UIButton {
         
         self.titleLabel?.font = .robotoBold(ofSize: 22)
         self.layer.cornerRadius = 29.5
+        self.titleLabel?.numberOfLines = 1
+        self.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.titleLabel?.minimumScaleFactor = 0.5
         self.updateTitle(title: title, enable: enable)
     }
     

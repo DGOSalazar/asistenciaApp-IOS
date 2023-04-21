@@ -166,7 +166,7 @@ internal class PersonalDataPageViewController: UIViewController {
             
             
             btNext.heightAnchor.constraint(equalToConstant: 59),
-            btNext.widthAnchor.constraint(equalToConstant: 200),
+            btNext.widthAnchor.constraint(equalTo: vwContainer.widthAnchor, multiplier: 0.6),
             btNext.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
             btNext.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -20),
         ])

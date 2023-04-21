@@ -144,7 +144,6 @@
 				522AE75629F0C1140091AD6C /* Fonts */,
 				628A8862299AD2A5009F30E6 /* Assets.xcassets */,
 				3F439A2329A935D200F9CA1D /* Colors.xcassets */,
-				628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -152,7 +151,9 @@
 		3F439A2529A937F300F9CA1D /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				628A886D299AD407009F30E6 /* SplashView */,
 				628A8859299AD299009F30E6 /* AppDelegate.swift */,
+				628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -161,20 +162,13 @@
 			isa = PBXGroup;
 			children = (
 				52FE749529EE0D8500823646 /* Singletons */,
+				5235453C29E8C29C002BECAB /* Components */,
+				3F439A2D29A9434200F9CA1D /* Extensions */,
 				3F439A2829A93DA900F9CA1D /* GlobalConstants.swift */,
 				3F439A2A29A93EC700F9CA1D /* Fonts.swift */,
 				522AE75129F090720091AD6C /* CustomObservable.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		3F439A2C29A93FA000F9CA1D /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				5235453C29E8C29C002BECAB /* Components */,
-				3F439A2D29A9434200F9CA1D /* Extensions */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		3F439A2D29A9434200F9CA1D /* Extensions */ = {
@@ -189,7 +183,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3F439A3029A945AC00F9CA1D /* Core */ = {
+		3F439A3029A945AC00F9CA1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				52FA7ACC29F2E75300225D10 /* MainPager */,
@@ -197,7 +191,7 @@
 				FA3BC0D529EDD4DB0024FEE0 /* loginModule */,
 				3F439A3129A945E800F9CA1D /* AccountHome */,
 			);
-			path = Core;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		3F439A3129A945E800F9CA1D /* AccountHome */ = {
@@ -450,13 +444,11 @@
 		628A8858299AD299009F30E6 /* Asistencia Bancoppel */ = {
 			isa = PBXGroup;
 			children = (
+				3F439A2529A937F300F9CA1D /* Application */,
 				52FE749329EE095B00823646 /* GoogleService-Info.plist */,
 				628A8867299AD2A5009F30E6 /* Info.plist */,
-				3F439A2529A937F300F9CA1D /* Application */,
-				3F439A2C29A93FA000F9CA1D /* Common */,
-				3F439A3029A945AC00F9CA1D /* Core */,
+				3F439A3029A945AC00F9CA1D /* Modules */,
 				3F439A2229A92E5F00F9CA1D /* Resources */,
-				628A886D299AD407009F30E6 /* SplashView */,
 				3F439A2629A93D4C00F9CA1D /* Utils */,
 			);
 			path = "Asistencia Bancoppel";
