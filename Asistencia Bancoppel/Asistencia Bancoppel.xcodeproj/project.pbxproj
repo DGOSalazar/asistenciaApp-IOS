@@ -14,7 +14,6 @@
 		3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3329A9464100F9CA1D /* AccountHomeViewController.swift */; };
 		3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3629A946FF00F9CA1D /* AccountCell.swift */; };
 		3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3A29A9497300F9CA1D /* AccountModel.swift */; };
-		3F439A3D29A94AED00F9CA1D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3C29A94AED00F9CA1D /* MainViewController.swift */; };
 		522AE74029F06D580091AD6C /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE73F29F06D580091AD6C /* CustomCalendarView.swift */; };
 		522AE74229F070720091AD6C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74129F070720091AD6C /* Date+Extension.swift */; };
 		522AE74529F0716D0091AD6C /* CustomCalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74429F0716D0091AD6C /* CustomCalendarViewCell.swift */; };
@@ -73,7 +72,6 @@
 		3F439A3329A9464100F9CA1D /* AccountHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHomeViewController.swift; sourceTree = "<group>"; };
 		3F439A3629A946FF00F9CA1D /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		3F439A3A29A9497300F9CA1D /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
-		3F439A3C29A94AED00F9CA1D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		522AE73F29F06D580091AD6C /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		522AE74129F070720091AD6C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		522AE74429F0716D0091AD6C /* CustomCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarViewCell.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 				52FA7ACC29F2E75300225D10 /* MainPager */,
 				5235453629E8BCC3002BECAB /* AccountCreation */,
 				FA3BC0D529EDD4DB0024FEE0 /* loginModule */,
-				3F439A3C29A94AED00F9CA1D /* MainViewController.swift */,
 				3F439A3129A945E800F9CA1D /* AccountHome */,
 			);
 			path = Core;
@@ -692,7 +689,6 @@
 				522AE74C29F072EC0091AD6C /* CustomCalendarCellStyleEnum.swift in Sources */,
 				522AE74529F0716D0091AD6C /* CustomCalendarViewCell.swift in Sources */,
 				522AE75229F090720091AD6C /* CustomObservable.swift in Sources */,
-				3F439A3D29A94AED00F9CA1D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
