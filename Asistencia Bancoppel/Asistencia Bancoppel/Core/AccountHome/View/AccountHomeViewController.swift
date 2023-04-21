@@ -10,10 +10,15 @@ import UIKit
 class AccountHomeViewController: UIViewController {
     
     var accounts : [Account] = []
+    private var viewModel = AccountViewModel()
+    internal var email: String = ""
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         initComponents()
-        
+        CustomLoader.show()
+        self.bind()
+        self.viewModel.registerAccount(email: email)
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +52,7 @@ class AccountHomeViewController: UIViewController {
     private let lbGreetings: UILabel = {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "¡Hola, Hector!"
+        label.text = " "
         label.font = Fonts.Roboto.of(size: 28)
         label.textColor = .white
         label.numberOfLines = 0
@@ -252,6 +257,60 @@ class AccountHomeViewController: UIViewController {
             tbvPeople.heightAnchor.constraint(equalToConstant: CGFloat(Double(accounts.count) * AccountCell.rowHeight)),
             
         ])
+    }
+    
+    private func bind() {
+        self.viewModel.accountObaservable.observe = { (response) in
+            guard let nonNilResponse = response else {
+                CustomLoader.hide()
+                return
+            }
+            
+            let (accountData, error) = nonNilResponse
+            
+            guard let nonNilData = accountData else {
+                self.showAlert(message: error ?? "", isError: true)
+                CustomLoader.hide()
+                return
+            }
+                        
+            DispatchQueue.global(qos: .userInitiated).async {
+                guard let nonNilURL = URL(string: nonNilData.profilePhoto ?? "") else {
+                    CustomLoader.hide()
+                    return
+                }
+                
+                let responseData = try? Data(contentsOf: nonNilURL)
+                
+                guard let nonNilData = responseData, let nonNilImage = UIImage(data: nonNilData) else {
+                    CustomLoader.hide()
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.customCalendarView.profilePhoto = nonNilImage
+                    CustomLoader.hide()
+                }
+            }
+            
+            self.lbGreetings.text = "¡Hola, \(nonNilData.name ?? "")!"
+        }
+    }
+    
+    private func showAlert(message: String, isError: Bool = false) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: isError ? "Error" : "Información",
+                                          message: message,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { _ in
+                guard isError else {
+                    return
+                }
+                self.navigationController?.popToRootViewController(animated: true)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
  

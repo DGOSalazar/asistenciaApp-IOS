@@ -14,12 +14,16 @@ class MainViewController: UITabBarController {
         if #available(iOS 13.0, *) {
             self.view.backgroundColor = .systemBackground
         }
-        setupViews()
+    }
+    
+    internal func setUp(email: String) {
+        setupViews(email: email)
         setupTabBar()
     }
     
-    private func setupViews() {
+    private func setupViews(email: String) {
         let vcAccount = AccountHomeViewController()
+        vcAccount.email = email
         let vcTeam = TeamViewController()
         let vcProfile = ProfileViewController()
         

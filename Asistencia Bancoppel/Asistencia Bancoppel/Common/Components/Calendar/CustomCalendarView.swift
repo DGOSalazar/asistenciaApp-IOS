@@ -24,7 +24,11 @@ private enum CustomCalendarMonthModifier: Int {
 
 internal class CustomCalendarView: UIView {
     internal weak var delegate: CustomCalendarViewDelegate?
-    private var profilePhoto: UIImage = UIImage(named: "default_profile_fill_icon") ?? UIImage()
+    internal var profilePhoto: UIImage = UIImage(named: "default_profile_fill_icon") ?? UIImage() {
+        didSet {
+            calendarCollection.reloadData()
+        }
+    }
     private let numberOfCells: Int = 25
     private let todaysDate = Date().removeTimeData()
     

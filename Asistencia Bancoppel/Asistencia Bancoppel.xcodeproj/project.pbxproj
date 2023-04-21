@@ -13,7 +13,7 @@
 		3F439A2F29A9435300F9CA1D /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A2E29A9435300F9CA1D /* UIViewController+Extensions.swift */; };
 		3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3329A9464100F9CA1D /* AccountHomeViewController.swift */; };
 		3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3629A946FF00F9CA1D /* AccountCell.swift */; };
-		3F439A3B29A9497300F9CA1D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3A29A9497300F9CA1D /* Account.swift */; };
+		3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3A29A9497300F9CA1D /* AccountModel.swift */; };
 		3F439A3D29A94AED00F9CA1D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3C29A94AED00F9CA1D /* MainViewController.swift */; };
 		522AE74029F06D580091AD6C /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE73F29F06D580091AD6C /* CustomCalendarView.swift */; };
 		522AE74229F070720091AD6C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74129F070720091AD6C /* Date+Extension.swift */; };
@@ -44,6 +44,8 @@
 		5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285705129EB459300213F47 /* UploadPhotoButton.swift */; };
 		52E32B9829F19DE0006CAEF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */; };
 		52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */; };
+		52E7CAA429F1F9A80039E921 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */; };
+		52E7CAA629F1FC9E0039E921 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA529F1FC9E0039E921 /* Account.swift */; };
 		52FE749429EE095B00823646 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52FE749329EE095B00823646 /* GoogleService-Info.plist */; };
 		52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE749629EE0D9000823646 /* FirebaseManager.swift */; };
 		628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628A8859299AD299009F30E6 /* AppDelegate.swift */; };
@@ -65,7 +67,7 @@
 		3F439A2E29A9435300F9CA1D /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		3F439A3329A9464100F9CA1D /* AccountHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHomeViewController.swift; sourceTree = "<group>"; };
 		3F439A3629A946FF00F9CA1D /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
-		3F439A3A29A9497300F9CA1D /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		3F439A3A29A9497300F9CA1D /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		3F439A3C29A94AED00F9CA1D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		522AE73F29F06D580091AD6C /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		522AE74129F070720091AD6C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -96,6 +98,8 @@
 		5285705129EB459300213F47 /* UploadPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoButton.swift; sourceTree = "<group>"; };
 		52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputValidationEnum.swift; sourceTree = "<group>"; };
+		52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		52E7CAA529F1FC9E0039E921 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		52FE749329EE095B00823646 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52FE749629EE0D9000823646 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		628A8856299AD299009F30E6 /* Asistencia Bancoppel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asistencia Bancoppel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,9 +195,9 @@
 		3F439A3129A945E800F9CA1D /* AccountHome */ = {
 			isa = PBXGroup;
 			children = (
+				52E7CAA229F1F9910039E921 /* ViewModel */,
 				3F439A3829A9494B00F9CA1D /* Model */,
 				3F439A3229A9461000F9CA1D /* View */,
-				3F439A3929A9495200F9CA1D /* ViewModel */,
 			);
 			path = AccountHome;
 			sourceTree = "<group>";
@@ -218,16 +222,10 @@
 		3F439A3829A9494B00F9CA1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3F439A3A29A9497300F9CA1D /* Account.swift */,
+				3F439A3A29A9497300F9CA1D /* AccountModel.swift */,
+				52E7CAA529F1FC9E0039E921 /* Account.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		3F439A3929A9495200F9CA1D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		522AE73E29F06D3A0091AD6C /* Calendar */ = {
@@ -369,6 +367,14 @@
 				5285705129EB459300213F47 /* UploadPhotoButton.swift */,
 			);
 			path = UploadPhotoButton;
+			sourceTree = "<group>";
+		};
+		52E7CAA229F1F9910039E921 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		52FE749529EE0D8500823646 /* Singletons */ = {
@@ -607,6 +613,7 @@
 				522AE75029F08E730091AD6C /* AccountCreationModel.swift in Sources */,
 				527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */,
 				5235454529E8DCA9002BECAB /* PersonalDataPageViewController.swift in Sources */,
+				52E7CAA629F1FC9E0039E921 /* Account.swift in Sources */,
 				5261ECDE29EC92AA0086BA29 /* String+Extension.swift in Sources */,
 				3F439A2B29A93EC700F9CA1D /* Fonts.swift in Sources */,
 				FA3BC0DE29EDD6460024FEE0 /* GardientBackgroundView.swift in Sources */,
@@ -618,8 +625,9 @@
 				522AE74E29F08E110091AD6C /* AccountCreationViewModel.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
-				3F439A3B29A9497300F9CA1D /* Account.swift in Sources */,
+				3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */,
 				526BEC5029E9B53E00554701 /* LeftTitleTextField.swift in Sources */,
+				52E7CAA429F1F9A80039E921 /* AccountViewModel.swift in Sources */,
 				5235454729E8DCB9002BECAB /* LastStepPageViewController.swift in Sources */,
 				3F439A2929A93DA900F9CA1D /* GlobalConstants.swift in Sources */,
 				5235454029E8C364002BECAB /* MainButton.swift in Sources */,

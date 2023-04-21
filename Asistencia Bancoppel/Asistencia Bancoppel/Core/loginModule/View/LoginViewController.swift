@@ -190,6 +190,7 @@ class LoginViewController: UIViewController {
            // DispatchQueue.main.async {
             if loged == true {
                 let mainViewController = MainViewController()
+                mainViewController.setUp(email: self.mailTextField.text ?? "")
                 self.navigationController?.pushViewController(mainViewController, animated: true)
             } else {
                 let alerta = UIAlertController(title: "Credenciales incorrectas", message: "Por favor, ingrese las credenciales correctas.", preferredStyle: .alert)
