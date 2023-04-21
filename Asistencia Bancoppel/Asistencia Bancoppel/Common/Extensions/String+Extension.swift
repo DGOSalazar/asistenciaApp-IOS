@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 extension String {
@@ -63,5 +64,23 @@ extension String {
         let regex = "[A-Za-z0-9.%+_-]"
         let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
         return predicate.evaluate(with: self)
+    }
+    
+    func attributed(color: UIColor,
+                    font: UIFont,
+                    lineBreakMode: NSLineBreakMode = .byWordWrapping,
+                    textAlignment: NSTextAlignment = .left) -> NSMutableAttributedString {
+        let style = NSMutableParagraphStyle()
+        style.alignment = textAlignment
+        style.lineBreakMode = lineBreakMode
+        
+        let attributes = [NSAttributedString.Key.foregroundColor: color,
+                          NSAttributedString.Key.font : font,
+                          NSAttributedString.Key.paragraphStyle : style]
+        
+        let attributed = NSMutableAttributedString(string: self,
+                                                   attributes: attributes)
+        
+        return attributed
     }
 }

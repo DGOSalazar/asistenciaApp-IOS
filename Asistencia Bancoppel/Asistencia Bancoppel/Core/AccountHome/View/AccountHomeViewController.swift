@@ -53,19 +53,31 @@ class AccountHomeViewController: UIViewController {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = " "
-        label.font = Fonts.Roboto.of(size: 28)
+        label.font = .robotoBold(ofSize: 28)
         label.textColor = .white
-        label.numberOfLines = 0
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
     private let lbDate: UILabel = {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Hoy es Viernes 06 de Enero de 2023."
-        label.font = Fonts.Roboto.of(size: 14)
-        label.textColor = .white
-        label.numberOfLines = 0
+        
+        let text1 = "Hoy es ".attributed(color: .white,
+                                         font: .robotoRegular(ofSize: 14))
+        let text2 = "\(Date().getDayNameAndDayString().capitalized + " de " + Date().getMonthName().capitalized)".attributed(color: .white,
+                                                                           font: .robotoBold(ofSize: 14))
+        let text3 = " de \(Date().getYear()).".attributed(color: .white,
+                                                          font: .robotoRegular(ofSize: 14))
+        text1.append(text2)
+        text1.append(text3)
+        
+        label.attributedText = text1
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
@@ -73,9 +85,11 @@ class AccountHomeViewController: UIViewController {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Recuerda registrarte para la próxima semana."
-        label.font = Fonts.Roboto.of(size: 14)
+        label.font = .robotoMedium(ofSize: 14)
         label.textColor = .white
-        label.numberOfLines = 0
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
@@ -143,9 +157,11 @@ class AccountHomeViewController: UIViewController {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Hoy están en oficina:"
-        label.font = Fonts.Roboto.of(size: 28)
-        label.textColor = .black
-        label.numberOfLines = 0
+        label.font = .robotoBold(ofSize: 24)
+        label.textColor = GlobalConstants.BancoppelColors.grayBex10
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
@@ -153,9 +169,11 @@ class AccountHomeViewController: UIViewController {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "15 Asistentes."
-        label.font = Fonts.Roboto.of(size: 14)
-        label.textColor = .black
-        label.numberOfLines = 0
+        label.font = .robotoRegular(ofSize: 14)
+        label.textColor = GlobalConstants.BancoppelColors.grayBex10
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     

@@ -41,18 +41,23 @@ class AccountCell: UITableViewCell {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Nombre"
-        label.font = Fonts.Roboto.of(size: 14)
-        label.textColor = .black
-        label.numberOfLines = 0
+        label.font = .robotoBold(ofSize: 14)
+        label.textColor = GlobalConstants.BancoppelColors.grayBex10
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
     private let lbRol : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = Fonts.Roboto.of(size: 10)
+        label.textColor = GlobalConstants.BancoppelColors.grayBex10
+        label.font = .robotoRegular(ofSize: 10)
         label.text = "Rol"
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     

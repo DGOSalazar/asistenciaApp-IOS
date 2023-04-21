@@ -100,6 +100,12 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func getDayNameAndDayString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE dd"
+        return dateFormatter.string(from: self).capitalized
+    }
+    
     func isThisSame(toDate: Date, toGranularity component: Calendar.Component) -> Bool {
         self.calendar.isDate(self, equalTo: toDate, toGranularity: component)
     }
