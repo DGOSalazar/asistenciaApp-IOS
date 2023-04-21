@@ -189,8 +189,8 @@ class LoginViewController: UIViewController {
            // self.succesLoged = loged ?? false
            // DispatchQueue.main.async {
             if loged == true {
-                let mainViewController = MainViewController()
-                mainViewController.setUp(email: self.mailTextField.text ?? "")
+                let mainViewController = MainPagerViewController()
+                mainViewController.email = self.mailTextField.text ?? ""
                 self.navigationController?.pushViewController(mainViewController, animated: true)
             } else {
                 let alerta = UIAlertController(title: "Credenciales incorrectas", message: "Por favor, ingrese las credenciales correctas.", preferredStyle: .alert)
