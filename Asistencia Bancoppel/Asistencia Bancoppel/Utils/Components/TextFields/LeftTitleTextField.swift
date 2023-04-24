@@ -36,6 +36,11 @@ internal class LeftTitleTextField: UIView {
             txtfContent.textAlignment = textAlignment
         }
     }
+    internal var casing: TextFieldInputCasingEnum = .defaultCasing {
+        didSet {
+            textCasing()
+        }
+    }
     
     
     lazy var txtfContent: UITextField = {
@@ -90,6 +95,7 @@ internal class LeftTitleTextField: UIView {
                   keyboardType: UIKeyboardType = .default,
                   inputValidation: TextFieldInputValidationEnum = .none,
                   allowSpaces: Bool = true,
+                  casing: TextFieldInputCasingEnum = .defaultCasing,
                   isSecure: Bool = false) {
         super.init(frame: .zero)
         
@@ -104,6 +110,7 @@ internal class LeftTitleTextField: UIView {
         txtfContent.keyboardType = keyboardType
         self.inputValidation = inputValidation
         self.allowSpaces = allowSpaces
+        self.casing = casing
         txtfContent.isSecureTextEntry = isSecure
         
         self.setComponents()
@@ -144,7 +151,19 @@ internal class LeftTitleTextField: UIView {
     
     
     @objc func textFieldDidChange() {
-        delegate?.leftTitleTextFieldDidChange(identifier: identifier, text: txtfContent.text ?? "")
+        textCasing()
+        delegate?.leftTitleTextFieldDidChange(identifier: identifier,
+                                              text: txtfContent.text ?? "")
+    }
+    
+    private func textCasing() {
+        if self.casing == .uppercased {
+            self.txtfContent.text = (self.txtfContent.text ?? "").uppercased()
+        } else if self.casing == .lowercased {
+            self.txtfContent.text = (self.txtfContent.text ?? "").lowercased()
+        } else if self.casing == .capitalized {
+            self.txtfContent.text = (self.txtfContent.text ?? "").capitalized
+        }
     }
     
     internal func setFailureStatus(message: String) {

@@ -13,6 +13,7 @@
 		3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3329A9464100F9CA1D /* AccountHomeViewController.swift */; };
 		3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3629A946FF00F9CA1D /* AccountCell.swift */; };
 		3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3A29A9497300F9CA1D /* AccountModel.swift */; };
+		520E853C29F7194B00EF10FF /* TextFieldInputCasingEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E853B29F7194B00EF10FF /* TextFieldInputCasingEnum.swift */; };
 		522AE74029F06D580091AD6C /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE73F29F06D580091AD6C /* CustomCalendarView.swift */; };
 		522AE74229F070720091AD6C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74129F070720091AD6C /* Date+Extension.swift */; };
 		522AE74529F0716D0091AD6C /* CustomCalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74429F0716D0091AD6C /* CustomCalendarViewCell.swift */; };
@@ -72,6 +73,7 @@
 		3F439A3329A9464100F9CA1D /* AccountHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHomeViewController.swift; sourceTree = "<group>"; };
 		3F439A3629A946FF00F9CA1D /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		3F439A3A29A9497300F9CA1D /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
+		520E853B29F7194B00EF10FF /* TextFieldInputCasingEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputCasingEnum.swift; sourceTree = "<group>"; };
 		522AE73F29F06D580091AD6C /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		522AE74129F070720091AD6C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		522AE74429F0716D0091AD6C /* CustomCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarViewCell.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				527DED2D29EA0C190083567F /* DatePickerTextField.swift */,
 				527DED2F29EA15960083567F /* GenericPickerTextField.swift */,
 				52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */,
+				520E853B29F7194B00EF10FF /* TextFieldInputCasingEnum.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */,
+				520E853C29F7194B00EF10FF /* TextFieldInputCasingEnum.swift in Sources */,
 				526BEC5029E9B53E00554701 /* LeftTitleTextField.swift in Sources */,
 				52E7CAA429F1F9A80039E921 /* AccountViewModel.swift in Sources */,
 				5235454729E8DCB9002BECAB /* LastStepPageViewController.swift in Sources */,
