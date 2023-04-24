@@ -132,13 +132,13 @@ internal class PersonalDataPageViewController: UIViewController {
             vwContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             vwContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
-            lbTitle.topAnchor.constraint(equalTo: vwContainer.topAnchor, constant: 50),
+            lbTitle.topAnchor.constraint(equalTo: vwContainer.topAnchor, constant: Dimensions.margin50),
             lbTitle.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor),
             lbTitle.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor),
             
             vwContent.topAnchor.constraint(equalTo: lbTitle.bottomAnchor),
-            vwContent.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 20),
-            vwContent.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -20),
+            vwContent.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin20),
+            vwContent.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -Dimensions.margin20),
             vwContent.bottomAnchor.constraint(equalTo: btNext.topAnchor),
             
             vwDataContainer.topAnchor.constraint(greaterThanOrEqualTo: vwContent.topAnchor),
@@ -168,7 +168,7 @@ internal class PersonalDataPageViewController: UIViewController {
             btNext.heightAnchor.constraint(equalToConstant: 59),
             btNext.widthAnchor.constraint(equalTo: vwContainer.widthAnchor, multiplier: 0.6),
             btNext.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            btNext.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -20),
+            btNext.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -Dimensions.margin20),
         ])
     }
     

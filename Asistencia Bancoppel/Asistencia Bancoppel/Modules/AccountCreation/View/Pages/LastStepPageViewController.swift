@@ -81,7 +81,9 @@ internal class LastStepPageViewController: UIViewController {
     }()
     
     lazy var btLoadPhoto: UploadPhotoButton = {
-        let button = UploadPhotoButton(presenter: self, delegate: self)
+        let button = UploadPhotoButton(presenter: self,
+                                       delegate: self,
+                                       buttonSize: (140.0 * DeviceSize.size.getMultiplier()))
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -187,10 +189,10 @@ internal class LastStepPageViewController: UIViewController {
             lbTitle.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor),
             lbTitle.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor),
             
-            vwContent.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: 20),
-            vwContent.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 20),
-            vwContent.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -20),
-            vwContent.bottomAnchor.constraint(equalTo: btFinish.topAnchor, constant: -20),
+            vwContent.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: Dimensions.margin20),
+            vwContent.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin20),
+            vwContent.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -Dimensions.margin20),
+            vwContent.bottomAnchor.constraint(equalTo: btFinish.topAnchor, constant: -Dimensions.margin20),
             
             vwDataContainer.topAnchor.constraint(equalTo: vwContent.topAnchor),
             vwDataContainer.leadingAnchor.constraint(equalTo: vwContent.leadingAnchor),
@@ -203,11 +205,11 @@ internal class LastStepPageViewController: UIViewController {
             btLoadPhoto.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             btLoadPhoto.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             
-            lbUserName.topAnchor.constraint(equalTo: btLoadPhoto.bottomAnchor, constant: 30),
+            lbUserName.topAnchor.constraint(equalTo: btLoadPhoto.bottomAnchor, constant: Dimensions.margin30),
             lbUserName.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             lbUserName.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             
-            txtfCharge.topAnchor.constraint(equalTo: lbUserName.bottomAnchor, constant: 30),
+            txtfCharge.topAnchor.constraint(equalTo: lbUserName.bottomAnchor, constant: Dimensions.margin30),
             txtfCharge.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             txtfCharge.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             
@@ -223,7 +225,7 @@ internal class LastStepPageViewController: UIViewController {
             btFinish.heightAnchor.constraint(equalToConstant: 59),
             btFinish.widthAnchor.constraint(equalTo: vwContainer.widthAnchor, multiplier: 0.6),
             btFinish.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            btFinish.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -20),
+            btFinish.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -Dimensions.margin20),
         ])
     }
     

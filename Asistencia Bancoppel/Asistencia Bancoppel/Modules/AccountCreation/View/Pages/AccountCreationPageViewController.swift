@@ -124,13 +124,13 @@ internal class AccountCreationPageViewController: UIViewController {
             vwContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             vwContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
-            lbTitle.topAnchor.constraint(equalTo: vwContainer.topAnchor, constant: 50),
+            lbTitle.topAnchor.constraint(equalTo: vwContainer.topAnchor, constant: Dimensions.margin50),
             lbTitle.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor),
             lbTitle.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor),
             
             vwContent.topAnchor.constraint(equalTo: lbTitle.bottomAnchor),
-            vwContent.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 20),
-            vwContent.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -20),
+            vwContent.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin20),
+            vwContent.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -Dimensions.margin20),
             vwContent.bottomAnchor.constraint(equalTo: btNext.topAnchor),
             
             vwDataContainer.topAnchor.constraint(greaterThanOrEqualTo: vwContent.topAnchor),
@@ -143,11 +143,11 @@ internal class AccountCreationPageViewController: UIViewController {
             txtfEmail.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             txtfEmail.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             
-            txtfCredential.topAnchor.constraint(equalTo: txtfEmail.bottomAnchor, constant: 20),
+            txtfCredential.topAnchor.constraint(equalTo: txtfEmail.bottomAnchor, constant: Dimensions.margin20),
             txtfCredential.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             txtfCredential.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             
-            txtfCredentialConfirmation.topAnchor.constraint(equalTo: txtfCredential.bottomAnchor, constant: 20),
+            txtfCredentialConfirmation.topAnchor.constraint(equalTo: txtfCredential.bottomAnchor, constant: Dimensions.margin20),
             txtfCredentialConfirmation.leadingAnchor.constraint(equalTo: vwDataContainer.leadingAnchor),
             txtfCredentialConfirmation.trailingAnchor.constraint(equalTo: vwDataContainer.trailingAnchor),
             txtfCredentialConfirmation.bottomAnchor.constraint(equalTo: vwDataContainer.bottomAnchor),
@@ -155,7 +155,7 @@ internal class AccountCreationPageViewController: UIViewController {
             btNext.heightAnchor.constraint(equalToConstant: 59),
             btNext.widthAnchor.constraint(equalTo: vwContainer.widthAnchor, multiplier: 0.6),
             btNext.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            btNext.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -20),
+            btNext.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -Dimensions.margin20),
         ])
     }
     
@@ -239,6 +239,7 @@ internal class AccountCreationPageViewController: UIViewController {
 extension AccountCreationPageViewController: BottomTitleTextFieldDelegate {
     func bottomTitleTextFieldDidChange(identifier: String, text: String) {
         btNext.setStatus(enable: validateData())
+        print(text)
     }
     
     func bottomTitleTextFieldDone(identifier: String) {

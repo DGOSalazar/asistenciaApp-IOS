@@ -65,15 +65,15 @@ internal class AccountCreationViewController: UIViewController {
             vwContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             vwContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
-            ivwLogo.topAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.topAnchor, constant: 50),
-            ivwLogo.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 80),
-            ivwLogo.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -80),
-            ivwLogo.heightAnchor.constraint(equalToConstant: 50),
+            ivwLogo.topAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.topAnchor, constant: Dimensions.margin50),
+            ivwLogo.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin80),
+            ivwLogo.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -Dimensions.margin80),
+            ivwLogo.heightAnchor.constraint(equalToConstant: (50 * DeviceSize.size.getMultiplier())),
             
-            pvwcPager.view.topAnchor.constraint(equalTo: ivwLogo.bottomAnchor, constant: 30),
-            pvwcPager.view.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 30),
-            pvwcPager.view.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -30),
-            pvwcPager.view.bottomAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            pvwcPager.view.topAnchor.constraint(equalTo: ivwLogo.bottomAnchor, constant: Dimensions.margin30),
+            pvwcPager.view.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin30),
+            pvwcPager.view.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -Dimensions.margin30),
+            pvwcPager.view.bottomAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.margin50),
         ])
     }
     
