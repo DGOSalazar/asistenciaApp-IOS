@@ -82,7 +82,8 @@ class LoginViewController: UIViewController {
        let textField = BottomTitleTextField(title: "",
                                             placeholder: "Correo electrónico",
                                             delegate: self,
-                                            identifier: "email")
+                                            identifier: "email",
+                                            casing: .lowercased)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.keyboardType = .emailAddress
         textField.inputValidation = .email
