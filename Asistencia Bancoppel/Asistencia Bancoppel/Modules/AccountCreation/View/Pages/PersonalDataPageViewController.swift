@@ -54,7 +54,8 @@ internal class PersonalDataPageViewController: UIViewController {
        let textField = LeftTitleTextField(title: "Nombre: ",
                                             placeholder: "",
                                             delegate: self,
-                                            identifier: "name")
+                                            identifier: "name",
+                                          casing: .capitalized)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.inputValidation = .spaAlphabetic
         textField.maxLength = 40
@@ -65,7 +66,8 @@ internal class PersonalDataPageViewController: UIViewController {
        let textField = LeftTitleTextField(title: "Apellidos:",
                                             placeholder: "",
                                             delegate: self,
-                                            identifier: "lastnames")
+                                            identifier: "lastnames",
+                                          casing: .capitalized)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.inputValidation = .spaAlphabetic
         textField.maxLength = 40

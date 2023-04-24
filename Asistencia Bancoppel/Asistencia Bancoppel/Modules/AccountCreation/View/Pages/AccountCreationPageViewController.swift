@@ -54,7 +54,8 @@ internal class AccountCreationPageViewController: UIViewController {
        let textField = BottomTitleTextField(title: "Ingresa tu correo Coppel.",
                                             placeholder: "Correo electrónico",
                                             delegate: self,
-                                            identifier: "email")
+                                            identifier: "email",
+                                            casing: .lowercased)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.keyboardType = .emailAddress
         textField.inputValidation = .email
