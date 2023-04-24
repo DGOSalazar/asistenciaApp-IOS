@@ -46,6 +46,7 @@ internal class MainPagerViewController: UIViewController {
     
     private func setComponents() {
         self.view.addSubview(vwContainer)
+        self.addChild(pagerController)
         vwContainer.addSubview(pagerController.view)
         vwContainer.addSubview(customTabBar)
     }
@@ -87,8 +88,13 @@ internal class MainPagerViewController: UIViewController {
                                                     shadowStyle: .shadowToTheLeft)
         
         pages.append(accountViewController)
+        pagerController.addChild(accountViewController)
+
         pages.append(teamViewController)
+        pagerController.addChild(teamViewController)
+        
         pages.append(profileViewController)
+        pagerController.addChild(profileViewController)
         
         customTabBar.addButtons(buttons: [accountTabButton, teamTabButton, profileTabButton])
         
