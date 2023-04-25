@@ -119,9 +119,8 @@ internal class PersonalDataViewController: UIViewController {
     }()
     
     
-    lazy var pagerView: UIView = {
-       let view = UIView()
-        view.backgroundColor = .systemBlue
+    lazy var pageIndicatorView: PageIndicatorView = {
+       let view = PageIndicatorView(selectedIndex: 1, delegate: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -151,7 +150,7 @@ internal class PersonalDataViewController: UIViewController {
         vwDataContainerStack.addArrangedSubview(txtfCellphone)
 
         vwContainer.addSubview(btNext)
-        vwContainer.addSubview(pagerView)
+        vwContainer.addSubview(pageIndicatorView)
     }
     
     private func setAutolayout() {
@@ -197,14 +196,11 @@ internal class PersonalDataViewController: UIViewController {
             btNext.heightAnchor.constraint(equalToConstant: 59),
             btNext.widthAnchor.constraint(equalTo: vwContainer.widthAnchor, multiplier: 0.6),
             btNext.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            btNext.bottomAnchor.constraint(equalTo: pagerView.topAnchor, constant: -Dimensions.margin40),
+            btNext.bottomAnchor.constraint(equalTo: pageIndicatorView.topAnchor, constant: -Dimensions.margin40),
             
             
-            
-            pagerView.heightAnchor.constraint(equalToConstant: 30),
-            pagerView.widthAnchor.constraint(equalToConstant: 80),
-            pagerView.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            pagerView.bottomAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.margin40),
+            pageIndicatorView.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
+            pageIndicatorView.bottomAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.margin40),
         ])
     }
     
@@ -316,6 +312,13 @@ extension PersonalDataViewController: DatePickerTextFieldDelegate {
     }
     func datePickerTextFieldDone(identifier: String) {
         _ = txtfCellphone.becomeFirstResponder()
+    }
+}
+
+
+extension PersonalDataViewController: PageIndicatorViewDelegate {
+    func notifyPageIndicatorViewTapped(index: Int) {
+        print(index)
     }
 }
 

@@ -170,9 +170,8 @@ internal class LastStepViewController: UIViewController {
 
     
     
-    lazy var pagerView: UIView = {
-       let view = UIView()
-        view.backgroundColor = .systemBlue
+    lazy var pageIndicatorView: PageIndicatorView = {
+       let view = PageIndicatorView(selectedIndex: 2, delegate: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -207,7 +206,7 @@ internal class LastStepViewController: UIViewController {
         vwDataContainerStack.addArrangedSubview(txtfColaboratorNumber)
         
         vwContainer.addSubview(btFinish)
-        vwContainer.addSubview(pagerView)
+        vwContainer.addSubview(pageIndicatorView)
     }
     
     private func setAutolayout() {
@@ -260,14 +259,11 @@ internal class LastStepViewController: UIViewController {
             btFinish.heightAnchor.constraint(equalToConstant: 59),
             btFinish.widthAnchor.constraint(equalTo: vwContainer.widthAnchor, multiplier: 0.6),
             btFinish.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            btFinish.bottomAnchor.constraint(equalTo: pagerView.topAnchor, constant: -Dimensions.margin40),
+            btFinish.bottomAnchor.constraint(equalTo: pageIndicatorView.topAnchor, constant: -Dimensions.margin40),
             
-            
-            
-            pagerView.heightAnchor.constraint(equalToConstant: 30),
-            pagerView.widthAnchor.constraint(equalToConstant: 80),
-            pagerView.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            pagerView.bottomAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.margin40),
+        
+            pageIndicatorView.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
+            pageIndicatorView.bottomAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.margin40),
         ])
     }
     
@@ -380,5 +376,12 @@ extension LastStepViewController: UploadPhotoButtonDelegate {
     func notifyPhotoSelected(photo: UIImage) {
         profilePhoto = photo
         btFinish.setStatus(enable: validateData())
+    }
+}
+
+
+extension LastStepViewController: PageIndicatorViewDelegate {
+    func notifyPageIndicatorViewTapped(index: Int) {
+        print(index)
     }
 }
