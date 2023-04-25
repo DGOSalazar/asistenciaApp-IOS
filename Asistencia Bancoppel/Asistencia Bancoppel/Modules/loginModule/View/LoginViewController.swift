@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     
     let welcomeStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 50
+        stackView.spacing = Dimensions.margin40
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .center
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
     
     let dataStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 20
+        stackView.spacing = Dimensions.margin20
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .trailing
@@ -165,6 +165,12 @@ class LoginViewController: UIViewController {
         bind()
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     func makeCreateAccClickeable() {
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(createAccTapped))
         tapGesture.numberOfTapsRequired = 1
@@ -215,7 +221,7 @@ extension LoginViewController {
         NSLayoutConstraint.activate([
             
             logoAsistImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoAsistImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            logoAsistImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.margin150),
             
             blueAlphaBG.topAnchor.constraint(equalTo: view.topAnchor),
             blueAlphaBG.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -228,7 +234,7 @@ extension LoginViewController {
             whiteBg.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             whiteBg.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            welcomeStackView.topAnchor.constraint(equalTo: whiteBg.topAnchor, constant: 50),
+            welcomeStackView.topAnchor.constraint(equalTo: whiteBg.topAnchor, constant: Dimensions.margin50),
             welcomeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             welcomeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
@@ -236,10 +242,13 @@ extension LoginViewController {
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: passTextField.trailingAnchor, multiplier: 5),
             mailTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: mailTextField.trailingAnchor, multiplier: 5),
+            
             loginButton.heightAnchor.constraint(equalToConstant: 59),
             loginButton.widthAnchor.constraint(equalTo: welcomeStackView.widthAnchor, multiplier: 0.6),
-            createAccStackView.topAnchor.constraint(equalTo: welcomeStackView.bottomAnchor, constant: 20),
+            
+            createAccStackView.topAnchor.constraint(equalTo: welcomeStackView.bottomAnchor, constant: Dimensions.margin20),
             createAccStackView.centerXAnchor.constraint(equalTo: whiteBg.centerXAnchor),
+            createAccStackView.bottomAnchor.constraint(equalTo: whiteBg.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.margin20),
         ])
     }
     
