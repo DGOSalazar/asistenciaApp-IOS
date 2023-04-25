@@ -10,7 +10,9 @@ import Foundation
 
 extension Date {
     var calendar: Calendar {
-        Calendar.current
+        var auxCalendar = Calendar.current
+        auxCalendar.locale = .init(identifier: "es_MX")
+        return auxCalendar
     }
     
     func getDay() -> String {
@@ -30,6 +32,7 @@ extension Date {
     
     func getShortDayName() -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = .init(identifier: "es_MX")
         dateFormatter.dateFormat = "EE"
         return dateFormatter.string(from: self).capitalized.removeAccentMarks()
     }
@@ -37,6 +40,7 @@ extension Date {
     
     func getMonthName() -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = .init(identifier: "es_MX")
         dateFormatter.dateFormat = "LLLL"
         return dateFormatter.string(from: self).capitalized
     }
@@ -96,12 +100,14 @@ extension Date {
     
     func getFormattedDate() -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = .init(identifier: "es_MX")
         dateFormatter.dateFormat = "dd-MM-YYYY"
         return dateFormatter.string(from: self)
     }
     
     func getDayNameAndDayString() -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = .init(identifier: "es_MX")
         dateFormatter.dateFormat = "EEEE dd"
         return dateFormatter.string(from: self).capitalized
     }
