@@ -16,12 +16,13 @@ class AccountHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initComponents()
-        CustomLoader.show()
         self.bind()
-        self.viewModel.registerAccount(email: email)
+        CustomLoader.show()
+        self.viewModel.getAccountData(email: email)
     }
         
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
     }
  
@@ -118,22 +119,6 @@ class AccountHomeViewController: UIViewController {
         return headerView
     }()
     
-    
-    /*private let datePicker: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 14.0, *) {
-            datePicker.preferredDatePickerStyle = .inline
-        }
-        datePicker.datePickerMode = .date
-        datePicker.layer.masksToBounds = false;
-        datePicker.layer.shadowOffset = CGSize(width: .zero, height: 8.0)
-        datePicker.layer.shadowRadius = 10.0
-        datePicker.layer.shadowColor = UIColor.black.cgColor
-        datePicker.layer.shadowOpacity = 0.5
-        datePicker.backgroundColor = .white
-        return datePicker
-    }()*/
     
     lazy var customCalendarView: CustomCalendarView = {
         let calendar = CustomCalendarView(profilePhoto: nil,

@@ -35,6 +35,7 @@ internal class MainPagerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         self.view.backgroundColor = GlobalConstants.BancoppelColors.grayBex1
         self.hideKeyboardWhenTapped()
         

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-internal class AuxAccountCreationViewController: UIViewController {
+internal class AccountCreationViewController: UIViewController {
     lazy var vwContainer: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -274,12 +274,12 @@ internal class AuxAccountCreationViewController: UIViewController {
     }
 }
 
-extension AuxAccountCreationViewController: BottomTitleTextFieldDelegate {
+extension AccountCreationViewController: BottomTitleTextFieldDelegate {
     func bottomTitleTextFieldDidChange(identifier: String, text: String) {
         btNext.setStatus(enable: validateData())
     }
     
-    func AccountCreationViewController(identifier: String) {
+    func bottomTitleTextFieldDone(identifier: String) {
         if identifier == txtfEmail.identifier {
             _ = txtfCredential.becomeFirstResponder()
         } else if identifier == txtfCredential.identifier {

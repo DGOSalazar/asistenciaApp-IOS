@@ -245,7 +245,7 @@ extension LoginViewController {
     
     @objc func createAccTapped(_ gesture: UITapGestureRecognizer) {
         let createAccVC = AccountCreationViewController()
-        self.present(createAccVC, animated: true)
+        self.navigationController?.pushViewController(createAccVC, animated: true)
     }
     
     @objc func loginTapped() {

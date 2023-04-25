@@ -10,7 +10,7 @@ import Foundation
 class AccountViewModel {
     var accountObaservable = CustomObservable<(AccountModel?, String?)>()
     
-    func registerAccount(email: String) {
+    func getAccountData(email: String) {
         FirebaseManager.shared.getData(collection: GlobalConstants.Firebase.Collections.usersCollection,
                                        document: email,
                                        dataType: AccountModel.self) { [weak self] data in

@@ -14,11 +14,11 @@
 		3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3629A946FF00F9CA1D /* AccountCell.swift */; };
 		3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F439A3A29A9497300F9CA1D /* AccountModel.swift */; };
 		520E853C29F7194B00EF10FF /* TextFieldInputCasingEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E853B29F7194B00EF10FF /* TextFieldInputCasingEnum.swift */; };
-		520E854A29F7358900EF10FF /* AuxAccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E854929F7358900EF10FF /* AuxAccountCreationViewController.swift */; };
+		520E854A29F7358900EF10FF /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E854929F7358900EF10FF /* AccountCreationViewController.swift */; };
 		520E854C29F73E8400EF10FF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E854B29F73E8400EF10FF /* PersonalDataViewController.swift */; };
 		520E854E29F7413000EF10FF /* LastStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E854D29F7413000EF10FF /* LastStepViewController.swift */; };
 		520E855029F74D8500EF10FF /* LastStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E854F29F74D8500EF10FF /* LastStepViewModel.swift */; };
-		520E855229F74D9F00EF10FF /* AuxAccountCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E855129F74D9F00EF10FF /* AuxAccountCreationModel.swift */; };
+		520E855229F74D9F00EF10FF /* AccountCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E855129F74D9F00EF10FF /* AccountCreationModel.swift */; };
 		522AE74029F06D580091AD6C /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE73F29F06D580091AD6C /* CustomCalendarView.swift */; };
 		522AE74229F070720091AD6C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74129F070720091AD6C /* Date+Extension.swift */; };
 		522AE74529F0716D0091AD6C /* CustomCalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AE74429F0716D0091AD6C /* CustomCalendarViewCell.swift */; };
@@ -73,11 +73,11 @@
 		3F439A3629A946FF00F9CA1D /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		3F439A3A29A9497300F9CA1D /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		520E853B29F7194B00EF10FF /* TextFieldInputCasingEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputCasingEnum.swift; sourceTree = "<group>"; };
-		520E854929F7358900EF10FF /* AuxAccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxAccountCreationViewController.swift; sourceTree = "<group>"; };
+		520E854929F7358900EF10FF /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
 		520E854B29F73E8400EF10FF /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
 		520E854D29F7413000EF10FF /* LastStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewController.swift; sourceTree = "<group>"; };
 		520E854F29F74D8500EF10FF /* LastStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewModel.swift; sourceTree = "<group>"; };
-		520E855129F74D9F00EF10FF /* AuxAccountCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxAccountCreationModel.swift; sourceTree = "<group>"; };
+		520E855129F74D9F00EF10FF /* AccountCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationModel.swift; sourceTree = "<group>"; };
 		522AE73F29F06D580091AD6C /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		522AE74129F070720091AD6C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		522AE74429F0716D0091AD6C /* CustomCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarViewCell.swift; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 		520E854029F7354B00EF10FF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				520E854929F7358900EF10FF /* AuxAccountCreationViewController.swift */,
+				520E854929F7358900EF10FF /* AccountCreationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,7 +273,7 @@
 		520E854129F7355000EF10FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				520E855129F74D9F00EF10FF /* AuxAccountCreationModel.swift */,
+				520E855129F74D9F00EF10FF /* AccountCreationModel.swift */,
 			);
 			name = Model;
 			path = "Modeñ";
@@ -719,7 +719,7 @@
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
 				52FA7AD729F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift in Sources */,
 				526BEC4E29E9A39800554701 /* BottomTitleTextField.swift in Sources */,
-				520E854A29F7358900EF10FF /* AuxAccountCreationViewController.swift in Sources */,
+				520E854A29F7358900EF10FF /* AccountCreationViewController.swift in Sources */,
 				52FA7AD529F2F14900225D10 /* CustomTabButtonModel.swift in Sources */,
 				52FA7AE229F34E6000225D10 /* Dimensions.swift in Sources */,
 				522AE74029F06D580091AD6C /* CustomCalendarView.swift in Sources */,
@@ -738,7 +738,7 @@
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				52FA7AD929F2FFA200225D10 /* MainPagerViewController.swift in Sources */,
 				52FA7AD029F2EA0600225D10 /* CustomTabBarView.swift in Sources */,
-				520E855229F74D9F00EF10FF /* AuxAccountCreationModel.swift in Sources */,
+				520E855229F74D9F00EF10FF /* AccountCreationModel.swift in Sources */,
 				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,

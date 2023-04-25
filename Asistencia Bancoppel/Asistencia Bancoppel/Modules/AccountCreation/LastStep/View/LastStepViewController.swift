@@ -8,6 +8,16 @@
 import Foundation
 import UIKit
 
+struct Charge {
+    var title: String
+    var id: Int
+}
+
+struct Initiative {
+    var title: String
+    var id: Int
+}
+
 
 internal class LastStepViewController: UIViewController {
     private let viewModel = LastStepViewModel()
@@ -272,7 +282,6 @@ internal class LastStepViewController: UIViewController {
         model.team = txtfInitiative.getGenericValue()?.title ?? ""
         model.employee = Int(txtfColaboratorNumber.getText()) ?? 0
         
-        print(model)
         viewModel.registerAccount(accountRequest: model,
                                   credential: credential,
                                   photo: profilePhoto ?? UIImage())
