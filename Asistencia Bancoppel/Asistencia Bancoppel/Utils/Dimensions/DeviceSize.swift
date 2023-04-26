@@ -2,7 +2,7 @@
 //  DeviceSize.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 21/04/23.
+//  Created by Luis Díaz on 21/04/23.
 //
 
 import Foundation

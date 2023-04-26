@@ -11,6 +11,28 @@ import UIKit
 
 class LastStepViewModel {
     var accountCreationObaservable = CustomObservable<String?>()
+    var positionsObaservable = CustomObservable<([PositionModel]?, String?)>()
+    var teamsObaservable = CustomObservable<([TeamModel]?, String?)>()
+    
+    func getPositions() {
+        FirebaseManager.shared.getDocuments(collection: GlobalConstants.Firebase.Collections.positionCollection,
+                                            dataType: PositionModel.self) { [weak self] data in
+            self?.positionsObaservable.value = (data, nil)
+        } failure: { [weak self] error in
+            self?.positionsObaservable.value = (nil, error)
+        }
+    }
+    
+    func getTeams() {
+        FirebaseManager.shared.getDocuments(collection: GlobalConstants.Firebase.Collections.teamsCollection,
+                                            dataType: TeamModel.self) { [weak self] data in
+            self?.teamsObaservable.value = (data, nil)
+        } failure: { [weak self] error in
+            self?.teamsObaservable.value = (nil, error)
+        }
+    }
+    
+    
     
     
     func registerAccount(accountRequest: AccountCreationModel, credential: String, photo: UIImage) {

@@ -8,15 +8,6 @@
 import Foundation
 import UIKit
 
-struct Charge {
-    var title: String
-    var id: Int
-}
-
-struct Initiative {
-    var title: String
-    var id: Int
-}
 
 
 internal class LastStepViewController: UIViewController {
@@ -24,21 +15,6 @@ internal class LastStepViewController: UIViewController {
     var model = AccountCreationModel()
     private var profilePhoto: UIImage?
     var credential: String = ""
-    
-    private var charges: [Charge] = [Charge(title: "Tester/QA", id: 0),
-                                     Charge(title: "Android Dev", id: 1),
-                                     Charge(title: "IOS Dev", id: 2),
-                                     Charge(title: "Backend Dev", id: 3),
-                                     Charge(title: "Scrum Master", id: 4),
-                                     Charge(title: "Business Analyst", id: 5),
-                                     Charge(title: "Otro", id: 6)]
-    
-    private var initiatives: [Initiative] = [Initiative(title: "Alpha", id: 0),
-                                             Initiative(title: "Beta", id: 1),
-                                             Initiative(title: "Gamma", id: 2),
-                                             Initiative(title: "Delta", id: 3),
-                                             Initiative(title: "Epsilon", id: 4),
-                                             Initiative(title: "Otro", id: 5)]
     
     
     lazy var vwContainer: UIView = {
@@ -122,26 +98,23 @@ internal class LastStepViewController: UIViewController {
     }()
     
     lazy var txtfCharge: GenericPickerTextField = {
-        let titles = charges.map { $0.title }
-        let textField = GenericPickerTextField(title: "Puesto:",
-                                               placeholder: "Selecciona una opción",
-                                               dataTitles: titles,
-                                               genericData: charges,
-                                               delegate: self,
-                                               identifier: "charge")
+        let textField = GenericPickerTextField<PositionModel>(title: "Puesto:",
+                                                              placeholder: "Selecciona una opción",
+                                                              dataTitles: [],
+                                                              genericData: [],
+                                                              delegate: self,
+                                                              identifier: "charge")
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     lazy var txtfInitiative: GenericPickerTextField = {
-        let titles = initiatives.map { $0.title }
-        
-        let textField = GenericPickerTextField(title: "Iniciativa:",
-                                               placeholder: "Selecciona una opción",
-                                               dataTitles: titles,
-                                               genericData: initiatives,
-                                               delegate: self,
-                                               identifier: "initative")
+        let textField = GenericPickerTextField<TeamModel>(title: "Iniciativa:",
+                                                          placeholder: "Selecciona una opción",
+                                                          dataTitles: [],
+                                                          genericData: [],
+                                                          delegate: self,
+                                                          identifier: "initative")
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -185,6 +158,9 @@ internal class LastStepViewController: UIViewController {
         setAutolayout()
         
         bind()
+        
+        CustomLoader.show()
+        viewModel.getPositions()
     }
     
     
@@ -274,8 +250,8 @@ internal class LastStepViewController: UIViewController {
         
         CustomLoader.show()
         
-        model.position = txtfCharge.getGenericValue()?.title ?? ""
-        model.team = txtfInitiative.getGenericValue()?.title ?? ""
+        model.position = txtfCharge.getGenericValue()?.Position ?? ""
+        model.team = txtfInitiative.getGenericValue()?.Team ?? ""
         model.employee = Int(txtfColaboratorNumber.getText()) ?? 0
         
         viewModel.registerAccount(accountRequest: model,
@@ -286,8 +262,6 @@ internal class LastStepViewController: UIViewController {
     
     private func bind(){
         self.viewModel.accountCreationObaservable.observe = { errorMessage in
-            CustomLoader.hide()
-
             guard let nonNilErrorMessage = errorMessage else {
                 self.showAlert(message: "Cuenta creada con éxito.")
                 return
@@ -295,20 +269,65 @@ internal class LastStepViewController: UIViewController {
             
             self.showAlert(message: nonNilErrorMessage ?? "", isError: true)
         }
+        
+        
+        self.viewModel.positionsObaservable.observe = { response in
+            guard let nonNilResponse = response else {
+                self.showAlert(message: "Invalid response", isError: true)
+                return
+            }
+            
+            let (positions, error) = nonNilResponse
+            
+            guard let nonNilData = positions else {
+                self.showAlert(message: error ?? "", isError: true)
+                return
+            }
+
+            let titles = nonNilData.map { $0.Position ?? "" }
+            
+            self.txtfCharge.setData(dataTitles: titles, genericData: nonNilData)
+            self.viewModel.getTeams()
+        }
+        
+        
+        self.viewModel.teamsObaservable.observe = { response in
+            guard let nonNilResponse = response else {
+                self.showAlert(message: "Invalid response", isError: true)
+                return
+            }
+            
+            let (teams, error) = nonNilResponse
+            
+            guard let nonNilData = teams else {
+                self.showAlert(message: error ?? "", isError: true)
+                return
+            }
+            
+            let titles = nonNilData.map { $0.Team ?? "" }
+            self.txtfInitiative.setData(dataTitles: titles, genericData: nonNilData)
+            
+            CustomLoader.hide()
+        }
     }
     
     private func showAlert(message: String, isError: Bool = false) {
         DispatchQueue.main.async {
+            CustomLoader.hide()
+            
             let alert = UIAlertController(title: isError ? "Error" : "Información",
                                           message: message,
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { _ in
-                guard !isError else {
-                    return
+                DispatchQueue.main.async {
+                    guard !isError else {
+                        self.navigationController?.popViewController(animated: true)
+                        return
+                    }
+                    let viewController = MainPagerViewController()
+                    viewController.email = self.model.email ?? ""
+                    self.navigationController?.pushViewController(viewController, animated: true)
                 }
-                let viewController = MainPagerViewController()
-                viewController.email = self.model.email ?? ""
-                self.navigationController?.pushViewController(viewController, animated: true)
             }))
             
             self.present(alert, animated: true, completion: nil)
@@ -322,12 +341,12 @@ internal class LastStepViewController: UIViewController {
     
     private func validateCharge() -> Bool {
         let charge = txtfCharge.getGenericValue()
-        return (charge != nil && (charge?.title.isEmpty == false))
+        return (charge != nil && (charge?.Position?.isEmpty == false))
     }
     
     private func validateInitiative() -> Bool {
         let team = txtfInitiative.getGenericValue()
-        return (team != nil && (team?.title.isEmpty == false))
+        return (team != nil && (team?.Team?.isEmpty == false))
     }
     
     private func validateCollaboratorNumber() -> Bool {

@@ -2,7 +2,7 @@
 //  PageIndicatorView.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 24/04/23.
+//  Created by Luis Díaz on 24/04/23.
 //
 
 import Foundation

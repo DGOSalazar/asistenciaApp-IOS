@@ -120,7 +120,7 @@ extension FirebaseManager {
                 return
             }
             
-            var nestedDictionaryDocuments:[[String: Any]] = [[:]]
+            var nestedDictionaryDocuments:[[String: Any]] = []
             
             for document in nonNilDocuments {
                 guard !document.data().isEmpty else {

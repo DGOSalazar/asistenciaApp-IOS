@@ -46,6 +46,8 @@
 		52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */; };
 		52E7CAA429F1F9A80039E921 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */; };
 		52E7CAA629F1FC9E0039E921 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA529F1FC9E0039E921 /* Account.swift */; };
+		52EEBEB229F9B16000A52EB9 /* PositionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEBEB129F9B16000A52EB9 /* PositionModel.swift */; };
+		52EEBEB429F9B18500A52EB9 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEBEB329F9B18500A52EB9 /* TeamModel.swift */; };
 		52FA7AD029F2EA0600225D10 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7ACF29F2EA0600225D10 /* CustomTabBarView.swift */; };
 		52FA7AD229F2EC8D00225D10 /* CustomTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD129F2EC8D00225D10 /* CustomTabButton.swift */; };
 		52FA7AD529F2F14900225D10 /* CustomTabButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */; };
@@ -107,6 +109,8 @@
 		52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputValidationEnum.swift; sourceTree = "<group>"; };
 		52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		52E7CAA529F1FC9E0039E921 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		52EEBEB129F9B16000A52EB9 /* PositionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionModel.swift; sourceTree = "<group>"; };
+		52EEBEB329F9B18500A52EB9 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		52FA7ACF29F2EA0600225D10 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		52FA7AD129F2EC8D00225D10 /* CustomTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButton.swift; sourceTree = "<group>"; };
 		52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButtonModel.swift; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 		520E854729F7356F00EF10FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				52EEBEB129F9B16000A52EB9 /* PositionModel.swift */,
+				52EEBEB329F9B18500A52EB9 /* TeamModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -742,6 +748,7 @@
 				FA3BC0DA29EDD54E0024FEE0 /* LoginBackgroundView.swift in Sources */,
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
 				FA56BC6729F0DF05004CE981 /* LoginViewModel.swift in Sources */,
+				52EEBEB429F9B18500A52EB9 /* TeamModel.swift in Sources */,
 				527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */,
 				520E854E29F7413000EF10FF /* LastStepViewController.swift in Sources */,
 				52E7CAA629F1FC9E0039E921 /* Account.swift in Sources */,
@@ -756,6 +763,7 @@
 				520E855229F74D9F00EF10FF /* AccountCreationModel.swift in Sources */,
 				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
+				52EEBEB229F9B16000A52EB9 /* PositionModel.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */,
 				520E853C29F7194B00EF10FF /* TextFieldInputCasingEnum.swift in Sources */,
