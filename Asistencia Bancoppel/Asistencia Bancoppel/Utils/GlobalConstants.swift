@@ -76,6 +76,8 @@ enum GlobalConstants {
     
     enum Firebase {
         enum Collections {
+            static let teamsCollection = "TeamsCollection"
+            static let positionCollection = "PositionCollection"
             static let dayCollection = "DayCollection"
             static let dayConfirmCollection = "DayConfirmCollection"
             static let notifyCollection = "NotifyCollection"
