@@ -159,12 +159,21 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
     
     @objc func doneButtonPressed() {
         DispatchQueue.main.async {
-            self.updateData()
+            self.refreshData()
             self.delegate?.genericPickerTextFieldDone(identifier: self.identifier)
         }
     }
     
-    private func updateData() {
+    public func setData(dataTitles: [String], genericData: [T]){
+        DispatchQueue.main.async {
+            self.currentRow = nil
+            self.pickerDataTitles = dataTitles
+            self.pickerData = genericData
+            self.refreshData()
+        }
+    }
+    
+    private func refreshData() {
         DispatchQueue.main.async {
             guard let nonNilRow = self.currentRow else {
                 return
@@ -230,7 +239,7 @@ internal class GenericPickerTextField<T>: UIView, UIPickerViewDelegate, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.currentRow = row
-        self.updateData()
+        self.refreshData()
     }
     
     override func becomeFirstResponder() -> Bool {
