@@ -77,6 +77,62 @@ extension FirebaseManager {
             success(dictionaryData)
         }
     }
+    
+    internal func getDocuments<T: Codable>(collection: String,
+                                           dataType: T.Type,
+                                           success: @escaping (_ data: [T]) -> (),
+                                           failure: @escaping (_ error: String) -> ()) {
+        self.getDocuments(collection: collection) { documents in
+            var documentsArray: [T] = []
+            for document in documents {
+                guard let nonNilModel = self.decode(modelType: dataType.self, data: document) else {
+                    failure("Parsing error")
+                    return
+                }
+                documentsArray.append(nonNilModel)
+            }
+            
+            success(documentsArray)
+        } failure: { error in
+            failure(error)
+        }
+    }
+    
+    internal func getDocuments(collection: String,
+                               success: @escaping (_ data: [[String: Any]]) -> (),
+                               failure: @escaping (_ error: String) -> ()) {
+        self.configureFirestore()
+        
+        guard let nonNilFirestore = self.firestore else {
+            failure("Invalid firestore instance")
+            return
+        }
+        
+        guard !collection.isEmpty else {
+            failure("Collection is empty")
+            return
+        }
+        
+        let docReference = nonNilFirestore.collection(collection)
+        docReference.getDocuments(completion: { documents, error in
+            guard let nonNilDocuments = documents?.documents else {
+                failure(error?.localizedDescription ?? "Error")
+                return
+            }
+            
+            var nestedDictionaryDocuments:[[String: Any]] = [[:]]
+            
+            for document in nonNilDocuments {
+                guard !document.data().isEmpty else {
+                    failure("Empty data")
+                    return
+                }
+                nestedDictionaryDocuments.append(document.data())
+            }
+            
+            success(nestedDictionaryDocuments)
+        })
+    }
 }
 
 
