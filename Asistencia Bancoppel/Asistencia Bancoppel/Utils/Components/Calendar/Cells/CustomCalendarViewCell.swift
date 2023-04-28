@@ -168,12 +168,13 @@ class CustomCalendarViewCell: UICollectionViewCell {
                           delegate: CustomCalendarViewCellDelegate?,
                           profilePhoto: UIImage) {
         DispatchQueue.main.async {
+            self.clear()
+            
             self.delegate = delegate
             self.dayData = dayData
             self.dateNumberLabel.textColor = dayData.style.getFontColor()
             self.dateNumberLabel.text = dayData.workDay.getDay()
             self.mainContainerView.backgroundColor = dayData.style.getBackgroundColor()
-            
             
             if dayData.isAttendedDay {
                 self.showAttendanceMark()
@@ -187,23 +188,12 @@ class CustomCalendarViewCell: UICollectionViewCell {
     
     private func showAttendanceMark() {
         self.attendanceMarkImageView.isHidden = false
-        
-        self.availableSpotsContainerView.isHidden = true
-        self.isUserInteractionEnabled = false
-        self.profilePhotoContainerView.isHidden = true
-        self.profilePhotoImageView.image = nil
     }
     
     private func showAvailableSpots(maxSpots: Int) {
         DispatchQueue.main.async {
-            self.profilePhotoContainerView.isHidden = true
-            self.profilePhotoImageView.image = nil
-            self.attendanceMarkImageView.isHidden = true
-            
             guard (self.dayData?.style == .enabled),
                     let attendanceData = self.dayData?.attendaceData else {
-                self.availableSpotsContainerView.isHidden = true
-                self.isUserInteractionEnabled = false
                 return
             }
             
@@ -219,14 +209,8 @@ class CustomCalendarViewCell: UICollectionViewCell {
     }
     
     private func showProfilePhoto(photo: UIImage) {
-        self.availableSpotsContainerView.isHidden = true
-        self.isUserInteractionEnabled = false
-        self.attendanceMarkImageView.isHidden = true
-        
         DispatchQueue.main.async {
-            guard self.dayData?.style == .enabled else {
-                self.profilePhotoContainerView.isHidden = true
-                self.profilePhotoImageView.image = nil
+            guard (self.dayData?.style == .enabled || self.dayData?.style == .current) else {
                 return
             }
             
@@ -237,6 +221,13 @@ class CustomCalendarViewCell: UICollectionViewCell {
         }
     }
     
+    private func clear() {
+        self.attendanceMarkImageView.isHidden = true
+        self.availableSpotsContainerView.isHidden = true
+        self.isUserInteractionEnabled = false
+        self.profilePhotoContainerView.isHidden = true
+        self.profilePhotoImageView.image = nil
+    }
     
     @objc private func cellTapped() {
         self.delegate?.notifyCalendarLuisViewCellTapped(dayData: self.dayData)

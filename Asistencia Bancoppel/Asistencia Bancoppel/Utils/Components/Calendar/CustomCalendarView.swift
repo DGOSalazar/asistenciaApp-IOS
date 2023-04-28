@@ -330,8 +330,11 @@ internal class CustomCalendarView: UIView {
                                                                                               self.maxAttendanceEndDate ?? Date())
             
                 let attendanceDateAux = data.filter {
-                    self.workDays[index].workDay.isThisSame(toDate: $0.currentDay?.toDate() ?? Date(),
-                                                            toGranularity: .day)
+                    guard let dataAux = $0.currentDay?.toDate() else {
+                        return false
+                    }
+                    return self.workDays[index].workDay.isThisSame(toDate: dataAux,
+                                                                   toGranularity: .day)
                 }
                 
                 guard let nonNilAttendanceData = attendanceDateAux.first else {
