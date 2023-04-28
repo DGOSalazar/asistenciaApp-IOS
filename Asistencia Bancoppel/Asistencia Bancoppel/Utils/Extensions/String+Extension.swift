@@ -83,4 +83,12 @@ extension String {
         
         return attributed
     }
+    
+    
+    func toDate(_ dateStringFormat: String = "dd-MM-yy") -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = .init(identifier: "es_MX")
+        dateFormatter.dateFormat = dateStringFormat
+        return dateFormatter.date(from: self)
+    }
 }
