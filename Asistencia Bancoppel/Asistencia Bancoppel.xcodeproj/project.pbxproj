@@ -48,6 +48,7 @@
 		52E7CAA629F1FC9E0039E921 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA529F1FC9E0039E921 /* Account.swift */; };
 		52EEBEB229F9B16000A52EB9 /* PositionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEBEB129F9B16000A52EB9 /* PositionModel.swift */; };
 		52EEBEB429F9B18500A52EB9 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEBEB329F9B18500A52EB9 /* TeamModel.swift */; };
+		52EEBEB029F999D700A52EB9 /* DayAttendanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEBEAF29F999D700A52EB9 /* DayAttendanceModel.swift */; };
 		52FA7AD029F2EA0600225D10 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7ACF29F2EA0600225D10 /* CustomTabBarView.swift */; };
 		52FA7AD229F2EC8D00225D10 /* CustomTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD129F2EC8D00225D10 /* CustomTabButton.swift */; };
 		52FA7AD529F2F14900225D10 /* CustomTabButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */; };
@@ -111,6 +112,7 @@
 		52E7CAA529F1FC9E0039E921 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		52EEBEB129F9B16000A52EB9 /* PositionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionModel.swift; sourceTree = "<group>"; };
 		52EEBEB329F9B18500A52EB9 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		52EEBEAF29F999D700A52EB9 /* DayAttendanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAttendanceModel.swift; sourceTree = "<group>"; };
 		52FA7ACF29F2EA0600225D10 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		52FA7AD129F2EC8D00225D10 /* CustomTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButton.swift; sourceTree = "<group>"; };
 		52FA7AD429F2F14900225D10 /* CustomTabButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabButtonModel.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				3F439A3A29A9497300F9CA1D /* AccountModel.swift */,
 				52E7CAA529F1FC9E0039E921 /* Account.swift */,
+				52EEBEAF29F999D700A52EB9 /* DayAttendanceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				3F439A2929A93DA900F9CA1D /* GlobalConstants.swift in Sources */,
 				5235454029E8C364002BECAB /* MainButton.swift in Sources */,
 				522AE75829F0C12E0091AD6C /* Font+Extension.swift in Sources */,
+				52EEBEB029F999D700A52EB9 /* DayAttendanceModel.swift in Sources */,
 				3F439A2F29A9435300F9CA1D /* UIViewController+Extensions.swift in Sources */,
 				52FA7AD229F2EC8D00225D10 /* CustomTabButton.swift in Sources */,
 				FA3BC0D729EDD5000024FEE0 /* LoginViewController.swift in Sources */,
