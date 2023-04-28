@@ -79,15 +79,26 @@ class CustomCalendarViewCell: UICollectionViewCell {
     lazy var profilePhotoImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.tintColor = .lightGray
+        return view
+    }()
+    
+    lazy var attendanceMarkImageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .topRight
+        view.image = UIImage(named: "attendanceMark_icon")
+        view.isHidden = true
         return view
     }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.isUserInteractionEnabled = false
         
         self.setComponents()
         self.setAutolayout()
@@ -107,6 +118,8 @@ class CustomCalendarViewCell: UICollectionViewCell {
         
         mainContainerView.addSubview(profilePhotoContainerView)
         profilePhotoContainerView.addSubview(profilePhotoImageView)
+        
+        mainContainerView.addSubview(attendanceMarkImageView)
     }
     
     private func setAutolayout() {
@@ -140,41 +153,83 @@ class CustomCalendarViewCell: UICollectionViewCell {
             profilePhotoImageView.leadingAnchor.constraint(equalTo: profilePhotoContainerView.leadingAnchor),
             profilePhotoImageView.trailingAnchor.constraint(equalTo: profilePhotoContainerView.trailingAnchor),
             profilePhotoImageView.bottomAnchor.constraint(equalTo: profilePhotoContainerView.bottomAnchor),
+            
+            
+            attendanceMarkImageView.topAnchor.constraint(equalTo: mainContainerView.topAnchor),
+            attendanceMarkImageView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor),
+            attendanceMarkImageView.heightAnchor.constraint(equalTo: mainContainerView.heightAnchor, multiplier: 0.5),
+            attendanceMarkImageView.widthAnchor.constraint(equalTo: profilePhotoContainerView.heightAnchor),
         ])
     }
     
     
-    internal func setCell(dayData: CustomCalendarDayModel, delegate: CustomCalendarViewCellDelegate?) {
+    internal func setCell(dayData: CustomCalendarDayModel,
+                          maxSpotsForDay: Int,
+                          delegate: CustomCalendarViewCellDelegate?,
+                          profilePhoto: UIImage) {
         DispatchQueue.main.async {
             self.delegate = delegate
             self.dayData = dayData
             self.dateNumberLabel.textColor = dayData.style.getFontColor()
             self.dateNumberLabel.text = dayData.workDay.getDay()
             self.mainContainerView.backgroundColor = dayData.style.getBackgroundColor()
-            self.isUserInteractionEnabled = dayData.style == .enabled
+            
+            
+            if dayData.isAttendedDay {
+                self.showAttendanceMark()
+            } else if dayData.showProfilePhoto {
+                self.showProfilePhoto(photo: profilePhoto)
+            } else {
+                self.showAvailableSpots(maxSpots: maxSpotsForDay)
+            }
         }
     }
     
-    internal func showAvailableSpots(number: Int) {
+    private func showAttendanceMark() {
+        self.attendanceMarkImageView.isHidden = false
+        
+        self.availableSpotsContainerView.isHidden = true
+        self.isUserInteractionEnabled = false
+        self.profilePhotoContainerView.isHidden = true
+        self.profilePhotoImageView.image = nil
+    }
+    
+    private func showAvailableSpots(maxSpots: Int) {
         DispatchQueue.main.async {
-            guard self.dayData?.style == .enabled else {
+            self.profilePhotoContainerView.isHidden = true
+            self.profilePhotoImageView.image = nil
+            self.attendanceMarkImageView.isHidden = true
+            
+            guard (self.dayData?.style == .enabled),
+                    let attendanceData = self.dayData?.attendaceData else {
                 self.availableSpotsContainerView.isHidden = true
+                self.isUserInteractionEnabled = false
                 return
             }
+            
+            let number = ((maxSpots - (attendanceData.email?.count ?? 0)))
+            
             self.availableSpotsLabel.text = "\(number > 0 ? number : 0) Disponibles"
             self.availableSpotsContainerView.layer.cornerRadius = (self.availableSpotsContainerView.bounds.height / 2)
             let color = (number > 0 ? GlobalConstants.BancoppelColors.blueBex5 : GlobalConstants.BancoppelColors.grayBex7)
             self.availableSpotsContainerView.backgroundColor = color
             self.availableSpotsContainerView.isHidden = false
+            self.isUserInteractionEnabled = number > 0
         }
     }
     
-    internal func showProfilePhoto(photo: UIImage) {
+    private func showProfilePhoto(photo: UIImage) {
+        self.availableSpotsContainerView.isHidden = true
+        self.isUserInteractionEnabled = false
+        self.attendanceMarkImageView.isHidden = true
+        
         DispatchQueue.main.async {
-            guard self.dayData?.style == .current else {
+            guard self.dayData?.style == .enabled else {
                 self.profilePhotoContainerView.isHidden = true
+                self.profilePhotoImageView.image = nil
                 return
             }
+            
             self.profilePhotoImageView.image = photo
             self.profilePhotoImageView.layer.cornerRadius = (self.profilePhotoImageView.bounds.height / 2)
             self.profilePhotoContainerView.layer.cornerRadius = (self.profilePhotoContainerView.bounds.height / 2)
