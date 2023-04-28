@@ -26,16 +26,25 @@ internal class CustomCalendarView: UIView {
     internal weak var delegate: CustomCalendarViewDelegate?
     internal var profilePhoto: UIImage = UIImage(named: "default_profile_fill_icon") ?? UIImage() {
         didSet {
-            calendarCollection.reloadData()
+            DispatchQueue.main.async {
+                self.calendarCollection.reloadData()
+            }
         }
     }
     private let numberOfCells: Int = 25
     private let todaysDate = Date().removeTimeData()
-    
+    private var todaysCalendarDay: CustomCalendarDayModel?
+    private var maxAttendaceDays: Int = 0
+    private var maxSpotsForDay: Int = 0
+    private var dayAttendanceData: [DayAttendanceModel]? = nil
+    private var maxAttendanceEndDate: Date?
+    private var profileEmail: String?
     
     var selectedDate: Date = Date() {
         didSet {
-            dateTitleLabel.text = "\(selectedDate.getMonthName()) \(selectedDate.getYear())"
+            DispatchQueue.main.async {
+                self.dateTitleLabel.text = "\(self.selectedDate.getMonthName()) \(self.selectedDate.getYear())"
+            }
         }
     }
     
@@ -134,11 +143,19 @@ internal class CustomCalendarView: UIView {
     }()
     
     
-    internal init(profilePhoto: UIImage?, delegate: CustomCalendarViewDelegate?) {
+    internal init(profilePhoto: UIImage?,
+                  profileEmail: String?,
+                  maxAttendaceDays: Int = 10,
+                  maxSpotsForDay: Int = 15,
+                  delegate: CustomCalendarViewDelegate?) {
         super.init(frame: .zero)
         
+        self.maxAttendanceEndDate = self.todaysDate.getWorkDate(addingDays: maxAttendaceDays)
         self.profilePhoto = profilePhoto ?? self.profilePhoto
         self.delegate = delegate
+        self.maxAttendaceDays = maxAttendaceDays
+        self.maxSpotsForDay = maxSpotsForDay
+        self.profileEmail = profileEmail
         
         self.layer.cornerRadius = 25
         self.layer.shadowColor = UIColor.black.cgColor
@@ -212,17 +229,28 @@ internal class CustomCalendarView: UIView {
     }
     
     @objc func nextMonth() {
+        buttonsRestriction()
         setCalendarDays(modifier: .next)
     }
     
     @objc func previousMonth() {
+        buttonsRestriction()
         setCalendarDays(modifier: .previous)
+    }
+    
+    private func buttonsRestriction() {
+        nextMonthButton.isUserInteractionEnabled = false
+        previousMonthButton.isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.nextMonthButton.isUserInteractionEnabled = true
+            self.previousMonthButton.isUserInteractionEnabled = true
+        }
     }
     
     
     
     private func setCalendarDays(modifier: CustomCalendarMonthModifier = .current) {
-        DispatchQueue.main.async { [self] in
+        DispatchQueue.global(qos: .userInteractive).async {
             self.workDays = []
             self.selectedDate = self.getMonth(modifier: modifier)
             self.monthStartIndex = self.selectedDate.getFirstDayOfMonth().getWorkDayIndex()
@@ -261,8 +289,14 @@ internal class CustomCalendarView: UIView {
                 self.workDays.append(nextMonthWorkDays[nextDaysIndex])
             }
             
+            guard let nonNilDayAttendanceData = self.dayAttendanceData else {
+                DispatchQueue.main.async {
+                    self.calendarCollection.reloadData()
+                }
+                return
+            }
             
-            self.calendarCollection.reloadData()
+            self.setDaysData(data: nonNilDayAttendanceData)
         }
     }
     
@@ -285,6 +319,50 @@ internal class CustomCalendarView: UIView {
             return CustomCalendarCellStyleEnum.unavailable
         }
     }
+    
+    func setDaysData(data: [DayAttendanceModel]) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            CustomLoader.show()
+            self.dayAttendanceData = data
+            
+            for index in 0 ..< self.workDays.count {
+                let isBetweenAvailableDates = self.workDays[index].workDay.isDateBetweenDates(self.todaysDate,
+                                                                                              self.maxAttendanceEndDate ?? Date())
+            
+                let attendanceDateAux = data.filter {
+                    self.workDays[index].workDay.isThisSame(toDate: $0.currentDay?.toDate() ?? Date(),
+                                                            toGranularity: .day)
+                }
+                
+                guard let nonNilAttendanceData = attendanceDateAux.first else {
+                    if isBetweenAvailableDates {
+                        self.workDays[index].attendaceData = DayAttendanceModel(currentDay: self.workDays[index].workDay.getFormattedDate(),
+                                                                          email: [])
+                    }
+                    continue
+                }
+                
+                let attendanceDataContainsProfileEmail = ((nonNilAttendanceData.email?.contains(self.profileEmail ?? "")) ?? false)
+                
+                guard (self.workDays[index].style != .disabled) else {
+                    self.workDays[index].isAttendedDay = attendanceDataContainsProfileEmail
+                    continue
+                }
+                
+                guard isBetweenAvailableDates else {
+                    break
+                }
+                
+                self.workDays[index].attendaceData = nonNilAttendanceData
+                self.workDays[index].showProfilePhoto = attendanceDataContainsProfileEmail
+            }
+            
+            DispatchQueue.main.async {
+                self.calendarCollection.reloadData()
+                CustomLoader.hide()
+            }
+        }
+    }
 }
 
 
@@ -301,9 +379,10 @@ extension CustomCalendarView: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCalendarViewCell.identifier, for: indexPath) as? CustomCalendarViewCell
         if (indexPath.row < workDays.count) {
             let workDayData = workDays[(indexPath.row)]
-            cell?.setCell(dayData: workDayData, delegate: self)
-            cell?.showAvailableSpots(number: -1)
-            cell?.showProfilePhoto(photo: self.profilePhoto)
+            cell?.setCell(dayData: workDayData,
+                          maxSpotsForDay: self.maxSpotsForDay,
+                          delegate: self,
+                          profilePhoto: self.profilePhoto)
         }
         
         return cell ?? UICollectionViewCell()
