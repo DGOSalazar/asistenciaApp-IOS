@@ -544,8 +544,8 @@
 				52FE749329EE095B00823646 /* GoogleService-Info.plist */,
 				628A8867299AD2A5009F30E6 /* Info.plist */,
 				3F439A3029A945AC00F9CA1D /* Modules */,
-				3F439A2229A92E5F00F9CA1D /* Resources */,
 				3F439A2629A93D4C00F9CA1D /* Utils */,
+				3F439A2229A92E5F00F9CA1D /* Resources */,
 			);
 			path = "Asistencia Bancoppel";
 			sourceTree = "<group>";
