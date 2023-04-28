@@ -57,6 +57,8 @@ internal class LeftTitleTextField: UIView {
         textfield.delegate = self
         textfield.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textfield.returnKeyType = .done
+        textfield.spellCheckingType = .no
+        textfield.autocorrectionType = .no
         return textfield
     }()
     

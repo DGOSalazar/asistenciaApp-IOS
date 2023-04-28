@@ -55,6 +55,10 @@ class LoginViewController: UIViewController {
         imageView.image = UIImage(named: "logoBancoppelColored")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.setContentHuggingPriority(.init(999), for: .vertical)
+        imageView.setContentCompressionResistancePriority(.init(999), for: .vertical)
+        imageView.setContentHuggingPriority(.init(999), for: .horizontal)
+        imageView.setContentCompressionResistancePriority(.init(999), for: .horizontal)
         return imageView
     }()
     
@@ -137,6 +141,7 @@ class LoginViewController: UIViewController {
         label.textAlignment = .center
         label.font = .robotoRegular(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = GlobalConstants.BancoppelColors.grayBex10
         return label
     }()
     
@@ -157,6 +162,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTapped()
         mailTextField.delegate = self
         passTextField.delegate = self
       //  Analytics.logEvent("SplashScreen", parameters: ["message": "Integracion de Firebase completa"])
