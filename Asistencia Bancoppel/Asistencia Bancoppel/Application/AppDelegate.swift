@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 
 
 @main
@@ -23,11 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //initializeWindow()
         window = UIWindow(frame: UIScreen.main.bounds)
-            let viewController = SplashViewController()
-            window?.rootViewController = viewController
-            window?.makeKeyAndVisible()
+        let viewController = SplashViewController()
+        window?.rootViewController = viewController
+        window?.makeKeyAndVisible()
+        
+        setKeyboardManager()
         
         return true
+    }
+    
+    private func setKeyboardManager() {
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
+        IQKeyboardManager.shared.keyboardDistanceFromTextField = 20
     }
     
     /*
