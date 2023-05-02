@@ -6,28 +6,37 @@
 //
 
 import Foundation
+import UIKit
 
 class AccountViewModel {
-    var accountObaservable = CustomObservable<(AccountModel?, String?)>()
-    var dayAttendance = CustomObservable<([DayAttendanceModel]?, String?)>()
-    
-    func getAccountData(email: String) {
-        FirebaseManager.shared.getData(collection: GlobalConstants.Firebase.Collections.usersCollection,
-                                       document: email,
-                                       dataType: AccountModel.self) { [weak self] data in
-            self?.accountObaservable.value = (data, nil)
-        } failure: { [weak self] error in
-            self?.accountObaservable.value = (nil, error)
-        }
-    }
-    
+    var dayAttendanceObservable = CustomObservable<([DayAttendanceModel]?, String?)>()
+    var usersObservable = CustomObservable<([UserAttendanceDataModel]?, String?)>()
     
     func getDayAttendance() {
         FirebaseManager.shared.getDocuments(collection: GlobalConstants.Firebase.Collections.dayCollection,
                                             dataType: DayAttendanceModel.self) { [weak self] data in
-            self?.dayAttendance.value = (data, nil)
+            self?.dayAttendanceObservable.value = (data, nil)
         } failure: { [weak self] error in
-            self?.dayAttendance.value = (nil, error)
+            self?.dayAttendanceObservable.value = (nil, error)
+        }
+    }
+    
+    func getUsersData() {
+        FirebaseManager.shared.getDocuments(collection: GlobalConstants.Firebase.Collections.usersCollection,
+                                            dataType: AccountModel.self) { [weak self] data in
+            
+            let auxUsers: [UserAttendanceDataModel] = data.compactMap { user in
+                UserAttendanceDataModel(name: user.name ?? "",
+                                        fullname: "\(user.name ?? "") \(user.lastName1 ?? "") \(user.lastName2 ?? "")",
+                                        email: user.email ?? "",
+                                        position: UserPositionEnum.getPosition(str: user.position ?? ""),
+                                        profilePhotoURL: user.profilePhoto ?? "",
+                                        profilePhoto: nil)
+            }
+            
+            self?.usersObservable.value = (auxUsers, nil)
+        } failure: { [weak self] error in
+            self?.usersObservable.value = (nil, error)
         }
     }
 }

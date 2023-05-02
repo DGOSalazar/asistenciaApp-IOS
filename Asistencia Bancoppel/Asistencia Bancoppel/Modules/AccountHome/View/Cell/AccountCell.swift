@@ -74,6 +74,8 @@ class AccountCell: UITableViewCell {
     func initComponents(){
         addComponents()
         setAutoLayout()
+        layer.cornerRadius = 25
+        clipsToBounds = true
     }
     
     func addComponents(){
@@ -94,9 +96,11 @@ class AccountCell: UITableViewCell {
             
             lbRol.leadingAnchor.constraint(equalTo: vwUnderline.leadingAnchor, constant: 50),
             lbRol.topAnchor.constraint(equalTo: vwUnderline.topAnchor, constant: 4),
+            lbRol.trailingAnchor.constraint(equalTo: vwUnderline.trailingAnchor),
             
             lbName.leadingAnchor.constraint(equalTo: vwUnderline.leadingAnchor, constant: 50),
             lbName.bottomAnchor.constraint(equalTo: vwUnderline.topAnchor, constant: -0),
+            lbName.trailingAnchor.constraint(equalTo: vwUnderline.trailingAnchor),
             
             vwUnderline.heightAnchor.constraint(equalToConstant: 19),
             vwUnderline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
@@ -109,30 +113,10 @@ class AccountCell: UITableViewCell {
 
 
 extension AccountCell {
-    func configure(with account: Account) {
-
-        lbName.text = account.accountName
-        lbRol.text = account.rolType.rawValue
-
-        switch account.rolType {
-       
-        case .TesterQA:
-            vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.yellowBex3
-            
-        case .DevelomentAndroid:
-            vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.greenBex3
-            
-        case .BussinessAnalyst:
-            vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.pinkBex4
-            
-        case .DevelomentBackend:
-            vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.blueBex3
-
-        case .ScrumMaster:
-            vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.orangeBex3
-            
-        case .DevelomentiOS:
-            vwUnderline.backgroundColor = GlobalConstants.BancoppelColors.purpleBex5
-        }
+    func configure(with account: UserAttendanceDataModel) {
+        lbName.text = account.fullname
+        lbRol.text = account.position.rawValue
+        vwUnderline.backgroundColor = account.position.getColor()
+        imgPhoto.image = account.profilePhoto
     }
 }

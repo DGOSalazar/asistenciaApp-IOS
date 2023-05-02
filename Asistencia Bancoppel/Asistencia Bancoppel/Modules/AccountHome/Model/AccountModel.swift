@@ -13,4 +13,5 @@ struct AccountModel: Codable {
     var name: String?
     var position: String?
     var profilePhoto: String?
+    var email: String?
 }

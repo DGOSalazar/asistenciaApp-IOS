@@ -2,14 +2,14 @@
 //  UserPositionModel.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 02/05/23.
+//  Created by Luis Díaz on 02/05/23.
 //
 
 import Foundation
 import UIKit
 
 
-enum UserPositionEnum: String {
+enum UserPositionEnum: String, CaseIterable {
     case backendDev = "Backend Dev"
     case testerQA = "Tester/QA"
     case androidDev = "Android Dev"
@@ -35,5 +35,17 @@ enum UserPositionEnum: String {
         case .other:
             return GlobalConstants.BancoppelColors.grayBex3
         }
+    }
+    
+    static func getPosition(str: String) -> UserPositionEnum {
+        let casedStr = str.uppercased()
+        
+        let position = UserPositionEnum.allCases.filter { $0.rawValue.uppercased() == casedStr }
+        
+        guard let nonNilPosition = position.first else {
+            return UserPositionEnum.other
+        }
+        
+        return nonNilPosition
     }
 }

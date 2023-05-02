@@ -10,7 +10,6 @@ import UIKit
 
 
 internal protocol CustomCalendarViewDelegate: AnyObject {
-    func notifySelectedDateChanged(_ selectedDate: Date)
     func notifyCellTapped(cellData: CustomCalendarDayModel?)
 }
 
@@ -328,16 +327,16 @@ internal class CustomCalendarView: UIView {
             for index in 0 ..< self.workDays.count {
                 let isBetweenAvailableDates = self.workDays[index].workDay.isDateBetweenDates(self.todaysDate,
                                                                                               self.maxAttendanceEndDate ?? Date())
-            
-                let attendanceDateAux = data.filter {
+                
+                let attendanceDateAux = data.first(where: {
                     guard let dataAux = $0.currentDay?.toDate() else {
                         return false
                     }
                     return self.workDays[index].workDay.isThisSame(toDate: dataAux,
                                                                    toGranularity: .day)
-                }
+                })
                 
-                guard let nonNilAttendanceData = attendanceDateAux.first else {
+                guard let nonNilAttendanceData = attendanceDateAux else {
                     if isBetweenAvailableDates {
                         self.workDays[index].attendaceData = DayAttendanceModel(currentDay: self.workDays[index].workDay.getFormattedDate(),
                                                                           email: [])
@@ -403,7 +402,7 @@ extension CustomCalendarView: UICollectionViewDataSource, UICollectionViewDelega
 }
 
 extension CustomCalendarView: CustomCalendarViewCellDelegate {
-    func notifyCalendarLuisViewCellTapped(dayData: CustomCalendarDayModel?) {
+    func notifyCustomCalendarViewCellTapped(dayData: CustomCalendarDayModel?) {
         self.delegate?.notifyCellTapped(cellData: dayData)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 
 internal protocol CustomCalendarViewCellDelegate: AnyObject {
-    func notifyCalendarLuisViewCellTapped(dayData: CustomCalendarDayModel?)
+    func notifyCustomCalendarViewCellTapped(dayData: CustomCalendarDayModel?)
 }
 
 
@@ -230,6 +230,6 @@ class CustomCalendarViewCell: UICollectionViewCell {
     }
     
     @objc private func cellTapped() {
-        self.delegate?.notifyCalendarLuisViewCellTapped(dayData: self.dayData)
+        self.delegate?.notifyCustomCalendarViewCellTapped(dayData: self.dayData)
     }
 }

@@ -8,24 +8,21 @@
 import UIKit
 
 class AccountHomeViewController: UIViewController {
-    
-    var accounts : [Account] = []
     private var viewModel = AccountViewModel()
     internal var email: String = ""
-    private var profileData: AccountModel?
+    private var usersData: [UserAttendanceDataModel] = []
+    private var usersAttendingToday: [UserAttendanceDataModel] = []
+    private var usersTableHeigthConstraint = NSLayoutConstraint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
         initComponents()
-        self.bind()
-        CustomLoader.show()
-        self.viewModel.getAccountData(email: email)
     }
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if profileData != nil {
+        if !usersData.isEmpty {
             CustomLoader.show()
             self.viewModel.getDayAttendance()
         }
@@ -128,7 +125,7 @@ class AccountHomeViewController: UIViewController {
     lazy var customCalendarView: CustomCalendarView = {
         let calendar = CustomCalendarView(profilePhoto: nil,
                                           profileEmail: self.email,
-                                          delegate: nil)
+                                          delegate: self)
         calendar.translatesAutoresizingMaskIntoConstraints = false
         
         return calendar
@@ -159,7 +156,6 @@ class AccountHomeViewController: UIViewController {
     private let lbNumberOfPeople: UILabel = {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "15 Asistentes."
         label.font = .robotoRegular(ofSize: 14)
         label.textColor = GlobalConstants.BancoppelColors.grayBex10
         label.numberOfLines = 1
@@ -176,23 +172,25 @@ class AccountHomeViewController: UIViewController {
         tableView.rowHeight = AccountCell.rowHeight
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.layer.cornerRadius = 25
         tableView.isScrollEnabled = false
         tableView.backgroundColor = .white
-        tableView.layer.shadowOffset = CGSize(width: .zero, height: 8.0)
-        tableView.layer.shadowRadius = 100.0
-        tableView.layer.shadowColor = UIColor.blue.cgColor
-        tableView.layer.shadowOpacity = 0.5
-        tableView.clipsToBounds = true
+        
+        tableView.layer.cornerRadius = 25
+        tableView.layer.shadowColor = UIColor.black.cgColor
+        tableView.layer.shadowOpacity = 0.25
+        tableView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        tableView.clipsToBounds = false
         return tableView
     }()
 
     
     func initComponents(){
-        fetchData()
         addComponents()
         setAutoLayout()
         
+        bind()
+        CustomLoader.show()
+        viewModel.getUsersData()
     }
     
     func addComponents(){
@@ -222,6 +220,8 @@ class AccountHomeViewController: UIViewController {
         
         vwContainer.widthAnchor.constraint(equalTo: scvContainer.widthAnchor).isActive = true
 
+        usersTableHeigthConstraint = tbvPeople.heightAnchor.constraint(equalToConstant: CGFloat(Double(usersData.count) * AccountCell.rowHeight))
+        
         NSLayoutConstraint.activate([
             //MARK: Header with your data
             vwHeader.heightAnchor.constraint(equalToConstant: 210),
@@ -263,49 +263,20 @@ class AccountHomeViewController: UIViewController {
             tbvPeople.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -28),
             tbvPeople.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 28),
             tbvPeople.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -20),
-            tbvPeople.heightAnchor.constraint(equalToConstant: CGFloat(Double(accounts.count) * AccountCell.rowHeight)),
-            
+            usersTableHeigthConstraint
         ])
     }
     
-    private func bind() {
-        self.viewModel.accountObaservable.observe = { (response) in
-            guard let nonNilResponse = response else {
-                self.showAlert(message: "Invalid response", isError: true)
-                return
+    private func updateTableHeight() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5) {
+                self.usersTableHeigthConstraint.constant = CGFloat(Double(self.usersAttendingToday.count) * AccountCell.rowHeight)
             }
-            
-            let (accountData, error) = nonNilResponse
-            
-            guard let nonNilData = accountData else {
-                self.showAlert(message: error ?? "", isError: true)
-                return
-            }
-                        
-            DispatchQueue.global(qos: .userInitiated).async {
-                guard let nonNilURL = URL(string: nonNilData.profilePhoto ?? "") else {
-                    self.showAlert(message: "Invalid response", isError: true)
-                    return
-                }
-                
-                let responseData = try? Data(contentsOf: nonNilURL)
-                
-                guard let nonNilData = responseData, let nonNilImage = UIImage(data: nonNilData) else {
-                    self.showAlert(message: "Invalid response", isError: true)
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self.customCalendarView.profilePhoto = nonNilImage
-                }
-            }
-            
-            self.lbGreetings.text = "¡Hola, \(nonNilData.name ?? "")!"
-            self.profileData = nonNilData
-            self.viewModel.getDayAttendance()
         }
-        
-        self.viewModel.dayAttendance.observe = { [weak self] response in
+    }
+    
+    private func bind() {
+        self.viewModel.dayAttendanceObservable.observe = { [weak self] response in
             guard let nonNilResponse = response else {
                 self?.showAlert(message: "Invalid response", isError: true)
                 return
@@ -317,8 +288,101 @@ class AccountHomeViewController: UIViewController {
                 self?.showAlert(message: error ?? "", isError: true)
                 return
             }
+            
             CustomLoader.hide()
             self?.customCalendarView.setDaysData(data: nonNilData)
+            
+            
+            let auxTodaysDate = Date()
+            let currentDayAttendance = nonNilData.first(where: {
+                guard let dataAux = $0.currentDay?.toDate() else {
+                    return false
+                }
+                return dataAux.isThisSame(toDate: auxTodaysDate, toGranularity: .day)
+            })
+            
+            guard let nonNilCurrentDayAttendance = currentDayAttendance else {
+                return
+            }
+            
+            self?.showTodaysUsersAttendance(data: nonNilCurrentDayAttendance)
+        }
+        
+        
+        self.viewModel.usersObservable.observe = { (response) in
+            guard let nonNilResponse = response else {
+                self.showAlert(message: "Invalid response", isError: true)
+                return
+            }
+            
+            let (accountData, error) = nonNilResponse
+            
+            guard let nonNilData = accountData else {
+                self.showAlert(message: error ?? "", isError: true)
+                return
+            }
+            
+            let currentUser = nonNilData.filter { $0.email.lowercased() == self.email.lowercased() }
+            
+            guard let nonNilCurrentUser = currentUser.first else {
+                return
+            }
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                let auxImage = UIImage(fromURL: nonNilCurrentUser.profilePhotoURL)
+                
+                if let nonNilIndex = self.usersData.firstIndex(of: nonNilCurrentUser), !self.usersData.isEmpty {
+                    self.usersData[nonNilIndex].profilePhoto = auxImage
+                }
+                
+                self.customCalendarView.profilePhoto = auxImage ?? UIImage()
+                self.viewModel.getDayAttendance()
+            }
+            
+            self.lbGreetings.text = "¡Hola, \(nonNilCurrentUser.name)!"
+            self.usersData = nonNilData
+        }
+    }
+    
+    
+    private func showTodaysUsersAttendance(data: DayAttendanceModel) {
+        DispatchQueue.main.async {
+            var auxUsersAttendingToday: [UserAttendanceDataModel] = []
+            for currentDayEmail in data.email ?? [] {
+                if let user = self.usersData.first(where: { $0.email == currentDayEmail }) {
+                    auxUsersAttendingToday.append(user)
+                }
+            }
+            
+            
+            self.usersAttendingToday = auxUsersAttendingToday
+            self.lbNumberOfPeople.text = "\(self.usersAttendingToday.count) \(self.usersAttendingToday.count == 1 ? "Asistente." : "Asistentes.")"
+            self.updateTableHeight()
+            self.tbvPeople.reloadData()
+            self.downloadAttendingUsersPhoto()
+        }
+    }
+    
+    private func downloadAttendingUsersPhoto() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            for index in 0 ..< self.usersAttendingToday.count {
+                guard let nonNilIndex = self.usersData.firstIndex(of: self.usersAttendingToday[index]) else {
+                    continue
+                }
+                
+                guard self.usersData[nonNilIndex].profilePhoto == nil else {
+                    continue
+                }
+                
+                let _ = UIImage(fromURL: self.usersData[nonNilIndex].profilePhotoURL) { photo in
+                    self.usersData[nonNilIndex].profilePhoto = photo
+                    self.usersAttendingToday[index].profilePhoto = photo
+                    
+                    DispatchQueue.main.async {
+                        self.tbvPeople.reloadData()
+                    }
+                }
+            }
         }
     }
     
@@ -343,42 +407,27 @@ class AccountHomeViewController: UIViewController {
 extension AccountHomeViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard !usersAttendingToday.isEmpty else { return UITableViewCell() }
 
-        guard !accounts.isEmpty else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: AccountCell.reuseID, for: indexPath) as? AccountCell
+        
+        guard let nonNilCell = cell else { return UITableViewCell() }
+        
+        nonNilCell.configure(with: usersAttendingToday[indexPath.row])
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: AccountCell.reuseID, for: indexPath) as! AccountCell
-        let account = accounts[indexPath.row]
-        cell.configure(with: account)
-
-        return cell
+        return nonNilCell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accounts.count
+        return usersAttendingToday.count
     }
 
 }
 
 
-extension AccountHomeViewController {
-    private func fetchData(){
-        let tester = Account(rolType: .TesterQA, accountName: "Héctor González Martínez(Tú)")
-        let devAndroid = Account(rolType: .DevelomentAndroid, accountName: "Christian Sandoval Estrada")
-        let bussiness = Account(rolType: .BussinessAnalyst, accountName: "Fernanda Tamayo Rodríguez")
-        let devBack = Account(rolType: .DevelomentBackend, accountName: "Octavio Javier Pérez Alarcón")
-        let ScrumMaster = Account(rolType: .ScrumMaster, accountName: "Valeria Maldonado de León")
-        let deviOS = Account(rolType: .DevelomentiOS, accountName: "Francisco Guzmán Hernández")
-        let deviOS1 = Account(rolType: .DevelomentiOS, accountName: "samuel 1")
-        
-        accounts.append(tester)
-        accounts.append(devAndroid)
-        accounts.append(bussiness)
-        accounts.append(devBack)
-        accounts.append(ScrumMaster)
-        accounts.append(deviOS)
-        accounts.append(deviOS1)
-        accounts.append(deviOS1)
-        accounts.append(deviOS1)
-        accounts.append(deviOS1)
+extension AccountHomeViewController: CustomCalendarViewDelegate {
+    func notifyCellTapped(cellData: CustomCalendarDayModel?) {
+        print(cellData)
     }
 }
