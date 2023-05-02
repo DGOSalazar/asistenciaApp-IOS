@@ -115,4 +115,28 @@ extension Date {
     func isThisSame(toDate: Date, toGranularity component: Calendar.Component) -> Bool {
         self.calendar.isDate(self, equalTo: toDate, toGranularity: component)
     }
+    
+    func getWorkDate(addingDays: Int) -> Date {
+        var auxAddingWorkDays = addingDays
+        
+        var endDate = Date()
+        var index = 0
+        
+        while auxAddingWorkDays >= 0 {
+            let auxDate = self.calendar.date(byAdding: .day, value: index, to: self) ?? Date()
+            index += 1
+            auxAddingWorkDays -= 1
+            
+            guard !self.calendar.isDateInWeekend(auxDate) else {
+                auxAddingWorkDays += 1
+                continue
+            }
+            endDate = auxDate
+        }
+        return endDate
+    }
+    
+    func isDateBetweenDates(_ startDate: Date, _ endDate: Date) -> Bool {
+        return ((self.removeTimeData() >= startDate.removeTimeData()) && (self.removeTimeData() <= endDate))
+    }
 }

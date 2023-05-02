@@ -12,18 +12,23 @@ class AccountHomeViewController: UIViewController {
     var accounts : [Account] = []
     private var viewModel = AccountViewModel()
     internal var email: String = ""
+    private var profileData: AccountModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
         initComponents()
         self.bind()
         CustomLoader.show()
         self.viewModel.getAccountData(email: email)
     }
         
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if profileData != nil {
+            CustomLoader.show()
+            self.viewModel.getDayAttendance()
+        }
     }
  
     
@@ -122,6 +127,7 @@ class AccountHomeViewController: UIViewController {
     
     lazy var customCalendarView: CustomCalendarView = {
         let calendar = CustomCalendarView(profilePhoto: nil,
+                                          profileEmail: self.email,
                                           delegate: nil)
         calendar.translatesAutoresizingMaskIntoConstraints = false
         
@@ -265,7 +271,7 @@ class AccountHomeViewController: UIViewController {
     private func bind() {
         self.viewModel.accountObaservable.observe = { (response) in
             guard let nonNilResponse = response else {
-                CustomLoader.hide()
+                self.showAlert(message: "Invalid response", isError: true)
                 return
             }
             
@@ -273,35 +279,52 @@ class AccountHomeViewController: UIViewController {
             
             guard let nonNilData = accountData else {
                 self.showAlert(message: error ?? "", isError: true)
-                CustomLoader.hide()
                 return
             }
                         
             DispatchQueue.global(qos: .userInitiated).async {
                 guard let nonNilURL = URL(string: nonNilData.profilePhoto ?? "") else {
-                    CustomLoader.hide()
+                    self.showAlert(message: "Invalid response", isError: true)
                     return
                 }
                 
                 let responseData = try? Data(contentsOf: nonNilURL)
                 
                 guard let nonNilData = responseData, let nonNilImage = UIImage(data: nonNilData) else {
-                    CustomLoader.hide()
+                    self.showAlert(message: "Invalid response", isError: true)
                     return
                 }
                 
                 DispatchQueue.main.async {
                     self.customCalendarView.profilePhoto = nonNilImage
-                    CustomLoader.hide()
                 }
             }
             
             self.lbGreetings.text = "¡Hola, \(nonNilData.name ?? "")!"
+            self.profileData = nonNilData
+            self.viewModel.getDayAttendance()
+        }
+        
+        self.viewModel.dayAttendance.observe = { [weak self] response in
+            guard let nonNilResponse = response else {
+                self?.showAlert(message: "Invalid response", isError: true)
+                return
+            }
+            
+            let (daysData, error) = nonNilResponse
+            
+            guard let nonNilData = daysData else {
+                self?.showAlert(message: error ?? "", isError: true)
+                return
+            }
+            CustomLoader.hide()
+            self?.customCalendarView.setDaysData(data: nonNilData)
         }
     }
     
     private func showAlert(message: String, isError: Bool = false) {
         DispatchQueue.main.async {
+            CustomLoader.hide()
             let alert = UIAlertController(title: isError ? "Error" : "Información",
                                           message: message,
                                           preferredStyle: .alert)
