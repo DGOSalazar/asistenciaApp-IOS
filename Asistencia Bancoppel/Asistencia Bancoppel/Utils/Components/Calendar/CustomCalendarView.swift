@@ -311,7 +311,7 @@ internal class CustomCalendarView: UIView {
     func getCellStyle(date: Date, differentMonth: Bool = false) -> CustomCalendarCellStyleEnum {
         if date < todaysDate {
             return CustomCalendarCellStyleEnum.disabled
-        } else if date == todaysDate {
+        } else if (date == todaysDate && (!differentMonth)) {
             return CustomCalendarCellStyleEnum.current
         } else if (date > todaysDate && (!differentMonth)) {
             return CustomCalendarCellStyleEnum.enabled
