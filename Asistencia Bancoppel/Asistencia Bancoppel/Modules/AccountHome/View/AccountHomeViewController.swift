@@ -302,6 +302,7 @@ class AccountHomeViewController: UIViewController {
             })
             
             guard let nonNilCurrentDayAttendance = currentDayAttendance else {
+                self?.showTodaysUsersAttendance(data: nil)
                 return
             }
             
@@ -345,10 +346,10 @@ class AccountHomeViewController: UIViewController {
     }
     
     
-    private func showTodaysUsersAttendance(data: DayAttendanceModel) {
+    private func showTodaysUsersAttendance(data: DayAttendanceModel?) {
         DispatchQueue.main.async {
             var auxUsersAttendingToday: [UserAttendanceDataModel] = []
-            for currentDayEmail in data.email ?? [] {
+            for currentDayEmail in data?.email ?? [] {
                 if let user = self.usersData.first(where: { $0.email == currentDayEmail }) {
                     auxUsersAttendingToday.append(user)
                 }
