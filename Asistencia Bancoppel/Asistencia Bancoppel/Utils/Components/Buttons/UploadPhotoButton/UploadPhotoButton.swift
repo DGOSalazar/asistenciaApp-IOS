@@ -24,7 +24,6 @@ internal class UploadPhotoButton: UIView {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-        view.layer.borderWidth = 10
         view.clipsToBounds = false
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.25
@@ -71,7 +70,9 @@ internal class UploadPhotoButton: UIView {
                   buttonSize: CGFloat = 140,
                   title: String = "Cargar foto",
                   icon: UIImage? = nil,
-                  borderColor: UIColor = GlobalConstants.BancoppelColors.yellowBex3) {
+                  showShadow: Bool = true,
+                  borderColor: UIColor = GlobalConstants.BancoppelColors.yellowBex3,
+                  borderWidth: CGFloat = 10) {
         super.init(frame: .zero)
         
         self.presenter = presenter
@@ -81,8 +82,10 @@ internal class UploadPhotoButton: UIView {
         self.uploadImageView.image = icon ?? UIImage(named: "share_media_icon")
         self.buttonContainerView.layer.borderColor = borderColor.cgColor
         self.buttonContainerView.layer.cornerRadius = (buttonSize / 2)
+        self.buttonContainerView.layer.borderWidth = borderWidth
         self.previewImageView.layer.cornerRadius = (buttonSize / 2)
-        
+        self.buttonContainerView.layer.shadowColor = (showShadow ? UIColor.black.cgColor : UIColor.clear.cgColor)
+        self.buttonContainerView.clipsToBounds = !showShadow
         self.addTarget(self, action: #selector(self.showGallery))
         
         self.setComponents()
