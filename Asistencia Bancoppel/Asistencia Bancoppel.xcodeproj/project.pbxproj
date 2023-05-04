@@ -45,6 +45,10 @@
 		527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2D29EA0C190083567F /* DatePickerTextField.swift */; };
 		527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DED2F29EA15960083567F /* GenericPickerTextField.swift */; };
 		5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285705129EB459300213F47 /* UploadPhotoButton.swift */; };
+		52A172972A030DB900091638 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A172962A030DB900091638 /* ProfileViewController.swift */; };
+		52A172992A031A1300091638 /* MainButtonStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A172982A031A1300091638 /* MainButtonStyleEnum.swift */; };
+		52A1729C2A03240900091638 /* BottomLineCustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1729B2A03240900091638 /* BottomLineCustomTabBar.swift */; };
+		52A1729E2A03247300091638 /* BottomLineCustomTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1729D2A03247300091638 /* BottomLineCustomTabButton.swift */; };
 		52E32B9829F19DE0006CAEF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */; };
 		52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */; };
 		52E7CAA429F1F9A80039E921 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */; };
@@ -112,6 +116,10 @@
 		527DED2D29EA0C190083567F /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
 		527DED2F29EA15960083567F /* GenericPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPickerTextField.swift; sourceTree = "<group>"; };
 		5285705129EB459300213F47 /* UploadPhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotoButton.swift; sourceTree = "<group>"; };
+		52A172962A030DB900091638 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		52A172982A031A1300091638 /* MainButtonStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonStyleEnum.swift; sourceTree = "<group>"; };
+		52A1729B2A03240900091638 /* BottomLineCustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLineCustomTabBar.swift; sourceTree = "<group>"; };
+		52A1729D2A03247300091638 /* BottomLineCustomTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLineCustomTabButton.swift; sourceTree = "<group>"; };
 		52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputValidationEnum.swift; sourceTree = "<group>"; };
 		52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -205,6 +213,7 @@
 		3F439A3029A945AC00F9CA1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				52A172922A02ED8D00091638 /* Profile */,
 				52FA7ACC29F2E75300225D10 /* MainPager */,
 				5235453629E8BCC3002BECAB /* AccountCreation */,
 				FA3BC0D529EDD4DB0024FEE0 /* loginModule */,
@@ -446,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				5235453F29E8C364002BECAB /* MainButton.swift */,
+				52A172982A031A1300091638 /* MainButtonStyleEnum.swift */,
 			);
 			path = MainButton;
 			sourceTree = "<group>";
@@ -471,6 +481,47 @@
 			path = UploadPhotoButton;
 			sourceTree = "<group>";
 		};
+		52A172922A02ED8D00091638 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				52A172952A02EDA400091638 /* View */,
+				52A172942A02EDA000091638 /* Model */,
+				52A172932A02ED9900091638 /* ViewModel */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		52A172932A02ED9900091638 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		52A172942A02EDA000091638 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		52A172952A02EDA400091638 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52A172962A030DB900091638 /* ProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52A1729A2A0323D200091638 /* BottomLineCustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				52A1729B2A03240900091638 /* BottomLineCustomTabBar.swift */,
+				52A1729D2A03247300091638 /* BottomLineCustomTabButton.swift */,
+			);
+			path = BottomLineCustomTabBar;
+			sourceTree = "<group>";
+		};
 		52E7CAA229F1F9910039E921 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +541,7 @@
 		52FA7ACD29F2E93800225D10 /* TabBars */ = {
 			isa = PBXGroup;
 			children = (
+				52A1729A2A0323D200091638 /* BottomLineCustomTabBar */,
 				52FA7ACE29F2E96400225D10 /* CustomTabBar */,
 			);
 			path = TabBars;
@@ -745,8 +797,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				520E855529F7594D00EF10FF /* PageIndicatorView.swift in Sources */,
+				52A1729E2A03247300091638 /* BottomLineCustomTabButton.swift in Sources */,
 				520E854C29F73E8400EF10FF /* PersonalDataViewController.swift in Sources */,
 				52FA7ADC29F34B9300225D10 /* DeviceSize.swift in Sources */,
+				52A172992A031A1300091638 /* MainButtonStyleEnum.swift in Sources */,
 				527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */,
 				52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */,
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
@@ -758,9 +812,11 @@
 				522AE74029F06D580091AD6C /* CustomCalendarView.swift in Sources */,
 				5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */,
 				FA3BC0DA29EDD54E0024FEE0 /* LoginBackgroundView.swift in Sources */,
+				52A1729C2A03240900091638 /* BottomLineCustomTabBar.swift in Sources */,
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
 				FA56BC6729F0DF05004CE981 /* LoginViewModel.swift in Sources */,
 				52EEBEB429F9B18500A52EB9 /* TeamModel.swift in Sources */,
+				52A172972A030DB900091638 /* ProfileViewController.swift in Sources */,
 				527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */,
 				520E854E29F7413000EF10FF /* LastStepViewController.swift in Sources */,
 				52E7CAA629F1FC9E0039E921 /* Account.swift in Sources */,
