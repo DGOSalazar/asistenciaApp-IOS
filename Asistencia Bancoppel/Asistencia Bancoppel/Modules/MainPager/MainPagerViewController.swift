@@ -124,9 +124,3 @@ class TeamViewController: UIViewController {
         view.backgroundColor = .systemOrange
     }
 }
-
-class ProfileViewController: UIViewController {
-    override func viewDidLoad() {
-        view.backgroundColor = .systemPurple
-    }
-}
