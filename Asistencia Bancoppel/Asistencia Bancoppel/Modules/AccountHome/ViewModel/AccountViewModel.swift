@@ -26,12 +26,26 @@ class AccountViewModel {
                                             dataType: AccountModel.self) { [weak self] data in
             
             let auxUsers: [UserAttendanceDataModel] = data.compactMap { user in
-                UserAttendanceDataModel(name: user.name ?? "",
-                                        fullname: "\(user.name ?? "") \(user.lastName1 ?? "") \(user.lastName2 ?? "")",
-                                        email: user.email ?? "",
-                                        position: UserPositionEnum.getPosition(str: user.position ?? ""),
-                                        profilePhotoURL: user.profilePhoto ?? "",
-                                        profilePhoto: nil)
+                var auxFullname = ""
+                
+                if let auxName = user.name, !auxName.isEmpty  {
+                    auxFullname = auxName
+                }
+                
+                if let auxLastname1 = user.lastName1, !auxLastname1.isEmpty  {
+                    auxFullname += " \(auxLastname1)"
+                }
+                
+                if let auxLastname2 = user.lastName2, !auxLastname2.isEmpty {
+                    auxFullname += " \(auxLastname2)"
+                }
+                
+                return UserAttendanceDataModel(name: user.name ?? "",
+                                               fullname: auxFullname,
+                                               email: user.email ?? "",
+                                               position: UserPositionEnum.getPosition(str: user.position ?? ""),
+                                               profilePhotoURL: user.profilePhoto ?? "",
+                                               profilePhoto: nil)
             }
             
             self?.usersObservable.value = (auxUsers, nil)
