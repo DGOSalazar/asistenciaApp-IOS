@@ -14,6 +14,8 @@ class AccountHomeViewController: UIViewController {
     private var usersAttendingToday: [UserAttendanceDataModel] = []
     private var usersTableHeigthConstraint = NSLayoutConstraint()
     
+    private var  isConfirm: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
@@ -27,6 +29,12 @@ class AccountHomeViewController: UIViewController {
             self.viewModel.getDayAttendance()
         }
     }
+    
+    private let buttonFloatConfirm: ConfirmAsistenciaButton = {
+        let buttonConfirm = ConfirmAsistenciaButton()
+        buttonConfirm.translatesAutoresizingMaskIntoConstraints = false
+        return buttonConfirm
+    }()
  
     
     private let vwHeader : UIView = {
@@ -187,13 +195,14 @@ class AccountHomeViewController: UIViewController {
     func initComponents(){
         addComponents()
         setAutoLayout()
-        
+        buttonFloatConfirm.isHidden = isConfirm
         bind()
         CustomLoader.show()
         viewModel.getUsersData()
     }
     
     func addComponents(){
+        view.addSubview(buttonFloatConfirm)
         view.addSubview(vwHeader)
         vwHeader.addSubview(imgLogo)
         vwHeader.addSubview(stvContainer)
