@@ -2,7 +2,7 @@
 //  ProfileNotificationsViewCell.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 04/05/23.
+//  Created by Luis Díaz on 04/05/23.
 //
 
 import Foundation
@@ -76,9 +76,6 @@ class ProfileNotificationsViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = GlobalConstants.BancoppelColors.grayBex2
-        self.contentView.backgroundColor = GlobalConstants.BancoppelColors.grayBex2
-        
         self.setComponents()
         self.setAutolayout()
         
@@ -106,7 +103,7 @@ class ProfileNotificationsViewCell: UITableViewCell {
             mainContainerView.topAnchor.constraint(equalTo: topAnchor),
             mainContainerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mainContainerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mainContainerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
+            mainContainerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             contentContainer.topAnchor.constraint(greaterThanOrEqualTo: mainContainerView.topAnchor),
             contentContainer.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor, constant: Dimensions.margin20),

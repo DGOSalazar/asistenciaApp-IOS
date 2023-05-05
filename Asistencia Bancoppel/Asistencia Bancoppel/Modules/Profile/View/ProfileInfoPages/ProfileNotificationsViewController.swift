@@ -2,7 +2,7 @@
 //  ProfileNotificationsViewController.swift
 //  Asistencia Bancoppel
 //
-//  Created by MacBook Pro on 04/05/23.
+//  Created by Luis Díaz on 04/05/23.
 //
 
 import Foundation
@@ -22,13 +22,17 @@ internal class ProfileNotificationsViewController: UIViewController {
 
     
     private lazy var notificationsTable: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ProfileNotificationsViewCell.self, forCellReuseIdentifier: ProfileNotificationsViewCell.identifier)
         tableView.rowHeight = ProfileNotificationsViewCell.rowHeight
         tableView.dataSource = self
         tableView.delegate = self
         tableView.bounces = false
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.backgroundColor = .clear
+
         return tableView
     }()
     
