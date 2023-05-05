@@ -213,13 +213,32 @@ internal class ProfileViewController: UIViewController {
     
     private func setPager() {
         let page1Test = Page1Test()
-        let page2Test = Page2Test()
-        
+        let notificationsViewController = ProfileNotificationsViewController()
+        notificationsViewController.setData(data: [ProfileNotificationModel(image: nil,
+                                                                            title: "Diana Fernández Huerta te ha registrado asistencia para el Viernes 3 de Febrero.",
+                                                                            date: Date(),
+                                                                            type: .profile),
+                                                   ProfileNotificationModel(image: nil,
+                                                                            title: "¡Recuerda asistir el día de mañana a la oficina!",
+                                                                            date: Date(),
+                                                                            type: .check),
+                                                   ProfileNotificationModel(image: nil,
+                                                                            title: "Recuerda llenar tu Time Report antes del Lunes.",
+                                                                            date: Date(),
+                                                                            type: .time),
+                                                   ProfileNotificationModel(image: nil,
+                                                                            title: "Recuerda realizar tu Registro de comidas.",
+                                                                            date: Date(),
+                                                                            type: .dinner),
+                                                   ProfileNotificationModel(image: nil,
+                                                                            title: "Hoy es cumpleaños de Fernanda Tamayo Rodríguez ¡Felicítala!",
+                                                                            date: Date(),
+                                                                            type: .profile)])
         pages.append(page1Test)
         profileInfoPageController.addChild(page1Test)
         
-        pages.append(page2Test)
-        profileInfoPageController.addChild(page2Test)
+        pages.append(notificationsViewController)
+        profileInfoPageController.addChild(notificationsViewController)
         
         profileInfoPageController.setViewControllers([pages[self.currentIndex]], direction: .forward, animated: true)
     }

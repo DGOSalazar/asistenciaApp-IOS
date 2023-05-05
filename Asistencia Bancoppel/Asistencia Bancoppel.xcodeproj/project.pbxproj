@@ -49,6 +49,11 @@
 		52A172992A031A1300091638 /* MainButtonStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A172982A031A1300091638 /* MainButtonStyleEnum.swift */; };
 		52A1729C2A03240900091638 /* BottomLineCustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1729B2A03240900091638 /* BottomLineCustomTabBar.swift */; };
 		52A1729E2A03247300091638 /* BottomLineCustomTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1729D2A03247300091638 /* BottomLineCustomTabButton.swift */; };
+		52A7A8AD2A045A4C009F854C /* ProfileNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7A8AC2A045A4B009F854C /* ProfileNotificationsViewController.swift */; };
+		52A7A8AF2A045A69009F854C /* ProfileSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7A8AE2A045A69009F854C /* ProfileSummaryViewController.swift */; };
+		52A7A8B22A045E4E009F854C /* ProfileNotificationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7A8B12A045E4E009F854C /* ProfileNotificationsViewCell.swift */; };
+		52A7A8B42A045F44009F854C /* ProfileNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7A8B32A045F44009F854C /* ProfileNotificationModel.swift */; };
+		52A7A8B62A045FED009F854C /* ProfileNotificationTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7A8B52A045FED009F854C /* ProfileNotificationTypeEnum.swift */; };
 		52E32B9829F19DE0006CAEF9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */; };
 		52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */; };
 		52E7CAA429F1F9A80039E921 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */; };
@@ -120,6 +125,11 @@
 		52A172982A031A1300091638 /* MainButtonStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonStyleEnum.swift; sourceTree = "<group>"; };
 		52A1729B2A03240900091638 /* BottomLineCustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLineCustomTabBar.swift; sourceTree = "<group>"; };
 		52A1729D2A03247300091638 /* BottomLineCustomTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLineCustomTabButton.swift; sourceTree = "<group>"; };
+		52A7A8AC2A045A4B009F854C /* ProfileNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotificationsViewController.swift; sourceTree = "<group>"; };
+		52A7A8AE2A045A69009F854C /* ProfileSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryViewController.swift; sourceTree = "<group>"; };
+		52A7A8B12A045E4E009F854C /* ProfileNotificationsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotificationsViewCell.swift; sourceTree = "<group>"; };
+		52A7A8B32A045F44009F854C /* ProfileNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotificationModel.swift; sourceTree = "<group>"; };
+		52A7A8B52A045FED009F854C /* ProfileNotificationTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNotificationTypeEnum.swift; sourceTree = "<group>"; };
 		52E32B9729F19DE0006CAEF9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		52E32B9929F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputValidationEnum.swift; sourceTree = "<group>"; };
 		52E7CAA329F1F9A80039E921 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -501,6 +511,8 @@
 		52A172942A02EDA000091638 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				52A7A8B32A045F44009F854C /* ProfileNotificationModel.swift */,
+				52A7A8B52A045FED009F854C /* ProfileNotificationTypeEnum.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -508,6 +520,7 @@
 		52A172952A02EDA400091638 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				52A7A8AB2A045A32009F854C /* ProfileInfoPages */,
 				52A172962A030DB900091638 /* ProfileViewController.swift */,
 			);
 			path = View;
@@ -520,6 +533,24 @@
 				52A1729D2A03247300091638 /* BottomLineCustomTabButton.swift */,
 			);
 			path = BottomLineCustomTabBar;
+			sourceTree = "<group>";
+		};
+		52A7A8AB2A045A32009F854C /* ProfileInfoPages */ = {
+			isa = PBXGroup;
+			children = (
+				52A7A8B02A045E15009F854C /* Cells */,
+				52A7A8AC2A045A4B009F854C /* ProfileNotificationsViewController.swift */,
+				52A7A8AE2A045A69009F854C /* ProfileSummaryViewController.swift */,
+			);
+			path = ProfileInfoPages;
+			sourceTree = "<group>";
+		};
+		52A7A8B02A045E15009F854C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				52A7A8B12A045E4E009F854C /* ProfileNotificationsViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		52E7CAA229F1F9910039E921 /* ViewModel */ = {
@@ -800,6 +831,7 @@
 				52A1729E2A03247300091638 /* BottomLineCustomTabButton.swift in Sources */,
 				520E854C29F73E8400EF10FF /* PersonalDataViewController.swift in Sources */,
 				52FA7ADC29F34B9300225D10 /* DeviceSize.swift in Sources */,
+				52A7A8B42A045F44009F854C /* ProfileNotificationModel.swift in Sources */,
 				52A172992A031A1300091638 /* MainButtonStyleEnum.swift in Sources */,
 				527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */,
 				52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */,
@@ -816,6 +848,7 @@
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
 				FA56BC6729F0DF05004CE981 /* LoginViewModel.swift in Sources */,
 				52EEBEB429F9B18500A52EB9 /* TeamModel.swift in Sources */,
+				52A7A8B62A045FED009F854C /* ProfileNotificationTypeEnum.swift in Sources */,
 				52A172972A030DB900091638 /* ProfileViewController.swift in Sources */,
 				527DED2E29EA0C190083567F /* DatePickerTextField.swift in Sources */,
 				520E854E29F7413000EF10FF /* LastStepViewController.swift in Sources */,
@@ -829,13 +862,16 @@
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				52FA7AD929F2FFA200225D10 /* MainPagerViewController.swift in Sources */,
 				524C238A2A017358009D881A /* UserPositionEnum.swift in Sources */,
+				52A7A8AD2A045A4C009F854C /* ProfileNotificationsViewController.swift in Sources */,
 				52FA7AD029F2EA0600225D10 /* CustomTabBarView.swift in Sources */,
+				52A7A8AF2A045A69009F854C /* ProfileSummaryViewController.swift in Sources */,
 				520E855229F74D9F00EF10FF /* AccountCreationModel.swift in Sources */,
 				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
 				524C23882A017329009D881A /* UserAttendanceDataModel.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
 				52EEBEB229F9B16000A52EB9 /* PositionModel.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
+				52A7A8B22A045E4E009F854C /* ProfileNotificationsViewCell.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */,
 				520E853C29F7194B00EF10FF /* TextFieldInputCasingEnum.swift in Sources */,
 				526BEC5029E9B53E00554701 /* LeftTitleTextField.swift in Sources */,
