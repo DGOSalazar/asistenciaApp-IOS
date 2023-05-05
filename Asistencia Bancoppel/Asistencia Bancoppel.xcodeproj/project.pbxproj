@@ -66,6 +66,7 @@
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
 		628A8866299AD2A5009F30E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */; };
 		79BB907CC54C3785D90AEA89 /* Pods_Asistencia_Bancoppel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBA737F74520312CC1DF34F /* Pods_Asistencia_Bancoppel.framework */; };
+		84D57E6E2A0404700032E04C /* ConfirmAsistenciaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D57E6D2A0404700032E04C /* ConfirmAsistenciaButton.swift */; };
 		FA3BC0D729EDD5000024FEE0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BC0D629EDD5000024FEE0 /* LoginViewController.swift */; };
 		FA3BC0DA29EDD54E0024FEE0 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BC0D929EDD54E0024FEE0 /* LoginBackgroundView.swift */; };
 		FA3BC0DE29EDD6460024FEE0 /* GardientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BC0DD29EDD6460024FEE0 /* GardientBackgroundView.swift */; };
@@ -135,6 +136,7 @@
 		628A8865299AD2A5009F30E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		628A8867299AD2A5009F30E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FBFE467F8260B5A059674F8 /* Pods-Asistencia Bancoppel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Asistencia Bancoppel.debug.xcconfig"; path = "Target Support Files/Pods-Asistencia Bancoppel/Pods-Asistencia Bancoppel.debug.xcconfig"; sourceTree = "<group>"; };
+		84D57E6D2A0404700032E04C /* ConfirmAsistenciaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAsistenciaButton.swift; sourceTree = "<group>"; };
 		9BBA737F74520312CC1DF34F /* Pods_Asistencia_Bancoppel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Asistencia_Bancoppel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD35F593DA0C456EB25DDD6 /* Pods-Asistencia Bancoppel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Asistencia Bancoppel.release.xcconfig"; path = "Target Support Files/Pods-Asistencia Bancoppel/Pods-Asistencia Bancoppel.release.xcconfig"; sourceTree = "<group>"; };
 		FA3BC0D629EDD5000024FEE0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 		5235453D29E8C2A2002BECAB /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				84D57E6C2A0404240032E04C /* FloatButtonConfirm */,
 				5285705029EB458500213F47 /* UploadPhotoButton */,
 				5235453E29E8C32C002BECAB /* MainButton */,
 			);
@@ -569,6 +572,14 @@
 				FA3BC0DD29EDD6460024FEE0 /* GardientBackgroundView.swift */,
 			);
 			path = SplashView;
+			sourceTree = "<group>";
+		};
+		84D57E6C2A0404240032E04C /* FloatButtonConfirm */ = {
+			isa = PBXGroup;
+			children = (
+				84D57E6D2A0404700032E04C /* ConfirmAsistenciaButton.swift */,
+			);
+			path = FloatButtonConfirm;
 			sourceTree = "<group>";
 		};
 		AC88B75B3805DB66DECDA549 /* Pods */ = {
@@ -779,6 +790,7 @@
 				524C23882A017329009D881A /* UserAttendanceDataModel.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
 				52EEBEB229F9B16000A52EB9 /* PositionModel.swift in Sources */,
+				84D57E6E2A0404700032E04C /* ConfirmAsistenciaButton.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */,
 				520E853C29F7194B00EF10FF /* TextFieldInputCasingEnum.swift in Sources */,
