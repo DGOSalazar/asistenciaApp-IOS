@@ -354,6 +354,16 @@ class AccountHomeViewController: UIViewController {
                     auxUsersAttendingToday.append(user)
                 }
             }
+            auxUsersAttendingToday = auxUsersAttendingToday.sorted { (initial, next) -> Bool in
+                guard initial.email != self.email else {
+                    return true
+                }
+                return (initial.name > next.name)
+            }
+             
+            if let currentUser = auxUsersAttendingToday.first, auxUsersAttendingToday.count > 0, currentUser.email == self.email {
+                auxUsersAttendingToday[0].fullname = "\(auxUsersAttendingToday[0].fullname) (Tú)"
+            }
             
             
             self.usersAttendingToday = auxUsersAttendingToday
