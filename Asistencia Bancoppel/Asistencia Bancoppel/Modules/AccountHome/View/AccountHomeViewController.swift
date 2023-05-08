@@ -211,7 +211,7 @@ class AccountHomeViewController: UIViewController {
         vwHeader.addSubview(btnMenu)
         view.addSubview(scvContainer)
         scvContainer.addSubview(vwContainer)
-        vwContainer.addSubview(buttonFloatConfirm)
+        scvContainer.addSubview(buttonFloatConfirm)
         vwContainer.addSubview(customCalendarView)
         vwContainer.addSubview(stvDataOfTheDay)
         stvDataOfTheDay.addArrangedSubview(lbPersonsInTheOffice)

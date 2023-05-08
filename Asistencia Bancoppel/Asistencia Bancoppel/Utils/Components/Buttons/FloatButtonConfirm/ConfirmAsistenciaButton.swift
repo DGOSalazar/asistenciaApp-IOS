@@ -17,6 +17,7 @@ class ConfirmAsistenciaButton: UIView {
         buttonView.backgroundColor = GlobalConstants.BancoppelColors.pinkBex4
         buttonView.layer.borderWidth = 0.5
         buttonView.layer.shadowColor = UIColor.black.cgColor
+        buttonView.layer.shadowOpacity = 0.25
         buttonView.layer.borderColor = GlobalConstants.BancoppelColors.grayBex5.cgColor
         buttonView.clipsToBounds = false
         buttonView.layer.cornerRadius = (buttonSize / 2)
