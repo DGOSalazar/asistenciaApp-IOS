@@ -9,13 +9,15 @@ import UIKit
 
 class ConfirmAsistenciaButton: UIView {
     
-    private let buttonSize: CGFloat = 30
+    private let buttonSize: CGFloat = 60
     
     private lazy var buttonConfirmView: UIView = {
         let buttonView = UIView()
         buttonView.translatesAutoresizingMaskIntoConstraints = false
-        buttonView.backgroundColor = .systemPink
-        buttonView.layer.borderWidth = 5
+        buttonView.backgroundColor = GlobalConstants.BancoppelColors.pinkBex4
+        buttonView.layer.borderWidth = 0.5
+        buttonView.layer.shadowColor = UIColor.black.cgColor
+        buttonView.layer.borderColor = GlobalConstants.BancoppelColors.grayBex5.cgColor
         buttonView.clipsToBounds = false
         buttonView.layer.cornerRadius = (buttonSize / 2)
         
@@ -57,6 +59,27 @@ class ConfirmAsistenciaButton: UIView {
                                     ])
                                     
     }
+    
+    /*
+    
+    func showButton() {
+        //self.resetButton()
+        guard let nonNilKeyWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
+            return
+        }
+        
+        nonNilKeyWindow.addSubview(self)
+        nonNilKeyWindow.bringSubviewToFront(self)
+        
+        NSLayoutConstraint.activate([
+            self.trailingAnchor.constraint(equalTo: -16),
+            self.bottomAnchor.co
+        ])
+    }*/
+    
+    @objc func resetButton() {
+         self.removeFromSuperview()
+     }
     
     
 }

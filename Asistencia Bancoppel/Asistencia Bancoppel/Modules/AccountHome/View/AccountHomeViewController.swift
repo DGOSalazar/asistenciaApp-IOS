@@ -202,7 +202,6 @@ class AccountHomeViewController: UIViewController {
     }
     
     func addComponents(){
-        view.addSubview(buttonFloatConfirm)
         view.addSubview(vwHeader)
         vwHeader.addSubview(imgLogo)
         vwHeader.addSubview(stvContainer)
@@ -212,6 +211,7 @@ class AccountHomeViewController: UIViewController {
         vwHeader.addSubview(btnMenu)
         view.addSubview(scvContainer)
         scvContainer.addSubview(vwContainer)
+        vwContainer.addSubview(buttonFloatConfirm)
         vwContainer.addSubview(customCalendarView)
         vwContainer.addSubview(stvDataOfTheDay)
         stvDataOfTheDay.addArrangedSubview(lbPersonsInTheOffice)
@@ -255,6 +255,9 @@ class AccountHomeViewController: UIViewController {
             scvContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scvContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scvContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            buttonFloatConfirm.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            buttonFloatConfirm.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
             
             vwContainer.topAnchor.constraint(equalTo: scvContainer.topAnchor),
             vwContainer.trailingAnchor.constraint(equalTo: scvContainer.trailingAnchor),
