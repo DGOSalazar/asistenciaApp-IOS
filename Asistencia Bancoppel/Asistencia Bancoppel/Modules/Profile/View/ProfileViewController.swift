@@ -232,6 +232,45 @@ internal class ProfileViewController: UIViewController {
     private func setPager() {
         let profileSummaryViewController = ProfileSummaryViewController()
         self.profileViewController = profileSummaryViewController
+        profileViewController?.setProjects(data: [ProfileProjectsModel.Project(projectName: "Sueldo Ya", releaseDate: "9"),
+                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 2", releaseDate: "10"),
+                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 3", releaseDate: "11"),
+                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 4", releaseDate: "12"),
+                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 5", releaseDate: "13"),
+                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 6", releaseDate: "14")])
+        
+        profileViewController?.setCertifications(data: [ProfileCertificationsModel.Certification(certificateName: "0 a Becario iOS",
+                                                                                                 certificateNum: "1234567890",
+                                                                                                 emissionDate: Date().getFormattedDate(),
+                                                                                                 platformEmitted: "Udemy",
+                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
+                                                        ProfileCertificationsModel.Certification(certificateName: "0 a Jr iOS",
+                                                                                                 certificateNum: "1234567890",
+                                                                                                 emissionDate: Date().getFormattedDate(),
+                                                                                                 platformEmitted: "Udemy",
+                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
+                                                        ProfileCertificationsModel.Certification(certificateName: "0 a Middle iOS",
+                                                                                                 certificateNum: "1234567890",
+                                                                                                 emissionDate: Date().getFormattedDate(),
+                                                                                                 platformEmitted: "Udemy",
+                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
+                                                        ProfileCertificationsModel.Certification(certificateName: "0 a Senior iOS",
+                                                                                                 certificateNum: "1234567890",
+                                                                                                 emissionDate: Date().getFormattedDate(),
+                                                                                                 platformEmitted: "Udemy",
+                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
+                                                        ProfileCertificationsModel.Certification(certificateName: "0 a SSY iOS",
+                                                                                                 certificateNum: "1234567890",
+                                                                                                 emissionDate: Date().getFormattedDate(),
+                                                                                                 platformEmitted: "Udemy",
+                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
+                                                        ProfileCertificationsModel.Certification(certificateName: "0 a SSY 2 iOS",
+                                                                                                 certificateNum: "1234567890",
+                                                                                                 emissionDate: Date().getFormattedDate(),
+                                                                                                 platformEmitted: "Udemy",
+                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf")])
+        
+        
         let notificationsViewController = ProfileNotificationsViewController()
         notificationsViewController.setData(data: [ProfileNotificationModel(image: nil,
                                                                             title: "Diana Fernández Huerta te ha registrado asistencia para el Viernes 3 de Febrero.",
