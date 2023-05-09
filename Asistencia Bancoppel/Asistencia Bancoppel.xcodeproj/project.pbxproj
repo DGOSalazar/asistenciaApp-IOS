@@ -75,6 +75,10 @@
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
 		628A8866299AD2A5009F30E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */; };
 		79BB907CC54C3785D90AEA89 /* Pods_Asistencia_Bancoppel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBA737F74520312CC1DF34F /* Pods_Asistencia_Bancoppel.framework */; };
+		F9E49F322A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */; };
+		F9E49F342A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */; };
+		F9E49F362A0AA7F000ABE0D3 /* ProfileProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */; };
+		F9E49F382A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F372A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift */; };
 		F9E80B5E2A0959A40075FE74 /* EditableLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E80B5D2A0959A40075FE74 /* EditableLabelTextField.swift */; };
 		F9E80B622A0967010075FE74 /* CollapsableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E80B612A0967010075FE74 /* CollapsableView.swift */; };
 		FA3BC0D729EDD5000024FEE0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BC0D629EDD5000024FEE0 /* LoginViewController.swift */; };
@@ -157,6 +161,10 @@
 		6FBFE467F8260B5A059674F8 /* Pods-Asistencia Bancoppel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Asistencia Bancoppel.debug.xcconfig"; path = "Target Support Files/Pods-Asistencia Bancoppel/Pods-Asistencia Bancoppel.debug.xcconfig"; sourceTree = "<group>"; };
 		9BBA737F74520312CC1DF34F /* Pods_Asistencia_Bancoppel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Asistencia_Bancoppel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD35F593DA0C456EB25DDD6 /* Pods-Asistencia Bancoppel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Asistencia Bancoppel.release.xcconfig"; path = "Target Support Files/Pods-Asistencia Bancoppel/Pods-Asistencia Bancoppel.release.xcconfig"; sourceTree = "<group>"; };
+		F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInitiativesViewCell.swift; sourceTree = "<group>"; };
+		F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCertificationsViewCell.swift; sourceTree = "<group>"; };
+		F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProjectsModel.swift; sourceTree = "<group>"; };
+		F9E49F372A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCertificationsModel.swift; sourceTree = "<group>"; };
 		F9E80B5D2A0959A40075FE74 /* EditableLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableLabelTextField.swift; sourceTree = "<group>"; };
 		F9E80B612A0967010075FE74 /* CollapsableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsableView.swift; sourceTree = "<group>"; };
 		FA3BC0D629EDD5000024FEE0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -519,6 +527,8 @@
 			children = (
 				52A7A8B32A045F44009F854C /* ProfileNotificationModel.swift */,
 				52A7A8B52A045FED009F854C /* ProfileNotificationTypeEnum.swift */,
+				F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */,
+				F9E49F372A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -526,8 +536,8 @@
 		52A172952A02EDA400091638 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				52A7A8AB2A045A32009F854C /* ProfileInfoPages */,
 				52A172962A030DB900091638 /* ProfileViewController.swift */,
+				52A7A8AB2A045A32009F854C /* ProfileInfoPages */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -544,9 +554,9 @@
 		52A7A8AB2A045A32009F854C /* ProfileInfoPages */ = {
 			isa = PBXGroup;
 			children = (
-				52A7A8B02A045E15009F854C /* Cells */,
 				52A7A8AC2A045A4B009F854C /* ProfileNotificationsViewController.swift */,
 				52A7A8AE2A045A69009F854C /* ProfileSummaryViewController.swift */,
+				52A7A8B02A045E15009F854C /* Cells */,
 			);
 			path = ProfileInfoPages;
 			sourceTree = "<group>";
@@ -555,6 +565,8 @@
 			isa = PBXGroup;
 			children = (
 				52A7A8B12A045E4E009F854C /* ProfileNotificationsViewCell.swift */,
+				F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */,
+				F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -849,6 +861,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9E49F322A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift in Sources */,
 				520E855529F7594D00EF10FF /* PageIndicatorView.swift in Sources */,
 				F9E80B622A0967010075FE74 /* CollapsableView.swift in Sources */,
 				52A1729E2A03247300091638 /* BottomLineCustomTabButton.swift in Sources */,
@@ -891,6 +904,7 @@
 				520E855229F74D9F00EF10FF /* AccountCreationModel.swift in Sources */,
 				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
 				524C23882A017329009D881A /* UserAttendanceDataModel.swift in Sources */,
+				F9E49F342A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
 				52EEBEB229F9B16000A52EB9 /* PositionModel.swift in Sources */,
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
@@ -904,6 +918,7 @@
 				5235454029E8C364002BECAB /* MainButton.swift in Sources */,
 				522AE75829F0C12E0091AD6C /* Font+Extension.swift in Sources */,
 				52EEBEB029F999D700A52EB9 /* DayAttendanceModel.swift in Sources */,
+				F9E49F382A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift in Sources */,
 				3F439A2F29A9435300F9CA1D /* UIViewController+Extensions.swift in Sources */,
 				52FA7AD229F2EC8D00225D10 /* CustomTabButton.swift in Sources */,
 				FA3BC0D729EDD5000024FEE0 /* LoginViewController.swift in Sources */,
@@ -912,6 +927,7 @@
 				522AE74829F0729B0091AD6C /* CustomCalendarMonthModel.swift in Sources */,
 				FA56BC6B29F10039004CE981 /* LoginModel.swift in Sources */,
 				522AE74C29F072EC0091AD6C /* CustomCalendarCellStyleEnum.swift in Sources */,
+				F9E49F362A0AA7F000ABE0D3 /* ProfileProjectsModel.swift in Sources */,
 				522AE74529F0716D0091AD6C /* CustomCalendarViewCell.swift in Sources */,
 				522AE75229F090720091AD6C /* CustomObservable.swift in Sources */,
 			);
