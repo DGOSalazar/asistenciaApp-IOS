@@ -10,7 +10,10 @@ import UIKit
 
 
 internal class ProfileSummaryViewController: UIViewController {
-    private var notifications: [ProfileNotificationModel] = []
+    private var certifications: [ProfileCertificationsModel.Certification] = []
+    private var projects: [ProfileProjectsModel.Project] = []
+    private let initiativesTableTag = 1
+    private let certificationsTableTag = 2
     
     lazy var mainContainerView: UIView = {
        let view = UIView()
@@ -95,7 +98,7 @@ internal class ProfileSummaryViewController: UIViewController {
     
     lazy var initiativesFinishedContainerView: CollapsableView = {
        let view = CollapsableView(title: "Iniciativas concluidas",
-                                       contentView: UIView(),
+                                       contentView: initiativesFinishedTable,
                                        collapsable: true,
                                        canUserAdd: true,
                                        identifier: "initiativesFinished",
@@ -103,16 +106,52 @@ internal class ProfileSummaryViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private lazy var initiativesFinishedTable: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ProfileInitiativesViewCell.self, forCellReuseIdentifier: ProfileInitiativesViewCell.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = ProfileInitiativesViewCell.rowHeight
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.bounces = false
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.backgroundColor = .clear
+        tableView.tag = initiativesTableTag
+        
+        return tableView
+    }()
 
+    
+    
     lazy var certificationsContainerView: CollapsableView = {
        let view = CollapsableView(title: "Certificaciones",
-                                       contentView: UIView(),
+                                       contentView: certificationsTable,
                                        collapsable: true,
                                        canUserAdd: true,
                                        identifier: "certifications",
                                        delegate: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private lazy var certificationsTable: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ProfileCertificationsViewCell.self, forCellReuseIdentifier: ProfileCertificationsViewCell.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = ProfileCertificationsViewCell.rowHeight
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.bounces = false
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.backgroundColor = .clear
+        tableView.tag = certificationsTableTag
+
+        return tableView
     }()
     
     
@@ -235,6 +274,20 @@ internal class ProfileSummaryViewController: UIViewController {
         workedDaysLabel.setEditable(edit: edit)
         homeOfficeDaysLabel.setEditable(edit: edit)
     }
+    
+    func setProjects(data: [ProfileProjectsModel.Project]) {
+        DispatchQueue.main.async {
+            self.projects = data
+            self.initiativesFinishedTable.reloadData()
+        }
+    }
+    
+    func setCertifications(data: [ProfileCertificationsModel.Certification]) {
+        DispatchQueue.main.async {
+            self.certifications = data
+            self.certificationsTable.reloadData()
+        }
+    }
 }
 
 
@@ -252,3 +305,37 @@ extension ProfileSummaryViewController: EditableLabelTextFieldDelegate {
 }
 
 
+
+
+extension ProfileSummaryViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView.tag == initiativesTableTag {
+            return projects.count
+        } else if tableView.tag == certificationsTableTag {
+            return certifications.count
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView.tag == initiativesTableTag {
+            guard !projects.isEmpty, projects.count > indexPath.row else { return UITableViewCell() }
+            let cell = tableView.dequeueReusableCell(withIdentifier: ProfileInitiativesViewCell.identifier, for: indexPath) as? ProfileInitiativesViewCell
+            guard let nonNilCell = cell else { return UITableViewCell() }
+            nonNilCell.setCell(data: projects[indexPath.row])
+
+            return nonNilCell
+        } else if tableView.tag == certificationsTableTag {
+            guard !certifications.isEmpty, certifications.count > indexPath.row  else { return UITableViewCell() }
+            let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCertificationsViewCell.identifier, for: indexPath) as? ProfileCertificationsViewCell
+            guard let nonNilCell = cell else { return UITableViewCell() }
+            nonNilCell.setCell(data: certifications[indexPath.row])
+
+            return nonNilCell
+        }
+        
+        return UITableViewCell()
+    }
+    
+    
+}
