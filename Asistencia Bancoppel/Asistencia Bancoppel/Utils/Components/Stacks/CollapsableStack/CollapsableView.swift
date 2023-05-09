@@ -71,9 +71,12 @@ internal class CollapsableView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
         button.layer.cornerRadius = 4
+        button.setImage(UIImage(named: "plus_icon"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
-
+    
     private lazy var bottomContainerView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
