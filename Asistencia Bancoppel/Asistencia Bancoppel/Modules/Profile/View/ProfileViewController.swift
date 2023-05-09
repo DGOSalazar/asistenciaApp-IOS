@@ -12,6 +12,8 @@ import UIKit
 internal class ProfileViewController: UIViewController {
     private var pages: [UIViewController] = []
     private var currentIndex = 0
+    private var profileViewController: ProfileSummaryViewController?
+    private var editting: Bool = false
     
     lazy var mainContainerView: UIView = {
        let view = UIView()
@@ -90,7 +92,18 @@ internal class ProfileViewController: UIViewController {
         return label
     }()
     
-    
+    lazy var collaboratorNumberLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Número de colaborador: 1234567890"
+        label.textColor = GlobalConstants.BancoppelColors.grayBex10
+        label.font = .robotoRegular(ofSize: 14)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.textAlignment = .center
+        return label
+    }()
 
     
 
@@ -99,7 +112,7 @@ internal class ProfileViewController: UIViewController {
     lazy var editProfileButton: MainButton = {
         let button = MainButton(title: "Editar perfil", enable: true, style: .secondary)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(btNextPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(editProfileButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -148,6 +161,7 @@ internal class ProfileViewController: UIViewController {
         topContainerView.addSubview(profilePhotoImageView)
         topContainerView.addSubview(userNameLabel)
         topContainerView.addSubview(positionDataLabel)
+        topContainerView.addSubview(collaboratorNumberLabel)
         topContainerView.addSubview(editProfileButton)
         
         mainContainerView.addSubview(bottomContainerView)
@@ -186,7 +200,11 @@ internal class ProfileViewController: UIViewController {
             positionDataLabel.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: Dimensions.margin20),
             positionDataLabel.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -Dimensions.margin20),
             
-            editProfileButton.topAnchor.constraint(equalTo: positionDataLabel.bottomAnchor, constant: Dimensions.margin20),
+            collaboratorNumberLabel.topAnchor.constraint(equalTo: positionDataLabel.bottomAnchor, constant: Dimensions.margin10),
+            collaboratorNumberLabel.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: Dimensions.margin20),
+            collaboratorNumberLabel.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -Dimensions.margin20),
+            
+            editProfileButton.topAnchor.constraint(equalTo: collaboratorNumberLabel.bottomAnchor, constant: Dimensions.margin20),
             editProfileButton.heightAnchor.constraint(equalToConstant: 50),
             editProfileButton.widthAnchor.constraint(equalTo: topContainerView.widthAnchor, multiplier: 0.4),
             editProfileButton.centerXAnchor.constraint(equalTo: topContainerView.centerXAnchor),
@@ -212,7 +230,8 @@ internal class ProfileViewController: UIViewController {
     
     
     private func setPager() {
-        let page1Test = Page1Test()
+        let profileSummaryViewController = ProfileSummaryViewController()
+        self.profileViewController = profileSummaryViewController
         let notificationsViewController = ProfileNotificationsViewController()
         notificationsViewController.setData(data: [ProfileNotificationModel(image: nil,
                                                                             title: "Diana Fernández Huerta te ha registrado asistencia para el Viernes 3 de Febrero.",
@@ -234,8 +253,8 @@ internal class ProfileViewController: UIViewController {
                                                                             title: "Hoy es cumpleaños de Fernanda Tamayo Rodríguez ¡Felicítala!",
                                                                             date: Date(),
                                                                             type: .profile)])
-        pages.append(page1Test)
-        profileInfoPageController.addChild(page1Test)
+        pages.append(profileSummaryViewController)
+        profileInfoPageController.addChild(profileSummaryViewController)
         
         pages.append(notificationsViewController)
         profileInfoPageController.addChild(notificationsViewController)
@@ -245,8 +264,10 @@ internal class ProfileViewController: UIViewController {
      
 
     
-    @objc private func btNextPressed() {
-        
+    @objc private func editProfileButtonTapped() {
+        profileViewController?.setEditable(edit: !editting)
+        editProfileButton.setTitle(editting ? "Editar perfil" : "Listo", for: .normal)
+        editting = !editting
     }
 }
 
@@ -269,17 +290,5 @@ extension ProfileViewController: BottomLineCustomTabBarDelegate {
                                                     animated: true)
             self.currentIndex = tag
         }
-    }
-}
-
-class Page1Test: UIViewController {
-    override func viewDidLoad() {
-        view.backgroundColor = .systemGreen
-    }
-}
-
-class Page2Test: UIViewController {
-    override func viewDidLoad() {
-        view.backgroundColor = .systemBlue
     }
 }
