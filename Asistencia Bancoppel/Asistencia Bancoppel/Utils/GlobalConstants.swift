@@ -83,6 +83,9 @@ enum GlobalConstants {
             static let notifyCollection = "NotifyCollection"
             static let usersCollection = "UsersCollection"
             static let officeLocationCollection = "office-location"
+            static let userCertificationsCollection = "UserCertificationsCollection"
+            static let userProjectCollection = "UserProjectCollection"
+            static let usersCollectionMoreData = "UsersCollectionMoreData"
         }
     }
 }
