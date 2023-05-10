@@ -136,6 +136,11 @@ internal class EditableLabelTextField: UIView {
         ])
     }
     
+    
+    internal func setText(text: String) {
+        txtfContent.text = text
+    }
+    
     internal func getText() -> String {
         return txtfContent.text ?? ""
     }
