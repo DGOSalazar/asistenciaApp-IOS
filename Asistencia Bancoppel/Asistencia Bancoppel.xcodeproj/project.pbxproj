@@ -79,6 +79,9 @@
 		F9E49F342A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */; };
 		F9E49F362A0AA7F000ABE0D3 /* ProfileProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */; };
 		F9E49F382A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F372A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift */; };
+		F9E49F3D2A0AF50C00ABE0D3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F3C2A0AF50C00ABE0D3 /* ProfileViewModel.swift */; };
+		F9E49F3F2A0AFBE400ABE0D3 /* AccountMoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F3E2A0AFBE400ABE0D3 /* AccountMoreDataModel.swift */; };
+		F9E49F412A0B024000ABE0D3 /* AccountProfilePhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F402A0B024000ABE0D3 /* AccountProfilePhotoModel.swift */; };
 		F9E80B5E2A0959A40075FE74 /* EditableLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E80B5D2A0959A40075FE74 /* EditableLabelTextField.swift */; };
 		F9E80B622A0967010075FE74 /* CollapsableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E80B612A0967010075FE74 /* CollapsableView.swift */; };
 		FA3BC0D729EDD5000024FEE0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3BC0D629EDD5000024FEE0 /* LoginViewController.swift */; };
@@ -165,6 +168,9 @@
 		F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCertificationsViewCell.swift; sourceTree = "<group>"; };
 		F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProjectsModel.swift; sourceTree = "<group>"; };
 		F9E49F372A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCertificationsModel.swift; sourceTree = "<group>"; };
+		F9E49F3C2A0AF50C00ABE0D3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		F9E49F3E2A0AFBE400ABE0D3 /* AccountMoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMoreDataModel.swift; sourceTree = "<group>"; };
+		F9E49F402A0B024000ABE0D3 /* AccountProfilePhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfilePhotoModel.swift; sourceTree = "<group>"; };
 		F9E80B5D2A0959A40075FE74 /* EditableLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableLabelTextField.swift; sourceTree = "<group>"; };
 		F9E80B612A0967010075FE74 /* CollapsableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsableView.swift; sourceTree = "<group>"; };
 		FA3BC0D629EDD5000024FEE0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -508,18 +514,11 @@
 		52A172922A02ED8D00091638 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F9E49F3B2A0AF50000ABE0D3 /* ViewModel */,
 				52A172952A02EDA400091638 /* View */,
 				52A172942A02EDA000091638 /* Model */,
-				52A172932A02ED9900091638 /* ViewModel */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		52A172932A02ED9900091638 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		52A172942A02EDA000091638 /* Model */ = {
@@ -529,6 +528,8 @@
 				52A7A8B52A045FED009F854C /* ProfileNotificationTypeEnum.swift */,
 				F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */,
 				F9E49F372A0AAB6C00ABE0D3 /* ProfileCertificationsModel.swift */,
+				F9E49F3E2A0AFBE400ABE0D3 /* AccountMoreDataModel.swift */,
+				F9E49F402A0B024000ABE0D3 /* AccountProfilePhotoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -687,6 +688,14 @@
 				9BBA737F74520312CC1DF34F /* Pods_Asistencia_Bancoppel.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9E49F3B2A0AF50000ABE0D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F9E49F3C2A0AF50C00ABE0D3 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F9E80B5F2A0966720075FE74 /* Stacks */ = {
@@ -895,6 +904,7 @@
 				52FE749729EE0D9000823646 /* FirebaseManager.swift in Sources */,
 				522AE74A29F072AA0091AD6C /* CustomCalendarDayModel.swift in Sources */,
 				52E32B9829F19DE0006CAEF9 /* UIView+Extension.swift in Sources */,
+				F9E49F3D2A0AF50C00ABE0D3 /* ProfileViewModel.swift in Sources */,
 				628A885A299AD299009F30E6 /* AppDelegate.swift in Sources */,
 				52FA7AD929F2FFA200225D10 /* MainPagerViewController.swift in Sources */,
 				524C238A2A017358009D881A /* UserPositionEnum.swift in Sources */,
@@ -902,7 +912,9 @@
 				52FA7AD029F2EA0600225D10 /* CustomTabBarView.swift in Sources */,
 				52A7A8AF2A045A69009F854C /* ProfileSummaryViewController.swift in Sources */,
 				520E855229F74D9F00EF10FF /* AccountCreationModel.swift in Sources */,
+				F9E49F412A0B024000ABE0D3 /* AccountProfilePhotoModel.swift in Sources */,
 				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
+				F9E49F3F2A0AFBE400ABE0D3 /* AccountMoreDataModel.swift in Sources */,
 				524C23882A017329009D881A /* UserAttendanceDataModel.swift in Sources */,
 				F9E49F342A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
