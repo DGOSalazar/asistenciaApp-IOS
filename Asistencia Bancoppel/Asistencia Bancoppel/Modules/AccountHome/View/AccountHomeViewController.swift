@@ -22,6 +22,8 @@ class AccountHomeViewController: UIViewController {
     private var usersAttendingToday: [UserAttendanceDataModel] = []
     private var usersTableHeigthConstraint = NSLayoutConstraint()
     
+    private var  isConfirm: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
@@ -37,6 +39,12 @@ class AccountHomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
+    
+    private let buttonFloatConfirm: ConfirmAsistenciaButton = {
+        let buttonConfirm = ConfirmAsistenciaButton()
+        buttonConfirm.translatesAutoresizingMaskIntoConstraints = false
+        return buttonConfirm
+    }()
  
     
     private let vwHeader : UIView = {
@@ -197,7 +205,7 @@ class AccountHomeViewController: UIViewController {
     func initComponents(){
         addComponents()
         setAutoLayout()
-        
+        buttonFloatConfirm.isHidden = isConfirm
         bind()
     }
     
@@ -211,6 +219,7 @@ class AccountHomeViewController: UIViewController {
         vwHeader.addSubview(btnMenu)
         view.addSubview(scvContainer)
         scvContainer.addSubview(vwContainer)
+        scvContainer.addSubview(buttonFloatConfirm)
         vwContainer.addSubview(customCalendarView)
         vwContainer.addSubview(stvDataOfTheDay)
         stvDataOfTheDay.addArrangedSubview(lbPersonsInTheOffice)
@@ -254,6 +263,9 @@ class AccountHomeViewController: UIViewController {
             scvContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scvContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scvContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            buttonFloatConfirm.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            buttonFloatConfirm.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
             
             vwContainer.topAnchor.constraint(equalTo: scvContainer.topAnchor),
             vwContainer.trailingAnchor.constraint(equalTo: scvContainer.trailingAnchor),
