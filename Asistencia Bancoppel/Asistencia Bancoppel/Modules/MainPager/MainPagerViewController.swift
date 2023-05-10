@@ -13,6 +13,7 @@ internal class MainPagerViewController: UIViewController {
     private var pages: [UIViewController] = []
     internal var email: String = ""
     private var currentIndex = 0
+    private var profileViewController: ProfileViewController?
     
     lazy var vwContainer: UIView = {
        let view = UIView()
@@ -73,16 +74,20 @@ internal class MainPagerViewController: UIViewController {
     private func setPager() {
         let accountViewController = AccountHomeViewController()
         accountViewController.email = email
+        accountViewController.delegate = self
         let accountTabButton = CustomTabButtonModel(title: "Inicio",
                                                     selectedIcon: UIImage(named: "home_fill"),
                                                     unselectedIcon: UIImage(named: "home"),
                                                     shadowStyle: .shadowToTheRight)
+        
         let teamViewController = TeamViewController()
         let teamTabButton = CustomTabButtonModel(title: "Equipo",
                                                     selectedIcon: UIImage(named: "crew_fill"),
                                                     unselectedIcon: UIImage(named: "crew"),
                                                  shadowStyle: .centerShadow)
+        
         let profileViewController = ProfileViewController()
+        self.profileViewController = profileViewController
         let profileTabButton = CustomTabButtonModel(title: "Perfil",
                                                     selectedIcon: UIImage(named: "profile_fill"),
                                                     unselectedIcon: UIImage(named: "profile"),
@@ -122,5 +127,12 @@ extension MainPagerViewController: CustomTabBarViewDelegate {
 class TeamViewController: UIViewController {
     override func viewDidLoad() {
         view.backgroundColor = .systemOrange
+    }
+}
+
+
+extension MainPagerViewController: AccountHomeViewDelegate {
+    func notifyCurrentUserData(data: UserAttendanceDataModel) {
+        self.profileViewController?.setData(data: data)
     }
 }

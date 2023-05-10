@@ -8,12 +8,21 @@
 import Foundation
 import UIKit
 
+protocol ProfileSummaryViewDelegate: AnyObject {
+    func notifyNeedUpdateAccountMoreData(data: AccountMoreDataModel)
+}
+
 
 internal class ProfileSummaryViewController: UIViewController {
     private var certifications: [ProfileCertificationsModel.Certification] = []
     private var projects: [ProfileProjectsModel.Project] = []
     private let initiativesTableTag = 1
     private let certificationsTableTag = 2
+    internal weak var delegate: ProfileSummaryViewDelegate?
+    private var newPhoto: UIImage?
+    private var valuesChanged: Bool = false
+    private var accountSummaryData: AccountMoreDataModel?
+    
     
     lazy var mainContainerView: UIView = {
        let view = UIView()
@@ -71,7 +80,7 @@ internal class ProfileSummaryViewController: UIViewController {
        let label = EditableLabelTextField(title: "Manager:",
                                           placeholder: "",
                                           delegate: self,
-                                          identifier: "manager")
+                                          identifier: "leader")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -80,7 +89,7 @@ internal class ProfileSummaryViewController: UIViewController {
        let label = EditableLabelTextField(title: "Iniciativa:",
                                           placeholder: "",
                                           delegate: self,
-                                          identifier: "manager")
+                                          identifier: "team")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -89,7 +98,7 @@ internal class ProfileSummaryViewController: UIViewController {
        let label = EditableLabelTextField(title: "Scrum Master:",
                                           placeholder: "",
                                           delegate: self,
-                                          identifier: "manager")
+                                          identifier: "scrumMaster")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -258,11 +267,20 @@ internal class ProfileSummaryViewController: UIViewController {
             contentStack.topAnchor.constraint(equalTo: containerScroll.topAnchor),
             contentStack.leadingAnchor.constraint(equalTo: containerScroll.leadingAnchor),
             contentStack.trailingAnchor.constraint(equalTo: containerScroll.trailingAnchor),
-            contentStack.bottomAnchor.constraint(equalTo: containerScroll.bottomAnchor),
+            contentStack.bottomAnchor.constraint(equalTo: containerScroll.bottomAnchor, constant: -Dimensions.margin20),
             contentStack.widthAnchor.constraint(equalTo: containerScroll.widthAnchor)
         ])
     }
     
+    internal func setSummaryData(data: AccountMoreDataModel) {
+        accountSummaryData = data
+        
+        enrollmentDateLabel.setText(text: accountSummaryData?.enrollDate ?? "")
+        leaderLabel.setText(text: accountSummaryData?.managerDirect ?? "")
+        managerLabel.setText(text: accountSummaryData?.managerMain ?? "")
+        scrumMasterLabel.setText(text: accountSummaryData?.scrumMaster ?? "")
+        teamLabel.setText(text: accountSummaryData?.project ?? "")
+    }
     
     internal func setEditable(edit: Bool) {
         managerLabel.setEditable(edit: edit)
@@ -273,6 +291,17 @@ internal class ProfileSummaryViewController: UIViewController {
         enrollmentDateLabel.setEditable(edit: edit)
         workedDaysLabel.setEditable(edit: edit)
         homeOfficeDaysLabel.setEditable(edit: edit)
+        
+        if !edit {
+            self.checkIfNeedUpdateData()
+        }
+    }
+    
+    private func checkIfNeedUpdateData() {
+        if let nonNilData = accountSummaryData, valuesChanged {
+            valuesChanged = false
+            delegate?.notifyNeedUpdateAccountMoreData(data: nonNilData)
+        }
     }
     
     func setProjects(data: [ProfileProjectsModel.Project]) {
@@ -288,6 +317,16 @@ internal class ProfileSummaryViewController: UIViewController {
             self.certificationsTable.reloadData()
         }
     }
+    
+    private func updateValues() {
+        valuesChanged = true
+        
+        accountSummaryData?.enrollDate = enrollmentDateLabel.getText()
+        accountSummaryData?.managerDirect = leaderLabel.getText()
+        accountSummaryData?.managerMain = managerLabel.getText()
+        accountSummaryData?.scrumMaster = scrumMasterLabel.getText()
+        accountSummaryData?.project = teamLabel.getText()
+    }
 }
 
 
@@ -300,7 +339,28 @@ extension ProfileSummaryViewController: CollapsableViewDelegate {
 
 extension ProfileSummaryViewController: EditableLabelTextFieldDelegate {
     func editableLabelTextFieldDidChange(identifier: String, text: String) {
-        print("\(identifier): \(text)")
+        updateValues()
+    }
+    
+    func editableLabelTextFieldDone(identifier: String) {
+        print(identifier)
+        if identifier == managerLabel.identifier {
+            _ = leaderLabel.becomeFirstResponder()
+        } else if identifier == leaderLabel.identifier {
+            _ = teamLabel.becomeFirstResponder()
+        } else if identifier == teamLabel.identifier {
+            _ = scrumMasterLabel.becomeFirstResponder()
+        } else if identifier == scrumMasterLabel.identifier {
+            _ = scrumMasterLabel.resignFirstResponder()
+        }
+        
+        if identifier == enrollmentDateLabel.identifier {
+            _ = workedDaysLabel.becomeFirstResponder()
+        } else if identifier == workedDaysLabel.identifier {
+            _ = homeOfficeDaysLabel.becomeFirstResponder()
+        } else if identifier == homeOfficeDaysLabel.identifier {
+            _ = homeOfficeDaysLabel.resignFirstResponder()
+        }
     }
 }
 

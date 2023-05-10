@@ -10,10 +10,14 @@ import UIKit
 
 
 internal class ProfileViewController: UIViewController {
+    private var viewModel = ProfileViewModel()
     private var pages: [UIViewController] = []
     private var currentIndex = 0
     private var profileViewController: ProfileSummaryViewController?
     private var editting: Bool = false
+    private var accountData: UserAttendanceDataModel?
+    private var newProfilePhoto: UIImage?
+    
     
     lazy var mainContainerView: UIView = {
        let view = UIView()
@@ -97,7 +101,7 @@ internal class ProfileViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Número de colaborador: 1234567890"
         label.textColor = GlobalConstants.BancoppelColors.grayBex10
-        label.font = .robotoRegular(ofSize: 14)
+        label.font = .robotoBold(ofSize: 14)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
@@ -145,11 +149,19 @@ internal class ProfileViewController: UIViewController {
         setAutolayout()
         
         setPager()
+        
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        CustomLoader.show()
+        viewModel.getAccountMoreData(email: accountData?.email ?? "")
     }
     
     
@@ -197,8 +209,9 @@ internal class ProfileViewController: UIViewController {
             userNameLabel.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -Dimensions.margin20),
             
             positionDataLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: Dimensions.margin10),
-            positionDataLabel.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: Dimensions.margin20),
-            positionDataLabel.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -Dimensions.margin20),
+            positionDataLabel.leadingAnchor.constraint(greaterThanOrEqualTo: topContainerView.leadingAnchor, constant: Dimensions.margin20),
+            positionDataLabel.trailingAnchor.constraint(lessThanOrEqualTo: topContainerView.trailingAnchor, constant: -Dimensions.margin20),
+            positionDataLabel.centerXAnchor.constraint(equalTo: topContainerView.centerXAnchor),
             
             collaboratorNumberLabel.topAnchor.constraint(equalTo: positionDataLabel.bottomAnchor, constant: Dimensions.margin10),
             collaboratorNumberLabel.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: Dimensions.margin20),
@@ -229,9 +242,23 @@ internal class ProfileViewController: UIViewController {
     }
     
     
+    internal func setData(data: UserAttendanceDataModel) {
+        DispatchQueue.main.async {
+            self.accountData = data
+            self.profilePhotoImageView.setPreviewImage(image: data.profilePhoto ?? UIImage())
+            self.userNameLabel.text = data.fullname
+            self.positionDataLabel.text = "\(data.position.rawValue) | \(data.team ?? "")"
+            self.positionDataLabel.backgroundColor = data.position.getColor()
+            self.collaboratorNumberLabel.text = "Número de colaborador: \(data.employee ?? 0)"
+        }
+    }
+    
     private func setPager() {
         let profileSummaryViewController = ProfileSummaryViewController()
         self.profileViewController = profileSummaryViewController
+        profileViewController?.delegate = self
+        
+        
         profileViewController?.setProjects(data: [ProfileProjectsModel.Project(projectName: "Sueldo Ya", releaseDate: "9"),
                                                   ProfileProjectsModel.Project(projectName: "Sueldo Ya 2", releaseDate: "10"),
                                                   ProfileProjectsModel.Project(projectName: "Sueldo Ya 3", releaseDate: "11"),
@@ -308,12 +335,42 @@ internal class ProfileViewController: UIViewController {
         editProfileButton.setTitle(editting ? "Editar perfil" : "Listo", for: .normal)
         editting = !editting
     }
+    
+    private func bind() {
+        viewModel.accountGetMoreDataDataObservable.observe = { [weak self] response in
+            CustomLoader.hide()
+            guard let nonNilResponse = response else {
+                //self.showAlert(message: "Invalid response", isError: true)
+                return
+            }
+            
+            let (accountMoreData, _) = nonNilResponse
+            
+            guard let nonNilData = accountMoreData else {
+                self?.profileViewController?.setSummaryData(data: AccountMoreDataModel(email: self?.accountData?.email ?? ""))
+                return
+            }
+            
+            self?.profileViewController?.setSummaryData(data: nonNilData)
+        }
+        
+        
+        viewModel.accountSaveMoreDataDataObservable.observe = { _ in
+            CustomLoader.hide()
+        }
+        
+        
+        viewModel.accountUpdateProfilePhoto.observe = { _ in
+            CustomLoader.hide()
+        }
+    }
 }
 
 
 extension ProfileViewController: UploadPhotoButtonDelegate {
     func notifyPhotoSelected(photo: UIImage) {
-        
+        CustomLoader.show()
+        viewModel.uploadPhoto(email: accountData?.email ?? "", photo: photo)
     }
 }
 
@@ -331,3 +388,13 @@ extension ProfileViewController: BottomLineCustomTabBarDelegate {
         }
     }
 }
+
+
+extension ProfileViewController: ProfileSummaryViewDelegate {
+    func notifyNeedUpdateAccountMoreData(data: AccountMoreDataModel) {
+        CustomLoader.show()
+        viewModel.saveAccountMoreData(data: data)
+    }
+}
+
+
