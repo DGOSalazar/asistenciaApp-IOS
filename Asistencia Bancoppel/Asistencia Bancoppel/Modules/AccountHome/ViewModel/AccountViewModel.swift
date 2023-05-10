@@ -45,7 +45,9 @@ class AccountViewModel {
                                                email: user.email ?? "",
                                                position: UserPositionEnum.getPosition(str: user.position ?? ""),
                                                profilePhotoURL: user.profilePhoto ?? "",
-                                               profilePhoto: nil)
+                                               profilePhoto: nil,
+                                               employee: user.employee ?? 0,
+                                               team: user.team ?? "")
             }
             
             self?.usersObservable.value = (auxUsers, nil)
