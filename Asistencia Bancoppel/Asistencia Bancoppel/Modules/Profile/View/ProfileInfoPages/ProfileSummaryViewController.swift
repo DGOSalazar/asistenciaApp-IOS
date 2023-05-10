@@ -33,6 +33,7 @@ internal class ProfileSummaryViewController: UIViewController {
     lazy var containerScroll: UIScrollView = {
        let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.showsVerticalScrollIndicator = false
         return view
     }()
     
