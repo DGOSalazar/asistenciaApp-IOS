@@ -177,6 +177,48 @@ extension FirebaseManager {
     }
 }
 
+extension FirebaseManager {
+    internal func updateData<T: Codable>(collection: String,
+                                         document: String,
+                                         data: T,
+                                         success: @escaping () -> (),
+                                         failure: @escaping (_ error: String) -> ()) {
+        guard let nonNilData = self.encode(data: data) else {
+            failure("Parsing error")
+            return
+        }
+        
+        self.updateData(collection: collection, document: document, data: nonNilData, success: success, failure: failure)
+    }
+    
+    internal func updateData(collection: String,
+                             document: String,
+                             data: [String: Any],
+                             success: @escaping () -> (),
+                             failure: @escaping (_ error: String) -> ()) {
+        self.configureFirestore()
+        
+        guard let nonNilFirestore = self.firestore else {
+            failure("Invalid firestore instance")
+            return
+        }
+        
+        guard  !collection.isEmpty, !document.isEmpty else {
+            failure("Collection or document empty")
+            return
+        }
+        
+        nonNilFirestore.collection(collection).document(document).updateData(data) { error in
+            guard error == nil else {
+                failure(error?.localizedDescription ?? "Error")
+                return
+            }
+            
+            success()
+        }
+    }
+}
+
 
 extension FirebaseManager {
     internal func signIn(email: String,
