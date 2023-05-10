@@ -75,6 +75,10 @@
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
 		628A8866299AD2A5009F30E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */; };
 		79BB907CC54C3785D90AEA89 /* Pods_Asistencia_Bancoppel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBA737F74520312CC1DF34F /* Pods_Asistencia_Bancoppel.framework */; };
+		F94E351B2A0C0CCA0004C910 /* ConfirmationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E351A2A0C0CCA0004C910 /* ConfirmationAlertView.swift */; };
+		F94E351D2A0C0CD30004C910 /* InformationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E351C2A0C0CD30004C910 /* InformationAlertView.swift */; };
+		F94E351F2A0C2D760004C910 /* InformationAlertStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E351E2A0C2D760004C910 /* InformationAlertStyleEnum.swift */; };
+		F94E35212A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E35202A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift */; };
 		F9E49F322A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */; };
 		F9E49F342A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */; };
 		F9E49F362A0AA7F000ABE0D3 /* ProfileProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */; };
@@ -166,6 +170,10 @@
 		84D57E6D2A0404700032E04C /* ConfirmAsistenciaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAsistenciaButton.swift; sourceTree = "<group>"; };
 		9BBA737F74520312CC1DF34F /* Pods_Asistencia_Bancoppel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Asistencia_Bancoppel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD35F593DA0C456EB25DDD6 /* Pods-Asistencia Bancoppel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Asistencia Bancoppel.release.xcconfig"; path = "Target Support Files/Pods-Asistencia Bancoppel/Pods-Asistencia Bancoppel.release.xcconfig"; sourceTree = "<group>"; };
+		F94E351A2A0C0CCA0004C910 /* ConfirmationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationAlertView.swift; sourceTree = "<group>"; };
+		F94E351C2A0C0CD30004C910 /* InformationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlertView.swift; sourceTree = "<group>"; };
+		F94E351E2A0C2D760004C910 /* InformationAlertStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlertStyleEnum.swift; sourceTree = "<group>"; };
+		F94E35202A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationAlertStyleEnum.swift; sourceTree = "<group>"; };
 		F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInitiativesViewCell.swift; sourceTree = "<group>"; };
 		F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCertificationsViewCell.swift; sourceTree = "<group>"; };
 		F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProjectsModel.swift; sourceTree = "<group>"; };
@@ -462,6 +470,7 @@
 		5235453C29E8C29C002BECAB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F94E35142A0C0BA50004C910 /* Alerts */,
 				F9E80B5F2A0966720075FE74 /* Stacks */,
 				52FA7ACD29F2E93800225D10 /* TabBars */,
 				520E855329F7593E00EF10FF /* PageIndicator */,
@@ -701,6 +710,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F94E35142A0C0BA50004C910 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				F94E35162A0C0C210004C910 /* ConfirmationAlert */,
+				F94E35152A0C0C190004C910 /* InformationAlert */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		F94E35152A0C0C190004C910 /* InformationAlert */ = {
+			isa = PBXGroup;
+			children = (
+				F94E351C2A0C0CD30004C910 /* InformationAlertView.swift */,
+				F94E351E2A0C2D760004C910 /* InformationAlertStyleEnum.swift */,
+			);
+			path = InformationAlert;
+			sourceTree = "<group>";
+		};
+		F94E35162A0C0C210004C910 /* ConfirmationAlert */ = {
+			isa = PBXGroup;
+			children = (
+				F94E351A2A0C0CCA0004C910 /* ConfirmationAlertView.swift */,
+				F94E35202A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift */,
+			);
+			path = ConfirmationAlert;
+			sourceTree = "<group>";
+		};
 		F9E49F3B2A0AF50000ABE0D3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,6 +927,7 @@
 				52A172992A031A1300091638 /* MainButtonStyleEnum.swift in Sources */,
 				527DED3029EA15960083567F /* GenericPickerTextField.swift in Sources */,
 				52E32B9A29F1B90C006CAEF9 /* TextFieldInputValidationEnum.swift in Sources */,
+				F94E351B2A0C0CCA0004C910 /* ConfirmationAlertView.swift in Sources */,
 				628A885E299AD299009F30E6 /* SplashViewController.swift in Sources */,
 				52FA7AD729F2F17300225D10 /* CustomTabButtonShadowStyleEnum.swift in Sources */,
 				526BEC4E29E9A39800554701 /* BottomTitleTextField.swift in Sources */,
@@ -901,6 +938,7 @@
 				5285705229EB459300213F47 /* UploadPhotoButton.swift in Sources */,
 				FA3BC0DA29EDD54E0024FEE0 /* LoginBackgroundView.swift in Sources */,
 				52A1729C2A03240900091638 /* BottomLineCustomTabBar.swift in Sources */,
+				F94E35212A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift in Sources */,
 				3F439A3729A946FF00F9CA1D /* AccountCell.swift in Sources */,
 				FA56BC6729F0DF05004CE981 /* LoginViewModel.swift in Sources */,
 				52EEBEB429F9B18500A52EB9 /* TeamModel.swift in Sources */,
@@ -950,8 +988,10 @@
 				F9E80B5E2A0959A40075FE74 /* EditableLabelTextField.swift in Sources */,
 				522AE74829F0729B0091AD6C /* CustomCalendarMonthModel.swift in Sources */,
 				FA56BC6B29F10039004CE981 /* LoginModel.swift in Sources */,
+				F94E351F2A0C2D760004C910 /* InformationAlertStyleEnum.swift in Sources */,
 				522AE74C29F072EC0091AD6C /* CustomCalendarCellStyleEnum.swift in Sources */,
 				F9E49F362A0AA7F000ABE0D3 /* ProfileProjectsModel.swift in Sources */,
+				F94E351D2A0C0CD30004C910 /* InformationAlertView.swift in Sources */,
 				522AE74529F0716D0091AD6C /* CustomCalendarViewCell.swift in Sources */,
 				522AE75229F090720091AD6C /* CustomObservable.swift in Sources */,
 			);
