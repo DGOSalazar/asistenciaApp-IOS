@@ -30,6 +30,11 @@ class AccountHomeViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     private let buttonFloatConfirm: ConfirmAsistenciaButton = {
         let buttonConfirm = ConfirmAsistenciaButton()
         buttonConfirm.translatesAutoresizingMaskIntoConstraints = false
@@ -452,5 +457,7 @@ extension AccountHomeViewController: UITableViewDataSource, UITableViewDelegate 
 extension AccountHomeViewController: CustomCalendarViewDelegate {
     func notifyCellTapped(cellData: CustomCalendarDayModel?) {
         print(cellData)
+        let detailCalendarViewController = DetailCalendarViewController()
+        self.navigationController?.pushViewController(detailCalendarViewController, animated: true)
     }
 }
