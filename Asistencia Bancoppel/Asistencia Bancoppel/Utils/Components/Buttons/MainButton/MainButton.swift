@@ -14,6 +14,12 @@ class MainButton: UIButton {
         }
     }
     
+    internal var overrideWithFont: UIFont? = nil {
+        didSet {
+            self.titleLabel?.font = self.overrideWithFont ?? self.style.getFont()
+        }
+    }
+    
     internal init(title: String,
                   enable: Bool,
                   style: MainButtonStyleEnum = .primary) {
@@ -50,7 +56,7 @@ class MainButton: UIButton {
                                for: .normal)
             self.layer.borderWidth = self.style.getBorderSize()
             self.layer.borderColor = enable ? self.style.getEnabledBorderColor() : self.style.getDisabledBorderColor()
-            self.titleLabel?.font = self.style.getFont()
+            self.titleLabel?.font = self.overrideWithFont ?? self.style.getFont()
         }
     }
 }
