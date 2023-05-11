@@ -88,4 +88,30 @@ enum GlobalConstants {
             static let usersCollectionMoreData = "UsersCollectionMoreData"
         }
     }
+    
+    enum Firestore {
+        enum FileType {
+            case profilePhoto
+            case pdf
+            
+            func getMimeType() -> String {
+                switch self {
+                case .profilePhoto:
+                    return "image/jpg"
+                case .pdf:
+                    return "application/pdf"
+                }
+            }
+            
+            func getPath() -> String {
+                switch self {
+                case .profilePhoto:
+                    return "profilePhotos/usersPhotos/"
+                case .pdf:
+                    return "pdfDocs/userPdfCertificate/"
+                }
+            }
+            
+        }
+    }
 }
