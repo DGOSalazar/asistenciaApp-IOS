@@ -11,8 +11,52 @@ class DetailCalendarViewController: UIViewController {
     
     private let stackDays: UIStackView = {
         let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 5
+        stack.distribution = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
         
         return stack
+    }()
+    
+    private let dayOne: CalendarDay = {
+       let day = CalendarDay()
+       day.translatesAutoresizingMaskIntoConstraints = false
+       day.labelNumberDay.text = "8"
+        day.labelTitleDay.text = "Lunes"
+        return day
+    }()
+    
+    private let dayTwo: CalendarDay = {
+       let day = CalendarDay()
+       day.translatesAutoresizingMaskIntoConstraints = false
+        day.labelNumberDay.text = "9"
+        day.labelTitleDay.text = "Martes"
+        return day
+    }()
+    
+    private let dayThree: CalendarDay = {
+       let day = CalendarDay()
+       day.translatesAutoresizingMaskIntoConstraints = false
+        day.labelNumberDay.text = "10"
+        day.labelTitleDay.text = "Miercoles"
+        return day
+    }()
+    
+    private let dayFour: CalendarDay = {
+       let day = CalendarDay()
+       day.translatesAutoresizingMaskIntoConstraints = false
+        day.labelNumberDay.text = "11"
+        day.labelTitleDay.text = "Jueves"
+        return day
+    }()
+    
+    private let dayFive: CalendarDay = {
+       let day = CalendarDay()
+       day.translatesAutoresizingMaskIntoConstraints = false
+        day.labelNumberDay.text = "12"
+        day.labelTitleDay.text = "Viernes"
+        return day
     }()
     
     
@@ -49,15 +93,42 @@ class DetailCalendarViewController: UIViewController {
     }
     
     private func addComponents() {
+        view?.addSubview(stackDays)
         [labelQuestionName, labelQuestionDay].forEach{view.addSubview($0)}
+        stackDays.addArrangedSubview(dayOne)
+        stackDays.addArrangedSubview(dayTwo)
+        stackDays.addArrangedSubview(dayThree)
+        stackDays.addArrangedSubview(dayFour)
+        stackDays.addArrangedSubview(dayFive)
+       
     }
     
     private func autoLayout() {
-        NSLayoutConstraint.activate([ labelQuestionName.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+        NSLayoutConstraint.activate([dayOne.heightAnchor.constraint(equalToConstant: dayOne.viewDayHeight),
+                                     dayTwo.heightAnchor.constraint(equalToConstant: dayTwo.viewDayHeight),
+                                     dayThree.heightAnchor.constraint(equalToConstant: dayThree.viewDayHeight),
+                                     dayFive.heightAnchor.constraint(equalToConstant: dayFour.viewDayHeight),
+                                     dayFour.heightAnchor.constraint(equalToConstant: dayFour.viewDayHeight),
+                                     
+                                     dayOne.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+                                     dayTwo.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+                                     dayThree.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+                                     dayFive.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+                                     dayFour.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+                                     
+                                     
+            
+                                     labelQuestionName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
                                       labelQuestionName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                                       labelQuestionDay.topAnchor.constraint(equalTo: labelQuestionName.bottomAnchor, constant: 2),
-                                      labelQuestionDay.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)])
-       
+                                      labelQuestionDay.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                                     
+                                     stackDays.topAnchor.constraint(equalTo: labelQuestionDay.bottomAnchor, constant: 20),
+                                     stackDays.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                                     stackDays.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                                     //stackDays.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+                                      
+                                      ])
     }
     
     private func configHead() {
