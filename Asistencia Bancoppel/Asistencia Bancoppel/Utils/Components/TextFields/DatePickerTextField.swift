@@ -60,8 +60,6 @@ internal class DatePickerTextField: UIView {
             datePicker.preferredDatePickerStyle = .wheels
         }
         datePicker.locale = .init(identifier: "es_MX")
-        let maxDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())
-        datePicker.maximumDate = maxDate
         datePicker.addTarget(self, action: #selector(datePickerDidChange), for: .valueChanged)
 
         return datePicker
@@ -96,11 +94,19 @@ internal class DatePickerTextField: UIView {
     }()
     
     
-    internal init(title: String, placeholder: String, dateFormat: String = "dd/MM/yyyy", delegate: DatePickerTextFieldDelegate?, identifier: String = "") {
+    internal init(title: String,
+                  placeholder: String,
+                  dateFormat: String = "dd/MM/yyyy",
+                  delegate: DatePickerTextFieldDelegate?,
+                  identifier: String = "",
+                  minimumDate: Date? = nil,
+                  maximumDate: Date? = Calendar.current.date(byAdding: .year, value: -18, to: Date())) {
         super.init(frame: .zero)
         
         self.identifier = identifier
         self.dateFormat = dateFormat
+        self.dtpDatePicker.minimumDate = minimumDate
+        self.dtpDatePicker.maximumDate = maximumDate
         lbTitle.text = title
         txtfContent.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                                attributes: [NSAttributedString.Key.foregroundColor: GlobalConstants.BancoppelColors.grayBex5,
@@ -125,7 +131,7 @@ internal class DatePickerTextField: UIView {
     private func setAutolayout() {
         NSLayoutConstraint.activate([
             txtfContent.topAnchor.constraint(equalTo: self.topAnchor),
-            txtfContent.leadingAnchor.constraint(equalTo: lbTitle.trailingAnchor, constant: 5),
+            txtfContent.leadingAnchor.constraint(equalTo: lbTitle.trailingAnchor, constant: ((lbTitle.text?.isEmpty ?? true) ? 0 : 5)),
             txtfContent.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             txtfContent.heightAnchor.constraint(equalToConstant: 30),
             
