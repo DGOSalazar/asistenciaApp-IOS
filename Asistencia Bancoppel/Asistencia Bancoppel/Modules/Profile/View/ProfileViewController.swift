@@ -259,45 +259,6 @@ internal class ProfileViewController: UIViewController {
         profileViewController?.delegate = self
         
         
-        profileViewController?.setProjects(data: [ProfileProjectsModel.Project(projectName: "Sueldo Ya", releaseDate: "9"),
-                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 2", releaseDate: "10"),
-                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 3", releaseDate: "11"),
-                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 4", releaseDate: "12"),
-                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 5", releaseDate: "13"),
-                                                  ProfileProjectsModel.Project(projectName: "Sueldo Ya 6", releaseDate: "14")])
-        
-        profileViewController?.setCertifications(data: [ProfileCertificationsModel.Certification(certificateName: "0 a Becario iOS",
-                                                                                                 certificateNum: "1234567890",
-                                                                                                 emissionDate: Date().getFormattedDate(),
-                                                                                                 platformEmitted: "Udemy",
-                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
-                                                        ProfileCertificationsModel.Certification(certificateName: "0 a Jr iOS",
-                                                                                                 certificateNum: "1234567890",
-                                                                                                 emissionDate: Date().getFormattedDate(),
-                                                                                                 platformEmitted: "Udemy",
-                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
-                                                        ProfileCertificationsModel.Certification(certificateName: "0 a Middle iOS",
-                                                                                                 certificateNum: "1234567890",
-                                                                                                 emissionDate: Date().getFormattedDate(),
-                                                                                                 platformEmitted: "Udemy",
-                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
-                                                        ProfileCertificationsModel.Certification(certificateName: "0 a Senior iOS",
-                                                                                                 certificateNum: "1234567890",
-                                                                                                 emissionDate: Date().getFormattedDate(),
-                                                                                                 platformEmitted: "Udemy",
-                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
-                                                        ProfileCertificationsModel.Certification(certificateName: "0 a SSY iOS",
-                                                                                                 certificateNum: "1234567890",
-                                                                                                 emissionDate: Date().getFormattedDate(),
-                                                                                                 platformEmitted: "Udemy",
-                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf"),
-                                                        ProfileCertificationsModel.Certification(certificateName: "0 a SSY 2 iOS",
-                                                                                                 certificateNum: "1234567890",
-                                                                                                 emissionDate: Date().getFormattedDate(),
-                                                                                                 platformEmitted: "Udemy",
-                                                                                                 resourcePdf: "https://www.orimi.com/pdf-test.pdf")])
-        
-        
         let notificationsViewController = ProfileNotificationsViewController()
         notificationsViewController.setData(data: [ProfileNotificationModel(image: nil,
                                                                             title: "Diana Fernández Huerta te ha registrado asistencia para el Viernes 3 de Febrero.",
@@ -338,19 +299,21 @@ internal class ProfileViewController: UIViewController {
     
     private func bind() {
         viewModel.accountGetMoreDataDataObservable.observe = { [weak self] response in
-            CustomLoader.hide()
             guard let nonNilResponse = response else {
-                //self.showAlert(message: "Invalid response", isError: true)
+                CustomLoader.hide()
+                self?.profileViewController?.setSummaryData(data: AccountMoreDataModel(email: self?.accountData?.email ?? ""))
                 return
             }
             
             let (accountMoreData, _) = nonNilResponse
             
             guard let nonNilData = accountMoreData else {
+                CustomLoader.hide()
                 self?.profileViewController?.setSummaryData(data: AccountMoreDataModel(email: self?.accountData?.email ?? ""))
                 return
             }
-            
+            self?.viewModel.getCertifications(email: self?.accountData?.email ?? "")
+            self?.viewModel.getProjects(email: self?.accountData?.email ?? "")
             self?.profileViewController?.setSummaryData(data: nonNilData)
         }
         
@@ -362,6 +325,72 @@ internal class ProfileViewController: UIViewController {
         
         viewModel.accountUpdateProfilePhoto.observe = { _ in
             CustomLoader.hide()
+        }
+        
+        
+        viewModel.getProjectsObservable.observe = { [weak self] response in
+            CustomLoader.hide()
+            
+            guard let nonNilResponse = response else {
+                self?.profileViewController?.setProjects(data: [])
+                return
+            }
+            
+            let (accountProjects, _) = nonNilResponse
+            
+            guard let nonNilData = accountProjects?.projectInfo else {
+                self?.profileViewController?.setProjects(data: [])
+                return
+            }
+            
+            self?.profileViewController?.setProjects(data: nonNilData)
+        }
+        
+        
+        viewModel.uploadProjectObservable.observe = { [weak self] _ in
+            self?.viewModel.getProjects(email: self?.accountData?.email ?? "")
+        }
+        
+        
+        viewModel.getCertificationsObservable.observe = { [weak self] response in
+            CustomLoader.hide()
+    
+            guard let nonNilResponse = response else {
+                self?.profileViewController?.setCertifications(data: [])
+                return
+            }
+            
+            let (accountCertifications, _) = nonNilResponse
+            
+            guard let nonNilData = accountCertifications?.projectInfo else {
+                self?.profileViewController?.setCertifications(data: [])
+                return
+            }
+            
+            self?.profileViewController?.setCertifications(data: nonNilData)
+        }
+        
+        
+        viewModel.uploadCertificateObservable.observe = { [weak self] _ in
+            self?.viewModel.getCertifications(email: self?.accountData?.email ?? "")
+        }
+        
+        viewModel.errorObservable.observe = { [weak self] error in
+            self?.showAlert(message: error ?? "Error desconocido", isError: true)
+        }
+    }
+    
+    
+    private func showAlert(message: String, isError: Bool = false) {
+        DispatchQueue.main.async {
+            CustomLoader.hide()
+            
+            let alert = UIAlertController(title: isError ? "Error" : "Información",
+                                          message: message,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }
@@ -391,6 +420,16 @@ extension ProfileViewController: BottomLineCustomTabBarDelegate {
 
 
 extension ProfileViewController: ProfileSummaryViewDelegate {
+    func notifyUploadProject(data: ProfileProjectsModel.Project) {
+        CustomLoader.show()
+        viewModel.uploadProject(email: accountData?.email ?? "", data: data)
+    }
+    
+    func notifyUploadCertification(data: ProfileCertificationsModel.Certification) {
+        CustomLoader.show()
+        viewModel.uploadCertification(email: accountData?.email ?? "", data: data)
+    }
+    
     func notifyNeedUpdateAccountMoreData(data: AccountMoreDataModel) {
         CustomLoader.show()
         viewModel.saveAccountMoreData(data: data)

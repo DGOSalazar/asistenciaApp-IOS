@@ -10,6 +10,8 @@ import UIKit
 
 protocol ProfileSummaryViewDelegate: AnyObject {
     func notifyNeedUpdateAccountMoreData(data: AccountMoreDataModel)
+    func notifyUploadProject(data: ProfileProjectsModel.Project)
+    func notifyUploadCertification(data: ProfileCertificationsModel.Certification)
 }
 
 
@@ -333,7 +335,13 @@ internal class ProfileSummaryViewController: UIViewController {
 
 extension ProfileSummaryViewController: CollapsableViewDelegate {
     func notifyCollapsableViewAddElement(identifier: String) {
-        print("add element \(identifier)")
+        if identifier == certificationsContainerView.identifier {
+            let viewController = ProfileCertificationAlertView(delegate: self)
+            self.present(viewController, animated: true)
+        } else if identifier == initiativesFinishedContainerView.identifier {
+            let viewController = ProfileProjectAlertView(delegate: self)
+            self.present(viewController, animated: true)
+        }
     }
 }
 
@@ -400,3 +408,18 @@ extension ProfileSummaryViewController: UITableViewDataSource, UITableViewDelega
     
     
 }
+
+
+extension ProfileSummaryViewController: ProfileCertificationAlertDelegate {
+    func notifyProfileCertificationConfirm(data: ProfileCertificationsModel.Certification) {
+        delegate?.notifyUploadCertification(data: data)
+    }
+}
+
+
+extension ProfileSummaryViewController: ProfileProjectAlertDelegate {
+    func notifyProfileProjectConfirm(data: ProfileProjectsModel.Project) {
+        delegate?.notifyUploadProject(data: data)
+    }
+}
+
