@@ -181,19 +181,26 @@ extension FirebaseManager {
     internal func updateData<T: Codable>(collection: String,
                                          document: String,
                                          data: T,
+                                         createIfItDoesNotExist: Bool = false,
                                          success: @escaping () -> (),
                                          failure: @escaping (_ error: String) -> ()) {
-        guard let nonNilData = self.encode(data: data) else {
+        guard let nonNilData = self.encode(data: data, usingArrayUnion: true) else {
             failure("Parsing error")
             return
         }
-        
-        self.updateData(collection: collection, document: document, data: nonNilData, success: success, failure: failure)
+
+        self.updateData(collection: collection,
+                        document: document,
+                        data: nonNilData,
+                        createIfItDoesNotExist: createIfItDoesNotExist,
+                        success: success,
+                        failure: failure)
     }
     
     internal func updateData(collection: String,
                              document: String,
                              data: [String: Any],
+                             createIfItDoesNotExist: Bool = false,
                              success: @escaping () -> (),
                              failure: @escaping (_ error: String) -> ()) {
         self.configureFirestore()
@@ -210,7 +217,18 @@ extension FirebaseManager {
         
         nonNilFirestore.collection(collection).document(document).updateData(data) { error in
             guard error == nil else {
-                failure(error?.localizedDescription ?? "Error")
+                if createIfItDoesNotExist {
+                    nonNilFirestore.collection(collection).document(document).getDocument { auxDocument, auxError in
+                        if auxDocument?.exists == false {
+                            self.saveData(collection: collection, document: document, data: data, success: success, failure: failure)
+                        } else {
+                            failure(error?.localizedDescription ?? "Error")
+                        }
+                    }
+                } else {
+                    failure(error?.localizedDescription ?? "Error")
+                }
+                
                 return
             }
             
@@ -266,7 +284,7 @@ extension FirebaseManager {
         return try? JSONDecoder().decode(modelType, from: jsonData)
     }
     
-    private func encode<T: Codable>(data: T) -> [String: Any]? {
+    private func encode<T: Codable>(data: T, usingArrayUnion: Bool = false) -> [String: Any]? {
         guard let nonNilData = try? JSONEncoder().encode(data) else {
             return nil
         }
@@ -274,8 +292,27 @@ extension FirebaseManager {
         guard let dictionary = object as? [String: Any] else {
             return nil
         }
-        return dictionary
+        
+        guard usingArrayUnion else {
+            return dictionary
+        }
+        
+        return getArrayUnion(data: dictionary)
     }
+    
+    private func getArrayUnion(data: [String: Any]) -> [String: Any] {
+        var auxArray: [String: Any] = data
+        for (key, value) in data {
+            guard let dictionaryValue = value as? [[String: Any]] else {
+                auxArray[key] = value
+                continue
+            }
+            auxArray[key] = FieldValue.arrayUnion(dictionaryValue)
+        }
+        
+        return auxArray
+    }
+    
 }
 
 
@@ -296,6 +333,44 @@ extension FirebaseManager {
         metaData.contentType = "image/jpg"
         
         storage.child(path).putData(imageData, metadata: metaData) { (_, error) in
+            if let _ = error {
+                failure(error?.localizedDescription ?? "Unknown error")
+                return
+            }
+            storage.child(path).downloadURL { url, error in
+                guard let nonNilFullURL = url else{
+                    failure(error?.localizedDescription ?? "Unknown Error")
+                    return
+                }
+                
+                success(nonNilFullURL.absoluteString)
+            }
+        }
+    }
+    
+    public func uploadFile(b64File: String,
+                           email: String,
+                           type: GlobalConstants.Firestore.FileType,
+                           success: @escaping (_ url: String) -> (),
+                           failure: @escaping (_ error: String) -> ()) {
+        guard let fileData = Data(base64Encoded: b64File) else {
+            failure("Invalid file")
+            return
+        }
+        
+        let storage = Storage.storage().reference()
+        let metaData = StorageMetadata()
+        metaData.contentType = type.getMimeType()
+        
+        var path = ""
+        switch type {
+        case .profilePhoto:
+            path = "\(type.getPath())\(email)"
+        case .pdf:
+            path = "\(type.getPath())\(email)/\(Date().timeIntervalSince1970)"
+        }
+
+        storage.child(path).putData(fileData, metadata: metaData) { (_, error) in
             if let _ = error {
                 failure(error?.localizedDescription ?? "Unknown error")
                 return
