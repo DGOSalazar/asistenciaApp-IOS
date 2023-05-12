@@ -7,9 +7,17 @@
 
 import UIKit
 
+
+protocol AccountHomeViewDelegate: AnyObject {
+    func notifyCurrentUserData(data: UserAttendanceDataModel)
+}
+
+
 class AccountHomeViewController: UIViewController {
+    internal weak var delegate: AccountHomeViewDelegate?
     private var viewModel = AccountViewModel()
     internal var email: String = ""
+    private var currentUserData: UserAttendanceDataModel?
     private var usersData: [UserAttendanceDataModel] = []
     private var usersAttendingToday: [UserAttendanceDataModel] = []
     private var usersTableHeigthConstraint = NSLayoutConstraint()
@@ -24,10 +32,12 @@ class AccountHomeViewController: UIViewController {
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !usersData.isEmpty {
-            CustomLoader.show()
-            self.viewModel.getDayAttendance()
-        }
+        CustomLoader.show()
+        viewModel.getUsersData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -202,8 +212,6 @@ class AccountHomeViewController: UIViewController {
         setAutoLayout()
         buttonFloatConfirm.isHidden = isConfirm
         bind()
-        CustomLoader.show()
-        viewModel.getUsersData()
     }
     
     func addComponents(){
@@ -351,14 +359,20 @@ class AccountHomeViewController: UIViewController {
                 
                 if let nonNilIndex = self.usersData.firstIndex(of: nonNilCurrentUser), !self.usersData.isEmpty {
                     self.usersData[nonNilIndex].profilePhoto = auxImage
+                    
+                    self.currentUserData = self.usersData[nonNilIndex]
+                    self.delegate?.notifyCurrentUserData(data: self.usersData[nonNilIndex])
                 }
                 
                 self.customCalendarView.profilePhoto = auxImage ?? UIImage()
                 self.viewModel.getDayAttendance()
             }
             
+            self.currentUserData = nonNilCurrentUser
             self.lbGreetings.text = "¡Hola, \(nonNilCurrentUser.name)!"
             self.usersData = nonNilData
+            
+            
         }
     }
     

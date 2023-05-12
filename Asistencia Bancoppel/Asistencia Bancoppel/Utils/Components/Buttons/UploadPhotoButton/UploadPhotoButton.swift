@@ -19,17 +19,29 @@ internal class UploadPhotoButton: UIView {
     private var buttonSize: CGFloat = 99
     private weak var presenter: UIViewController?
     private weak var delegate: UploadPhotoButtonDelegate?
+    private var changeImageSize: CGFloat = (30 * DeviceSize.size.getMultiplier())
     
     private lazy var buttonContainerView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-        view.layer.borderWidth = 10
         view.clipsToBounds = false
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.25
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         return view
+    }()
+    
+    private lazy var changeImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        imageView.backgroundColor = .white
+        imageView.image = UIImage(named: "roload_icon")
+        imageView.tintColor = GlobalConstants.BancoppelColors.blueBex7
+        imageView.layer.cornerRadius = (changeImageSize/2.0)
+        return imageView
     }()
     
     private lazy var previewImageView: UIImageView = {
@@ -71,7 +83,9 @@ internal class UploadPhotoButton: UIView {
                   buttonSize: CGFloat = 140,
                   title: String = "Cargar foto",
                   icon: UIImage? = nil,
-                  borderColor: UIColor = GlobalConstants.BancoppelColors.yellowBex3) {
+                  showShadow: Bool = true,
+                  borderColor: UIColor = GlobalConstants.BancoppelColors.yellowBex3,
+                  borderWidth: CGFloat = 10) {
         super.init(frame: .zero)
         
         self.presenter = presenter
@@ -81,8 +95,10 @@ internal class UploadPhotoButton: UIView {
         self.uploadImageView.image = icon ?? UIImage(named: "share_media_icon")
         self.buttonContainerView.layer.borderColor = borderColor.cgColor
         self.buttonContainerView.layer.cornerRadius = (buttonSize / 2)
+        self.buttonContainerView.layer.borderWidth = borderWidth
         self.previewImageView.layer.cornerRadius = (buttonSize / 2)
-        
+        self.buttonContainerView.layer.shadowColor = (showShadow ? UIColor.black.cgColor : UIColor.clear.cgColor)
+        self.buttonContainerView.clipsToBounds = !showShadow
         self.addTarget(self, action: #selector(self.showGallery))
         
         self.setComponents()
@@ -96,10 +112,13 @@ internal class UploadPhotoButton: UIView {
     
     private func setComponents() {
         self.addSubview(buttonContainerView)
+        self.addSubview(changeImageView)
         
         buttonContainerView.addSubview(previewImageView)
         buttonContainerView.addSubview(uploadImageView)
         buttonContainerView.addSubview(uploadTitleLabel)
+        
+        self.bringSubviewToFront(changeImageView)
     }
     
     private func setAutolayout() {
@@ -111,6 +130,11 @@ internal class UploadPhotoButton: UIView {
             buttonContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             buttonContainerView.heightAnchor.constraint(equalToConstant: self.buttonSize),
             buttonContainerView.widthAnchor.constraint(equalToConstant: self.buttonSize),
+            
+            changeImageView.centerYAnchor.constraint(equalTo: buttonContainerView.centerYAnchor, constant: (self.buttonSize/3.5)),
+            changeImageView.centerXAnchor.constraint(equalTo: buttonContainerView.centerXAnchor, constant: (self.buttonSize/3.5)),
+            changeImageView.widthAnchor.constraint(equalToConstant: changeImageSize),
+            changeImageView.heightAnchor.constraint(equalToConstant: changeImageSize),
             
             previewImageView.topAnchor.constraint(equalTo: buttonContainerView.topAnchor),
             previewImageView.leadingAnchor.constraint(equalTo: buttonContainerView.leadingAnchor),
@@ -139,12 +163,13 @@ internal class UploadPhotoButton: UIView {
         }
     }
     
-    private func setPreviewImage(image: UIImage) {
+    func setPreviewImage(image: UIImage) {
         DispatchQueue.main.async {
             self.previewImageView.image = image
             self.previewImageView.isHidden = false
             self.uploadTitleLabel.isHidden = true
             self.uploadImageView.isHidden = true
+            self.changeImageView.isHidden = false
         }
     }
     
@@ -208,6 +233,7 @@ internal class UploadPhotoButton: UIView {
             nonNilPresenter.present(alert, animated: true, completion: nil)
         }
     }
+    
 }
 
 extension UploadPhotoButton: UIImagePickerControllerDelegate & UINavigationControllerDelegate {

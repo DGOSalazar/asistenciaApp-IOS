@@ -16,14 +16,18 @@ struct UserAttendanceDataModel {
     var position: UserPositionEnum
     var profilePhotoURL: String
     var profilePhoto: UIImage?
+    var employee: Int?
+    var team: String?
     
-    init(name: String, fullname: String, email: String, position: UserPositionEnum, profilePhotoURL: String, profilePhoto: UIImage?) {
+    init(name: String, fullname: String, email: String, position: UserPositionEnum, profilePhotoURL: String, profilePhoto: UIImage?, employee: Int?, team: String?) {
         self.name = name
         self.fullname = fullname
         self.email = email
         self.position = position
         self.profilePhotoURL = profilePhotoURL
         self.profilePhoto = profilePhoto
+        self.employee = employee
+        self.team = team
     }
 }
 
