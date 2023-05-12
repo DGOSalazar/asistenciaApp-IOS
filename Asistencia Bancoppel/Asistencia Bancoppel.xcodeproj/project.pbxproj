@@ -75,10 +75,13 @@
 		628A8863299AD2A5009F30E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628A8862299AD2A5009F30E6 /* Assets.xcassets */; };
 		628A8866299AD2A5009F30E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 628A8864299AD2A5009F30E6 /* LaunchScreen.storyboard */; };
 		79BB907CC54C3785D90AEA89 /* Pods_Asistencia_Bancoppel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BBA737F74520312CC1DF34F /* Pods_Asistencia_Bancoppel.framework */; };
+		84D57E6E2A0404700032E04C /* ConfirmAsistenciaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D57E6D2A0404700032E04C /* ConfirmAsistenciaButton.swift */; };
 		F94E351B2A0C0CCA0004C910 /* ConfirmationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E351A2A0C0CCA0004C910 /* ConfirmationAlertView.swift */; };
 		F94E351D2A0C0CD30004C910 /* InformationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E351C2A0C0CD30004C910 /* InformationAlertView.swift */; };
 		F94E351F2A0C2D760004C910 /* InformationAlertStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E351E2A0C2D760004C910 /* InformationAlertStyleEnum.swift */; };
 		F94E35212A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E35202A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift */; };
+		F98ACEC62A0D608500EA8BFC /* ProfileCertificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98ACEC52A0D608500EA8BFC /* ProfileCertificationAlertView.swift */; };
+		F98ACEC82A0D609500EA8BFC /* ProfileProjectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98ACEC72A0D609500EA8BFC /* ProfileProjectAlertView.swift */; };
 		F9E49F322A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */; };
 		F9E49F342A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */; };
 		F9E49F362A0AA7F000ABE0D3 /* ProfileProjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */; };
@@ -178,6 +181,8 @@
 		F94E351C2A0C0CD30004C910 /* InformationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlertView.swift; sourceTree = "<group>"; };
 		F94E351E2A0C2D760004C910 /* InformationAlertStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlertStyleEnum.swift; sourceTree = "<group>"; };
 		F94E35202A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationAlertStyleEnum.swift; sourceTree = "<group>"; };
+		F98ACEC52A0D608500EA8BFC /* ProfileCertificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCertificationAlertView.swift; sourceTree = "<group>"; };
+		F98ACEC72A0D609500EA8BFC /* ProfileProjectAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProjectAlertView.swift; sourceTree = "<group>"; };
 		F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInitiativesViewCell.swift; sourceTree = "<group>"; };
 		F9E49F332A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCertificationsViewCell.swift; sourceTree = "<group>"; };
 		F9E49F352A0AA7F000ABE0D3 /* ProfileProjectsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProjectsModel.swift; sourceTree = "<group>"; };
@@ -556,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				52A172962A030DB900091638 /* ProfileViewController.swift */,
+				F98ACEC42A0D607500EA8BFC /* Alerts */,
 				52A7A8AB2A045A32009F854C /* ProfileInfoPages */,
 			);
 			path = View;
@@ -757,6 +763,15 @@
 				F94E35202A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift */,
 			);
 			path = ConfirmationAlert;
+			sourceTree = "<group>";
+		};
+		F98ACEC42A0D607500EA8BFC /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				F98ACEC52A0D608500EA8BFC /* ProfileCertificationAlertView.swift */,
+				F98ACEC72A0D609500EA8BFC /* ProfileProjectAlertView.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		F9E49F3B2A0AF50000ABE0D3 /* ViewModel */ = {
@@ -983,6 +998,7 @@
 				524C238A2A017358009D881A /* UserPositionEnum.swift in Sources */,
 				52A7A8AD2A045A4C009F854C /* ProfileNotificationsViewController.swift in Sources */,
 				52FA7AD029F2EA0600225D10 /* CustomTabBarView.swift in Sources */,
+				F98ACEC82A0D609500EA8BFC /* ProfileProjectAlertView.swift in Sources */,
 				52A7A8AF2A045A69009F854C /* ProfileSummaryViewController.swift in Sources */,
 				520E855229F74D9F00EF10FF /* AccountCreationModel.swift in Sources */,
 				F9E49F412A0B024000ABE0D3 /* AccountProfilePhotoModel.swift in Sources */,
@@ -1001,6 +1017,7 @@
 				520E855029F74D8500EF10FF /* LastStepViewModel.swift in Sources */,
 				52E7CAA429F1F9A80039E921 /* AccountViewModel.swift in Sources */,
 				3F439A2929A93DA900F9CA1D /* GlobalConstants.swift in Sources */,
+				F98ACEC62A0D608500EA8BFC /* ProfileCertificationAlertView.swift in Sources */,
 				5235454029E8C364002BECAB /* MainButton.swift in Sources */,
 				522AE75829F0C12E0091AD6C /* Font+Extension.swift in Sources */,
 				52EEBEB029F999D700A52EB9 /* DayAttendanceModel.swift in Sources */,
@@ -1159,8 +1176,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Asistencia Bancoppel/Info.plist";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Habilite los permisos para cargar certificados";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Habilite los permisos para acceder a la galería";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1190,8 +1207,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Asistencia Bancoppel/Info.plist";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Habilite los permisos para cargar certificados";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Habilite los permisos para acceder a la galería";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

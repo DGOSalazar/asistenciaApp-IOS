@@ -35,10 +35,6 @@ class AccountHomeViewController: UIViewController {
         CustomLoader.show()
         viewModel.getUsersData()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
