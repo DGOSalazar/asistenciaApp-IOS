@@ -71,6 +71,7 @@ enum GlobalConstants {
     enum Images {
         static let bancoppelWhite = "logo_bancoppel_blanco_gde"
         static let menuLoginWhite = "menu_login_white"
+        static let menuDetailCalendar = "boton_menu_black"
     }
     
     

@@ -84,6 +84,34 @@ class DetailCalendarViewController: UIViewController {
         return label
     }()
     
+    lazy var buttonRegisterAsistencia: MainButton = {
+        let button = MainButton(title: "Registrar Asistencia", enable: true)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .robotoBold(ofSize: 18)
+        button.addTarget(self, action: #selector(buttonAsistenciaPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var buttonMenu: UIButton = {
+        let button = UIButton()
+        button.contentMode = .center
+        button.backgroundColor = .clear
+        button.setImage(UIImage(named: GlobalConstants.Images.menuDetailCalendar), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let labelAsistentes: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .robotoBold(ofSize: 24)
+        label.textColor = GlobalConstants.BancoppelColors.grayBex10
+        label.numberOfLines = 1
+        label.text = "7 Asistentes:"
+        
+        return label
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,8 +121,7 @@ class DetailCalendarViewController: UIViewController {
     }
     
     private func addComponents() {
-        view?.addSubview(stackDays)
-        [labelQuestionName, labelQuestionDay].forEach{view.addSubview($0)}
+        [buttonMenu, labelQuestionName, labelQuestionDay, stackDays, buttonRegisterAsistencia, labelAsistentes].forEach{view.addSubview($0)}
         stackDays.addArrangedSubview(dayOne)
         stackDays.addArrangedSubview(dayTwo)
         stackDays.addArrangedSubview(dayThree)
@@ -104,7 +131,15 @@ class DetailCalendarViewController: UIViewController {
     }
     
     private func autoLayout() {
-        NSLayoutConstraint.activate([dayOne.heightAnchor.constraint(equalToConstant: dayOne.viewDayHeight),
+        
+        buttonMenu.heightAnchor.constraint(equalToConstant: 17).isActive = true
+        buttonMenu.widthAnchor.constraint(equalToConstant: 27).isActive = true
+        
+        NSLayoutConstraint.activate([buttonMenu.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+                                     buttonMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            
+            
+                                     dayOne.heightAnchor.constraint(equalToConstant: dayOne.viewDayHeight),
                                      dayTwo.heightAnchor.constraint(equalToConstant: dayTwo.viewDayHeight),
                                      dayThree.heightAnchor.constraint(equalToConstant: dayThree.viewDayHeight),
                                      dayFive.heightAnchor.constraint(equalToConstant: dayFour.viewDayHeight),
@@ -118,15 +153,23 @@ class DetailCalendarViewController: UIViewController {
                                      
                                      
             
-                                     labelQuestionName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+                                     labelQuestionName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 21),
                                       labelQuestionName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                                       labelQuestionDay.topAnchor.constraint(equalTo: labelQuestionName.bottomAnchor, constant: 2),
                                       labelQuestionDay.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                                      
-                                     stackDays.topAnchor.constraint(equalTo: labelQuestionDay.bottomAnchor, constant: 20),
+                                     stackDays.topAnchor.constraint(equalTo: labelQuestionDay.bottomAnchor, constant: 30),
                                      stackDays.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
                                      stackDays.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
                                      //stackDays.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+                                     
+                                     buttonRegisterAsistencia.topAnchor.constraint(equalTo: stackDays.bottomAnchor, constant: 30),
+                                     buttonRegisterAsistencia.heightAnchor.constraint(equalToConstant: 59),
+                                     buttonRegisterAsistencia.widthAnchor.constraint(equalToConstant: 200),
+                                     buttonRegisterAsistencia.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     
+                                     labelAsistentes.topAnchor.constraint(equalTo: buttonRegisterAsistencia.bottomAnchor, constant: 30),
+                                     labelAsistentes.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 33)
                                       
                                       ])
     }
@@ -139,6 +182,10 @@ class DetailCalendarViewController: UIViewController {
         self.navigationItem.backBarButtonItem = backButton
         self.navigationController?.isNavigationBarHidden = false
          
+    }
+    
+    @objc private func buttonAsistenciaPressed(){
+        print("Asistencia Registrada")
     }
     
 }
