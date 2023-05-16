@@ -16,6 +16,14 @@ internal class AccountCreationViewController: UIViewController {
         return view
     }()
     
+    private lazy var navigationBarView: TopNavigationBarView = {
+        let nav = TopNavigationBarView(title: "",
+                                       style: .two)
+        nav.translatesAutoresizingMaskIntoConstraints = false
+        nav.setBackButtonAction(action: backButtonPressed)
+        return nav
+    }()
+    
     lazy var ivwLogo: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -115,7 +123,7 @@ internal class AccountCreationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         self.hideKeyboardWhenTapped()
         
         setComponents()
@@ -124,6 +132,7 @@ internal class AccountCreationViewController: UIViewController {
     
     
     private func setComponents() {
+        self.view.addSubview(navigationBarView)
         self.view.addSubview(vwContainer)
         vwContainer.addSubview(ivwLogo)
         vwContainer.addSubview(lbTitle)
@@ -145,12 +154,16 @@ internal class AccountCreationViewController: UIViewController {
         contentHeightAnchor.priority = .defaultLow
         
         NSLayoutConstraint.activate([
-            vwContainer.topAnchor.constraint(equalTo: self.view.topAnchor),
+            navigationBarView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            navigationBarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            navigationBarView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            
+            vwContainer.topAnchor.constraint(equalTo: navigationBarView.bottomAnchor),
             vwContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             vwContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             vwContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
-            ivwLogo.topAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.topAnchor, constant: Dimensions.margin40),
+            ivwLogo.topAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.topAnchor, constant: Dimensions.margin20),
             ivwLogo.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin80),
             ivwLogo.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -Dimensions.margin80),
             ivwLogo.heightAnchor.constraint(equalToConstant: (50 * DeviceSize.size.getMultiplier())),
@@ -182,12 +195,18 @@ internal class AccountCreationViewController: UIViewController {
             btNext.heightAnchor.constraint(equalToConstant: 59),
             btNext.widthAnchor.constraint(equalTo: vwContainer.widthAnchor, multiplier: 0.6),
             btNext.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            btNext.bottomAnchor.constraint(equalTo: pageIndicatorView.topAnchor, constant: -Dimensions.margin40),
+            btNext.bottomAnchor.constraint(equalTo: pageIndicatorView.topAnchor, constant: -Dimensions.margin30),
             
             
             pageIndicatorView.centerXAnchor.constraint(equalTo: vwContainer.centerXAnchor),
-            pageIndicatorView.bottomAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.margin40),
+            pageIndicatorView.bottomAnchor.constraint(equalTo: vwContainer.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.margin30),
         ])
+    }
+    
+    private func backButtonPressed() {
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     
