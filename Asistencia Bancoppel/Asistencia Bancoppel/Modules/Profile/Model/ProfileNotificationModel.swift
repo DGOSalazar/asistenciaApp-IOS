@@ -12,10 +12,10 @@ import UIKit
 struct ProfileNotificationModel {
     var image: UIImage?
     var title: String
-    var date: Date
+    var date: String
     var type: ProfileNotificationTypeEnum
     
-    init (image: UIImage?, title: String, date: Date, type: ProfileNotificationTypeEnum) {
+    init (image: UIImage?, title: String, date: String, type: ProfileNotificationTypeEnum) {
         self.image = image
         self.title = title
         self.date = date

@@ -11,20 +11,20 @@ import UIKit
 
 enum ProfileNotificationTypeEnum {
     case time
-    case check
+    case attendance
     case dinner
     case profile
     
-    func getIcon() -> UIImage {
+    func getIcon() -> UIImage? {
         switch self {
         case .time:
-            return UIImage()
-        case .check:
-            return UIImage()
+            return UIImage(named: "notification_time_icon")
+        case .attendance:
+            return UIImage(named: "notification_attendance_icon")
         case .dinner:
-            return UIImage()
+            return UIImage(named: "notification_dinner_icon")
         case .profile:
-            return UIImage()
+            return UIImage(named: "default_profile_fill_icon")
         }
     }
 }

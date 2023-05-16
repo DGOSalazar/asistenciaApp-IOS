@@ -39,8 +39,8 @@ class ProfileNotificationsViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
-        view.backgroundColor = .systemBlue
-        view.tintColor = .lightGray
+        view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
+        view.tintColor = .white
         return view
     }()
 
@@ -134,7 +134,7 @@ class ProfileNotificationsViewCell: UITableViewCell {
         profilePhotoImageView.image = data.type.getIcon()
         titleLabel.text = data.title
         cellData = data
-        timePassedLabel.text = data.date.getFormattedDate()
+        timePassedLabel.text = data.date
     }
     
 
