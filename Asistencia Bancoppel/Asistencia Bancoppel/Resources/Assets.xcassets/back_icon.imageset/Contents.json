@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "boton_mes_anterior.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

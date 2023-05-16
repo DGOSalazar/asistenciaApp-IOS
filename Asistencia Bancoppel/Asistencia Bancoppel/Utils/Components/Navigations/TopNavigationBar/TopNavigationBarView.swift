@@ -81,7 +81,7 @@ internal class TopNavigationBarView: UIView {
     private lazy var backButtonIcon: UIImageView = {
         let icon = UIImageView()
         icon.translatesAutoresizingMaskIntoConstraints = false
-        icon.image = UIImage(named: "left_arrow_icon")
+        icon.image = UIImage(named: "back_icon")
         icon.contentMode = .scaleAspectFit
         return icon
     }()
@@ -111,9 +111,9 @@ internal class TopNavigationBarView: UIView {
     internal init(title: String,
                   titleFont: UIFont = .robotoBold(ofSize: 20),
                   style: TopNavigationBarStylesEnum,
-                  showBankIcon: Bool,
-                  showBackButton: Bool,
-                  showRightButton: Bool) {
+                  showBankIcon: Bool = false,
+                  showBackButton: Bool = true,
+                  showRightButton: Bool = false) {
         super.init(frame: .zero)
         
         setTitle(title: title)
