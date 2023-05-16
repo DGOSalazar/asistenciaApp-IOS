@@ -9,6 +9,12 @@ import UIKit
 
 class DetailCalendarViewController: UIViewController {
     
+    var mockPeopleOne: UserAttendanceDataModel = UserAttendanceDataModel(name: "Rodrigo", fullname: "Rodrigo Joel Ramirez Hernandez", email: "joel.ramirez@coppel.com", position: UserPositionEnum.iosDev, profilePhotoURL: "", profilePhoto: UIImage(named: "profile"), employee: 1, team: "minuts")
+                                                                         
+    var mockPeopleTwo: UserAttendanceDataModel = UserAttendanceDataModel(name: "Joel", fullname: "Joel Hernandez", email: "joel.hernandez@coppel.com", position: UserPositionEnum.iosDev, profilePhotoURL: "", profilePhoto: UIImage(named: "profile"), employee: 1, team: "minuts")
+    
+    private var usersAttendingToday: [UserAttendanceDataModel] = []
+    
     private let stackDays: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -112,16 +118,49 @@ class DetailCalendarViewController: UIViewController {
         return label
     }()
     
+    private lazy var contentViewTablePeople: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = GlobalConstants.BancoppelColors.grayBex1
+        view.layer.cornerRadius = 10
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.26
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        
+        return view
+    }()
+    
+    private lazy var tableViewPeople: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(AccountCell.self, forCellReuseIdentifier: AccountCell.reuseID)
+        tableView.rowHeight = AccountCell.rowHeight
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.isScrollEnabled = false
+        tableView.backgroundColor = .white
+        
+        tableView.layer.cornerRadius = 25
+        tableView.layer.shadowColor = UIColor.black.cgColor
+        tableView.layer.shadowOpacity = 0.25
+        tableView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        tableView.clipsToBounds = false
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configHead()
         addComponents()
         autoLayout()
+        usersAttendingToday.append(mockPeopleOne)
+        usersAttendingToday.append(mockPeopleTwo)
+        
     }
     
     private func addComponents() {
-        [buttonMenu, labelQuestionName, labelQuestionDay, stackDays, buttonRegisterAsistencia, labelAsistentes].forEach{view.addSubview($0)}
+        contentViewTablePeople.addSubview(tableViewPeople)
+        [buttonMenu, labelQuestionName, labelQuestionDay, stackDays, buttonRegisterAsistencia, labelAsistentes, contentViewTablePeople].forEach{view.addSubview($0)}
         stackDays.addArrangedSubview(dayOne)
         stackDays.addArrangedSubview(dayTwo)
         stackDays.addArrangedSubview(dayThree)
@@ -165,11 +204,21 @@ class DetailCalendarViewController: UIViewController {
                                      
                                      buttonRegisterAsistencia.topAnchor.constraint(equalTo: stackDays.bottomAnchor, constant: 30),
                                      buttonRegisterAsistencia.heightAnchor.constraint(equalToConstant: 59),
-                                     buttonRegisterAsistencia.widthAnchor.constraint(equalToConstant: 200),
+                                     buttonRegisterAsistencia.widthAnchor.constraint(equalToConstant: 220),
                                      buttonRegisterAsistencia.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      
                                      labelAsistentes.topAnchor.constraint(equalTo: buttonRegisterAsistencia.bottomAnchor, constant: 30),
-                                     labelAsistentes.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 33)
+                                     labelAsistentes.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 33),
+                                     
+                                     tableViewPeople.topAnchor.constraint(equalTo: contentViewTablePeople.topAnchor, constant: 19),
+                                     tableViewPeople.leadingAnchor.constraint(equalTo: contentViewTablePeople.leadingAnchor,constant: 28),
+                                     tableViewPeople.trailingAnchor.constraint(equalTo: contentViewTablePeople.trailingAnchor,constant: -28),
+                                     tableViewPeople.bottomAnchor.constraint(equalTo: contentViewTablePeople.bottomAnchor, constant: -10),
+                                     
+                                     contentViewTablePeople.topAnchor.constraint(equalTo: labelAsistentes.bottomAnchor, constant: 18),
+                                     contentViewTablePeople.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                                     contentViewTablePeople.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+                                     
                                       
                                       ])
     }
@@ -187,5 +236,25 @@ class DetailCalendarViewController: UIViewController {
     @objc private func buttonAsistenciaPressed(){
         print("Asistencia Registrada")
     }
+    
+}
+
+extension DetailCalendarViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return usersAttendingToday.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard !usersAttendingToday.isEmpty else { return UITableViewCell() }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: AccountCell.reuseID, for: indexPath) as? AccountCell
+        
+        guard let nonNilCell = cell else { return UITableViewCell() }
+        
+        nonNilCell.configure(with: usersAttendingToday[indexPath.row])
+
+        return nonNilCell
+    }
+    
     
 }
