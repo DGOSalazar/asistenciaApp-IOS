@@ -80,6 +80,8 @@
 		F94E351D2A0C0CD30004C910 /* InformationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E351C2A0C0CD30004C910 /* InformationAlertView.swift */; };
 		F94E351F2A0C2D760004C910 /* InformationAlertStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E351E2A0C2D760004C910 /* InformationAlertStyleEnum.swift */; };
 		F94E35212A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94E35202A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift */; };
+		F9689DD02A1418660025C0C7 /* TopNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9689DCF2A1418660025C0C7 /* TopNavigationBarView.swift */; };
+		F9689DD22A14238C0025C0C7 /* TopNavigationBarStylesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9689DD12A14238C0025C0C7 /* TopNavigationBarStylesEnum.swift */; };
 		F98ACEC62A0D608500EA8BFC /* ProfileCertificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98ACEC52A0D608500EA8BFC /* ProfileCertificationAlertView.swift */; };
 		F98ACEC82A0D609500EA8BFC /* ProfileProjectAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98ACEC72A0D609500EA8BFC /* ProfileProjectAlertView.swift */; };
 		F9E49F322A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */; };
@@ -176,6 +178,8 @@
 		F94E351C2A0C0CD30004C910 /* InformationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlertView.swift; sourceTree = "<group>"; };
 		F94E351E2A0C2D760004C910 /* InformationAlertStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlertStyleEnum.swift; sourceTree = "<group>"; };
 		F94E35202A0C2FC30004C910 /* ConfirmationAlertStyleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationAlertStyleEnum.swift; sourceTree = "<group>"; };
+		F9689DCF2A1418660025C0C7 /* TopNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationBarView.swift; sourceTree = "<group>"; };
+		F9689DD12A14238C0025C0C7 /* TopNavigationBarStylesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationBarStylesEnum.swift; sourceTree = "<group>"; };
 		F98ACEC52A0D608500EA8BFC /* ProfileCertificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCertificationAlertView.swift; sourceTree = "<group>"; };
 		F98ACEC72A0D609500EA8BFC /* ProfileProjectAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProjectAlertView.swift; sourceTree = "<group>"; };
 		F9E49F312A0AA64D00ABE0D3 /* ProfileInitiativesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInitiativesViewCell.swift; sourceTree = "<group>"; };
@@ -474,6 +478,7 @@
 		5235453C29E8C29C002BECAB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F9689DCD2A14182F0025C0C7 /* Navigations */,
 				F94E35142A0C0BA50004C910 /* Alerts */,
 				F9E80B5F2A0966720075FE74 /* Stacks */,
 				52FA7ACD29F2E93800225D10 /* TabBars */,
@@ -742,6 +747,23 @@
 			path = ConfirmationAlert;
 			sourceTree = "<group>";
 		};
+		F9689DCD2A14182F0025C0C7 /* Navigations */ = {
+			isa = PBXGroup;
+			children = (
+				F9689DCE2A14184E0025C0C7 /* TopNavigationBar */,
+			);
+			path = Navigations;
+			sourceTree = "<group>";
+		};
+		F9689DCE2A14184E0025C0C7 /* TopNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				F9689DCF2A1418660025C0C7 /* TopNavigationBarView.swift */,
+				F9689DD12A14238C0025C0C7 /* TopNavigationBarStylesEnum.swift */,
+			);
+			path = TopNavigationBar;
+			sourceTree = "<group>";
+		};
 		F98ACEC42A0D607500EA8BFC /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,6 +1002,7 @@
 				522AE75529F0AABF0091AD6C /* CustomLoader.swift in Sources */,
 				F9E49F3F2A0AFBE400ABE0D3 /* AccountMoreDataModel.swift in Sources */,
 				524C23882A017329009D881A /* UserAttendanceDataModel.swift in Sources */,
+				F9689DD22A14238C0025C0C7 /* TopNavigationBarStylesEnum.swift in Sources */,
 				F9E49F342A0AA65A00ABE0D3 /* ProfileCertificationsViewCell.swift in Sources */,
 				522AE74229F070720091AD6C /* Date+Extension.swift in Sources */,
 				52EEBEB229F9B16000A52EB9 /* PositionModel.swift in Sources */,
@@ -987,6 +1010,7 @@
 				3F439A3429A9464100F9CA1D /* AccountHomeViewController.swift in Sources */,
 				52A7A8B22A045E4E009F854C /* ProfileNotificationsViewCell.swift in Sources */,
 				3F439A3B29A9497300F9CA1D /* AccountModel.swift in Sources */,
+				F9689DD02A1418660025C0C7 /* TopNavigationBarView.swift in Sources */,
 				520E853C29F7194B00EF10FF /* TextFieldInputCasingEnum.swift in Sources */,
 				526BEC5029E9B53E00554701 /* LeftTitleTextField.swift in Sources */,
 				520E855029F74D8500EF10FF /* LastStepViewModel.swift in Sources */,
