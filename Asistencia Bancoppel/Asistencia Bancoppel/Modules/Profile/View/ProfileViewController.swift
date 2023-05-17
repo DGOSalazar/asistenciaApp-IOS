@@ -49,14 +49,6 @@ internal class ProfileViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    
-    private let bancoppelLogoImageView: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: GlobalConstants.Images.bancoppelWhite)
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
  
     
     lazy var menuButton: UIButton = {
