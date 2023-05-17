@@ -14,6 +14,7 @@ class DetailCalendarViewController: UIViewController {
     var mockPeopleTwo: UserAttendanceDataModel = UserAttendanceDataModel(name: "Joel", fullname: "Joel Hernandez", email: "joel.hernandez@coppel.com", position: UserPositionEnum.iosDev, profilePhotoURL: "", profilePhoto: UIImage(named: "profile"), employee: 1, team: "minuts")
     
     private var usersAttendingToday: [UserAttendanceDataModel] = []
+    private var usersTableHeigthConstraint = NSLayoutConstraint()
     
     private let stackDays: UIStackView = {
         let stack = UIStackView()
@@ -28,7 +29,7 @@ class DetailCalendarViewController: UIViewController {
     private let dayOne: CalendarDay = {
        let day = CalendarDay()
        day.translatesAutoresizingMaskIntoConstraints = false
-       day.labelNumberDay.text = "8"
+       day.labelNumberDay.text = "15"
         day.labelTitleDay.text = "Lunes"
         return day
     }()
@@ -36,7 +37,7 @@ class DetailCalendarViewController: UIViewController {
     private let dayTwo: CalendarDay = {
        let day = CalendarDay()
        day.translatesAutoresizingMaskIntoConstraints = false
-        day.labelNumberDay.text = "9"
+        day.labelNumberDay.text = "16"
         day.labelTitleDay.text = "Martes"
         return day
     }()
@@ -44,7 +45,7 @@ class DetailCalendarViewController: UIViewController {
     private let dayThree: CalendarDay = {
        let day = CalendarDay()
        day.translatesAutoresizingMaskIntoConstraints = false
-        day.labelNumberDay.text = "10"
+        day.labelNumberDay.text = "17"
         day.labelTitleDay.text = "Miercoles"
         return day
     }()
@@ -52,7 +53,7 @@ class DetailCalendarViewController: UIViewController {
     private let dayFour: CalendarDay = {
        let day = CalendarDay()
        day.translatesAutoresizingMaskIntoConstraints = false
-        day.labelNumberDay.text = "11"
+        day.labelNumberDay.text = "18"
         day.labelTitleDay.text = "Jueves"
         return day
     }()
@@ -60,7 +61,7 @@ class DetailCalendarViewController: UIViewController {
     private let dayFive: CalendarDay = {
        let day = CalendarDay()
        day.translatesAutoresizingMaskIntoConstraints = false
-        day.labelNumberDay.text = "12"
+        day.labelNumberDay.text = "19"
         day.labelTitleDay.text = "Viernes"
         return day
     }()
@@ -155,6 +156,14 @@ class DetailCalendarViewController: UIViewController {
         autoLayout()
         usersAttendingToday.append(mockPeopleOne)
         usersAttendingToday.append(mockPeopleTwo)
+        usersAttendingToday.append(mockPeopleOne)
+        usersAttendingToday.append(mockPeopleTwo)
+        usersAttendingToday.append(mockPeopleOne)
+        usersAttendingToday.append(mockPeopleTwo)
+        usersAttendingToday.append(mockPeopleOne)
+        usersAttendingToday.append(mockPeopleTwo)
+        self.tableViewPeople.reloadData()
+        self.updateTableHeight()
         
     }
     
@@ -173,6 +182,8 @@ class DetailCalendarViewController: UIViewController {
         
         buttonMenu.heightAnchor.constraint(equalToConstant: 17).isActive = true
         buttonMenu.widthAnchor.constraint(equalToConstant: 27).isActive = true
+        
+        usersTableHeigthConstraint = tableViewPeople.heightAnchor.constraint(equalToConstant: CGFloat(Double(usersAttendingToday.count) * AccountCell.rowHeight))
         
         NSLayoutConstraint.activate([buttonMenu.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
                                      buttonMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -210,17 +221,23 @@ class DetailCalendarViewController: UIViewController {
                                      labelAsistentes.topAnchor.constraint(equalTo: buttonRegisterAsistencia.bottomAnchor, constant: 30),
                                      labelAsistentes.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 33),
                                      
-                                     tableViewPeople.topAnchor.constraint(equalTo: contentViewTablePeople.topAnchor, constant: 19),
+                                     tableViewPeople.topAnchor.constraint(equalTo: contentViewTablePeople.topAnchor, constant: ),
                                      tableViewPeople.leadingAnchor.constraint(equalTo: contentViewTablePeople.leadingAnchor,constant: 28),
                                      tableViewPeople.trailingAnchor.constraint(equalTo: contentViewTablePeople.trailingAnchor,constant: -28),
                                      tableViewPeople.bottomAnchor.constraint(equalTo: contentViewTablePeople.bottomAnchor, constant: -10),
                                      
                                      contentViewTablePeople.topAnchor.constraint(equalTo: labelAsistentes.bottomAnchor, constant: 18),
                                      contentViewTablePeople.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                                     contentViewTablePeople.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
-                                     
+                                     contentViewTablePeople.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                                     usersTableHeigthConstraint
                                       
                                       ])
+    }
+    
+    private func updateTableHeight() {
+        DispatchQueue.main.async {
+                self.usersTableHeigthConstraint.constant = CGFloat(Double(self.usersAttendingToday.count) * AccountCell.rowHeight)
+        }
     }
     
     private func configHead() {
