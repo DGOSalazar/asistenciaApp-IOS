@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "Blanco_grande.pdf",
+      "filename" : "icono_time_report1.pdf",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }

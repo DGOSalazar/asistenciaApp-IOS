@@ -221,7 +221,7 @@ class DetailCalendarViewController: UIViewController {
                                      labelAsistentes.topAnchor.constraint(equalTo: buttonRegisterAsistencia.bottomAnchor, constant: 30),
                                      labelAsistentes.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 33),
                                      
-                                     tableViewPeople.topAnchor.constraint(equalTo: contentViewTablePeople.topAnchor, constant: ),
+                                     tableViewPeople.topAnchor.constraint(equalTo: contentViewTablePeople.topAnchor, constant: Dimensions.margin20),
                                      tableViewPeople.leadingAnchor.constraint(equalTo: contentViewTablePeople.leadingAnchor,constant: 28),
                                      tableViewPeople.trailingAnchor.constraint(equalTo: contentViewTablePeople.trailingAnchor,constant: -28),
                                      tableViewPeople.bottomAnchor.constraint(equalTo: contentViewTablePeople.bottomAnchor, constant: -10),

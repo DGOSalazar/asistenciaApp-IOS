@@ -41,6 +41,18 @@ class AccountHomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
+    private lazy var navigationBarView: TopNavigationBarView = {
+        let nav = TopNavigationBarView(title: "",
+                                       titleFont: .robotoBold(ofSize: 28),
+                                       style: .one,
+                                       showBankIcon: true,
+                                       showBackButton: false,
+                                       showRightButton: true)
+        nav.translatesAutoresizingMaskIntoConstraints = false
+        nav.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
+        return nav
+    }()
+    
     private let buttonFloatConfirm: ConfirmAsistenciaButton = {
         let buttonConfirm = ConfirmAsistenciaButton()
         buttonConfirm.translatesAutoresizingMaskIntoConstraints = false
@@ -55,33 +67,7 @@ class AccountHomeViewController: UIViewController {
         return view
     }()
     
-    private let imgLogo: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: GlobalConstants.Images.bancoppelWhite)
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
-    
-    private let stvContainer : UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.spacing = 8
-        return stackView
-    }()
-    
-    private let lbGreetings: UILabel = {
-        let label = UILabel(frame: CGRect.zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = " "
-        label.font = .robotoBold(ofSize: 28)
-        label.textColor = .white
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
-        return label
-    }()
+
     
     private let lbDate: UILabel = {
         let label = UILabel(frame: CGRect.zero)
@@ -113,15 +99,6 @@ class AccountHomeViewController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         return label
-    }()
-    
-    lazy var btnMenu: UIButton = {
-        let button = UIButton()
-        button.contentMode = .center
-        button.backgroundColor = .clear
-        button.setImage(UIImage(named: GlobalConstants.Images.menuLoginWhite), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
     }()
     
     private let scvContainer: UIScrollView = {
@@ -211,13 +188,10 @@ class AccountHomeViewController: UIViewController {
     }
     
     func addComponents(){
+        view.addSubview(navigationBarView)
         view.addSubview(vwHeader)
-        vwHeader.addSubview(imgLogo)
-        vwHeader.addSubview(stvContainer)
-        stvContainer.addArrangedSubview(lbGreetings)
-        stvContainer.addArrangedSubview(lbDate)
+        vwHeader.addSubview(lbDate)
         vwHeader.addSubview(lbReminder)
-        vwHeader.addSubview(btnMenu)
         view.addSubview(scvContainer)
         scvContainer.addSubview(vwContainer)
         scvContainer.addSubview(buttonFloatConfirm)
@@ -229,36 +203,31 @@ class AccountHomeViewController: UIViewController {
     }
     
     func setAutoLayout(){
-        
-        imgLogo.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        imgLogo.widthAnchor.constraint(equalToConstant: 82).isActive = true
-        
-        btnMenu.heightAnchor.constraint(equalToConstant: 17).isActive = true
-        btnMenu.widthAnchor.constraint(equalToConstant: 27).isActive = true
-        
         vwContainer.widthAnchor.constraint(equalTo: scvContainer.widthAnchor).isActive = true
 
         usersTableHeigthConstraint = tbvPeople.heightAnchor.constraint(equalToConstant: CGFloat(Double(usersData.count) * AccountCell.rowHeight))
         
         NSLayoutConstraint.activate([
             //MARK: Header with your data
-            vwHeader.heightAnchor.constraint(equalToConstant: 210),
-            vwHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationBarView.topAnchor.constraint(equalTo: view.topAnchor),
+            navigationBarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            navigationBarView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+ 
+            vwHeader.topAnchor.constraint(equalTo: navigationBarView.bottomAnchor),
             vwHeader.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             vwHeader.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-            imgLogo.topAnchor.constraint(equalTo: vwHeader.topAnchor, constant: 41),
-            imgLogo.leadingAnchor.constraint(equalTo: vwHeader.leadingAnchor, constant: 32),
+   
+            lbDate.topAnchor.constraint(equalTo: vwHeader.topAnchor),
+            lbDate.leadingAnchor.constraint(equalTo: vwHeader.leadingAnchor, constant: Dimensions.margin25),
+            lbDate.trailingAnchor.constraint(equalTo: vwHeader.trailingAnchor, constant: -Dimensions.margin25),
             
-            stvContainer.topAnchor.constraint(equalTo: imgLogo.bottomAnchor, constant: 27),
-            stvContainer.leadingAnchor.constraint(equalToSystemSpacingAfter: imgLogo.leadingAnchor, multiplier: 0),
-            
-            lbReminder.topAnchor.constraint(equalTo: stvContainer.bottomAnchor, constant: 28),
-            lbReminder.leadingAnchor.constraint(equalTo: vwHeader.leadingAnchor, constant: 32),
-            
-            btnMenu.trailingAnchor.constraint(equalTo: vwHeader.trailingAnchor, constant: -10),
-            btnMenu.bottomAnchor.constraint(equalTo: stvContainer.bottomAnchor, constant: -30),
-            
+            lbReminder.topAnchor.constraint(equalTo: lbDate.bottomAnchor, constant: Dimensions.margin25),
+            lbReminder.leadingAnchor.constraint(equalTo: vwHeader.leadingAnchor, constant: Dimensions.margin25),
+            lbReminder.trailingAnchor.constraint(equalTo: vwHeader.trailingAnchor, constant: -Dimensions.margin25),
+            lbReminder.bottomAnchor.constraint(equalTo: vwHeader.bottomAnchor, constant: -Dimensions.margin25),
+
             //MARK: Scroll view body and content
             scvContainer.topAnchor.constraint(equalTo: vwHeader.bottomAnchor),
             scvContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -273,17 +242,17 @@ class AccountHomeViewController: UIViewController {
             vwContainer.leadingAnchor.constraint(equalTo: scvContainer.leadingAnchor),
             vwContainer.bottomAnchor.constraint(equalTo: scvContainer.bottomAnchor),
 
-            customCalendarView.topAnchor.constraint(equalTo: vwContainer.topAnchor, constant: 34),
-            customCalendarView.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -28),
-            customCalendarView.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 28),
+            customCalendarView.topAnchor.constraint(equalTo: vwContainer.topAnchor, constant: Dimensions.margin25),
+            customCalendarView.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -Dimensions.margin25),
+            customCalendarView.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin25),
             
-            stvDataOfTheDay.topAnchor.constraint(equalTo: customCalendarView.bottomAnchor, constant: 34),
-            stvDataOfTheDay.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 32),
+            stvDataOfTheDay.topAnchor.constraint(equalTo: customCalendarView.bottomAnchor, constant: Dimensions.margin25),
+            stvDataOfTheDay.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin25),
             
-            tbvPeople.topAnchor.constraint(equalTo: stvDataOfTheDay.bottomAnchor, constant: 16),
-            tbvPeople.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -28),
-            tbvPeople.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: 28),
-            tbvPeople.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -20),
+            tbvPeople.topAnchor.constraint(equalTo: stvDataOfTheDay.bottomAnchor, constant: Dimensions.margin15),
+            tbvPeople.trailingAnchor.constraint(equalTo: vwContainer.trailingAnchor, constant: -Dimensions.margin25),
+            tbvPeople.leadingAnchor.constraint(equalTo: vwContainer.leadingAnchor, constant: Dimensions.margin25),
+            tbvPeople.bottomAnchor.constraint(equalTo: vwContainer.bottomAnchor, constant: -Dimensions.margin25),
             usersTableHeigthConstraint
         ])
     }
@@ -365,7 +334,7 @@ class AccountHomeViewController: UIViewController {
             }
             
             self.currentUserData = nonNilCurrentUser
-            self.lbGreetings.text = "¡Hola, \(nonNilCurrentUser.name)!"
+            self.navigationBarView.setTitle(title: "¡Hola, \(nonNilCurrentUser.name)!")
             self.usersData = nonNilData
             
             

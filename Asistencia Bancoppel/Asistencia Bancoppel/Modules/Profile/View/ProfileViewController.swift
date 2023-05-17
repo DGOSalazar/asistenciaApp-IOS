@@ -19,6 +19,16 @@ internal class ProfileViewController: UIViewController {
     private var newProfilePhoto: UIImage?
     
     
+    private lazy var navigationBarView: TopNavigationBarView = {
+        let nav = TopNavigationBarView(title: "",
+                                       style: .one,
+                                       showBankIcon: true,
+                                       showBackButton: false,
+                                       showRightButton: true)
+        nav.translatesAutoresizingMaskIntoConstraints = false
+        return nav
+    }()
+    
     lazy var mainContainerView: UIView = {
        let view = UIView()
         view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
@@ -38,14 +48,6 @@ internal class ProfileViewController: UIViewController {
         view.backgroundColor = GlobalConstants.BancoppelColors.blueBex7
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    }()
-    
-    
-    private let bancoppelLogoImageView: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: GlobalConstants.Images.bancoppelWhite)
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
     }()
  
     
@@ -170,6 +172,7 @@ internal class ProfileViewController: UIViewController {
         
         mainContainerView.addSubview(topContainerView)
         topContainerView.addSubview(blueHeaderView)
+        blueHeaderView.addSubview(navigationBarView)
         topContainerView.addSubview(profilePhotoImageView)
         topContainerView.addSubview(userNameLabel)
         topContainerView.addSubview(positionDataLabel)
@@ -189,7 +192,6 @@ internal class ProfileViewController: UIViewController {
             mainContainerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             mainContainerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             mainContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-
             
             topContainerView.topAnchor.constraint(equalTo: mainContainerView.safeAreaLayoutGuide.topAnchor),
             topContainerView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor),
@@ -200,9 +202,12 @@ internal class ProfileViewController: UIViewController {
             blueHeaderView.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor),
             blueHeaderView.heightAnchor.constraint(equalToConstant: 100 * DeviceSize.size.getMultiplier()),
             
+            navigationBarView.topAnchor.constraint(equalTo: blueHeaderView.topAnchor),
+            navigationBarView.leadingAnchor.constraint(equalTo: blueHeaderView.leadingAnchor),
+            navigationBarView.trailingAnchor.constraint(equalTo: blueHeaderView.trailingAnchor),
+            
             profilePhotoImageView.centerYAnchor.constraint(equalTo: blueHeaderView.bottomAnchor),
-            profilePhotoImageView.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor),
-            profilePhotoImageView.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor),
+            profilePhotoImageView.centerXAnchor.constraint(equalTo: topContainerView.centerXAnchor),
             
             userNameLabel.topAnchor.constraint(equalTo: profilePhotoImageView.bottomAnchor, constant: Dimensions.margin10),
             userNameLabel.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: Dimensions.margin20),
@@ -262,23 +267,23 @@ internal class ProfileViewController: UIViewController {
         let notificationsViewController = ProfileNotificationsViewController()
         notificationsViewController.setData(data: [ProfileNotificationModel(image: nil,
                                                                             title: "Diana Fernández Huerta te ha registrado asistencia para el Viernes 3 de Febrero.",
-                                                                            date: Date(),
+                                                                            date: "Hace un momento.",
                                                                             type: .profile),
                                                    ProfileNotificationModel(image: nil,
                                                                             title: "¡Recuerda asistir el día de mañana a la oficina!",
-                                                                            date: Date(),
-                                                                            type: .check),
+                                                                            date: "Hace 2 horas.",
+                                                                            type: .attendance),
                                                    ProfileNotificationModel(image: nil,
                                                                             title: "Recuerda llenar tu Time Report antes del Lunes.",
-                                                                            date: Date(),
+                                                                            date: "Hace 2 días.",
                                                                             type: .time),
                                                    ProfileNotificationModel(image: nil,
                                                                             title: "Recuerda realizar tu Registro de comidas.",
-                                                                            date: Date(),
+                                                                            date: "Hace 2 días.",
                                                                             type: .dinner),
                                                    ProfileNotificationModel(image: nil,
                                                                             title: "Hoy es cumpleaños de Fernanda Tamayo Rodríguez ¡Felicítala!",
-                                                                            date: Date(),
+                                                                            date: "Hace 3 días.",
                                                                             type: .profile)])
         pages.append(profileSummaryViewController)
         profileInfoPageController.addChild(profileSummaryViewController)
