@@ -9,15 +9,25 @@ import UIKit
 
 class CalendarDay: UIView {
     
-    var viewDayHeight: CGFloat  = 77
-    var viewDayWidth: CGFloat = 75.03
-    var viewHeaderHeight: CGFloat = 26
-    var viewHeaderWidth: CGFloat = 75
+    var viewDayHeight: CGFloat  = Dimensions.margin90
+    var viewDayWidth: CGFloat = Dimensions.margin90
+    var viewHeaderHeight: CGFloat = Dimensions.margin30
+    var viewHeaderWidth: CGFloat = Dimensions.margin90
     
     lazy var contentView: UIView = {
        let view = UIView()
        view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    lazy var contentGrayView: UIView = {
+        let cortinaView = UIView()
+        cortinaView.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+        cortinaView.translatesAutoresizingMaskIntoConstraints = false
+        cortinaView.layer.cornerRadius = viewDayHeight / 4
+        cortinaView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        
+        return cortinaView
     }()
     
      lazy var labelTitleDay: UILabel = {
@@ -65,10 +75,14 @@ class CalendarDay: UIView {
         return view
     }()
     
-    init(IsSelected: Bool? = false) {
+    init(notCurrentDay: Bool = true) {
         super.init(frame: .zero)
-        
+        if notCurrentDay == true {
+            labelNumberDay.textColor = GlobalConstants.BancoppelColors.grayBex5
+            viewHeaderDay.backgroundColor = GlobalConstants.BancoppelColors.grayBex5
+        }
         self.initComponents()
+       // contentGrayView.isHidden = notCurrentDay
         self.autoLayout()
    }
     
@@ -77,6 +91,7 @@ class CalendarDay: UIView {
     }
     
     private func initComponents() {
+        //viewDay.addSubview(contentGrayView)
         contentView.addSubview(viewDay)
         self.addSubview(contentView)
         viewHeaderDay.addSubview(labelTitleDay)
@@ -92,13 +107,18 @@ class CalendarDay: UIView {
                                      viewDay.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
                                      viewDay.topAnchor.constraint(equalTo: contentView.topAnchor),
                                      viewDay.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                                     /*
+                                     contentGrayView.leadingAnchor.constraint(equalTo: viewDay.leadingAnchor),
+                                     contentGrayView.trailingAnchor.constraint(equalTo: viewDay.trailingAnchor),
+                                     contentGrayView.topAnchor.constraint(equalTo: viewDay.topAnchor),
+                                     contentGrayView.bottomAnchor.constraint(equalTo: viewDay.bottomAnchor),*/
                                     
                                      viewHeaderDay.heightAnchor.constraint(equalToConstant: viewHeaderHeight),
                                      viewHeaderDay.widthAnchor.constraint(equalToConstant: viewHeaderWidth),
                                    
                                      labelTitleDay.leadingAnchor.constraint(equalTo: viewHeaderDay.leadingAnchor, constant: 4),
                                      labelTitleDay.trailingAnchor.constraint(equalTo: viewHeaderDay.trailingAnchor, constant: -4),
-                                     labelTitleDay.bottomAnchor.constraint(equalTo: viewHeaderDay.bottomAnchor, constant: -4),
+                                     labelTitleDay.bottomAnchor.constraint(equalTo: viewHeaderDay.bottomAnchor, constant: -1),
                                      /*
                                      labelTitleDay.centerXAnchor.constraint(equalTo: viewHeaderDay.centerXAnchor),
                                      labelTitleDay.centerYAnchor.constraint(equalTo: viewHeaderDay.centerYAnchor),*/
