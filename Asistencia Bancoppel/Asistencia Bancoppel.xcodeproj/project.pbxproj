@@ -1175,6 +1175,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Asistencia Bancoppel/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Habilite los permisos para acceder a la cámara";
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Habilite los permisos para cargar certificados";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Habilite los permisos para acceder a la galería";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1206,6 +1207,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Asistencia Bancoppel/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Habilite los permisos para acceder a la cámara";
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Habilite los permisos para cargar certificados";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Habilite los permisos para acceder a la galería";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
