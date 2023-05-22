@@ -84,6 +84,8 @@ class ProfileCertificationsViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setComponents()
         self.setAutolayout()
+        self.backgroundColor = .white
+        self.contentView.backgroundColor = .white
     }
     
     

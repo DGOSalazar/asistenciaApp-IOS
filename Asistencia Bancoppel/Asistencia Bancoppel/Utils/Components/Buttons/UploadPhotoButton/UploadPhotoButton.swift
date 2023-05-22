@@ -99,7 +99,7 @@ internal class UploadPhotoButton: UIView {
         self.previewImageView.layer.cornerRadius = (buttonSize / 2)
         self.buttonContainerView.layer.shadowColor = (showShadow ? UIColor.black.cgColor : UIColor.clear.cgColor)
         self.buttonContainerView.clipsToBounds = !showShadow
-        self.addTarget(self, action: #selector(self.showGallery))
+        self.addTarget(self, action: #selector(self.showPhotoOptions))
         
         self.setComponents()
         self.setAutolayout()
@@ -173,21 +173,61 @@ internal class UploadPhotoButton: UIView {
         }
     }
     
-    @objc private func showGallery() {
-        self.checkGalleryPermissions {
-            DispatchQueue.main.async {
-                guard let nonNilPresenter = self.presenter else {
+    @objc private func showPhotoOptions() {
+        DispatchQueue.main.async {
+            guard let nonNilPresenter = self.presenter else {
+                return
+            }
+            
+            let alert = UIAlertController(title: "Elige una opción", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
+                self.showPicker(isCamera: true)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
+                self.showPicker(isCamera: false)
+            }))
+            
+            alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
+            
+            nonNilPresenter.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    
+    
+    private func showPicker(isCamera: Bool) {
+        DispatchQueue.main.async {
+            guard let nonNilPresenter = self.presenter else {
+                return
+            }
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.modalPresentationStyle = .overFullScreen
+
+            if isCamera {
+                guard UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) else {
+                    print("Camera source is not available")
                     return
                 }
-                
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
-                    let imagePicker = UIImagePickerController()
-                    imagePicker.delegate = self
-                    imagePicker.allowsEditing = true
-                    imagePicker.sourceType = .photoLibrary
-                    imagePicker.modalPresentationStyle = .overFullScreen
-                    
-                    nonNilPresenter.present(imagePicker, animated: true)
+                self.checkCameraPermission {
+                    DispatchQueue.main.async {
+                        imagePicker.sourceType = .camera
+                        nonNilPresenter.present(imagePicker, animated: true)
+                    }
+                }
+            } else {
+                guard UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) else {
+                    print("Gallery source is not available")
+                    return
+                }
+                self.checkGalleryPermissions {
+                    DispatchQueue.main.async {
+                        imagePicker.sourceType = .photoLibrary
+                        nonNilPresenter.present(imagePicker, animated: true)
+                    }
                 }
             }
         }
@@ -196,36 +236,63 @@ internal class UploadPhotoButton: UIView {
     private func checkGalleryPermissions(completion: @escaping () -> ()) {
         switch PHPhotoLibrary.authorizationStatus() {
         case .notDetermined:
-            PHPhotoLibrary.requestAuthorization({ status in
+            PHPhotoLibrary.requestAuthorization({ [weak self]  status in
                 if status == .authorized {
                     completion()
                 } else {
-                    self.showSettings()
+                    self?.showSettings(isCamera: false)
                 }
             })
         case .restricted:
-            self.showSettings()
+            self.showSettings(isCamera: false)
         case .denied:
-            self.showSettings()
+            self.showSettings(isCamera: false)
         case .authorized:
             completion()
         case .limited:
-            self.showSettings()
+            self.showSettings(isCamera: false)
         @unknown default:
-            self.showSettings()
+            self.showSettings(isCamera: false)
         }
     }
     
-    private func showSettings() {
+    private func checkCameraPermission(completion: @escaping () -> ()) {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { [weak self] success in
+                if success {
+                    completion()
+                } else {
+                    self?.showSettings(isCamera: true)
+                }
+            }
+        case .restricted:
+            self.showSettings(isCamera: true)
+        case .denied:
+            self.showSettings(isCamera: true)
+        case .authorized:
+            completion()
+            return
+        @unknown default:
+            self.showSettings(isCamera: true)
+        }
+    }
+    
+    
+    private func showSettings(isCamera: Bool) {
         DispatchQueue.main.async {
             guard let nonNilPresenter = self.presenter else {
                 return
             }
             
-            let alert = UIAlertController(title: "Error", message: "Habilite los permisos para acceder a la galería", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: nil))
+            let alert = UIAlertController(title: "Error",
+                                          message: "Habilite los permisos para acceder a la \(isCamera ? "cámara" : "galería")",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: nil))
             
-            alert.addAction(UIAlertAction(title: "Configuración", style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: "Configuración",
+                                          style: .default,
+                                          handler: { _ in
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
                 UIApplication.shared.open(settingsUrl, completionHandler: { (_) in })
             }))
@@ -238,21 +305,25 @@ internal class UploadPhotoButton: UIView {
 
 extension UploadPhotoButton: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
-        
-        let assetPath = info[UIImagePickerController.InfoKey.imageURL] as? NSURL
-        guard (assetPath?.absoluteString?.lowercased().hasSuffix("jpg") == true ||
-               assetPath?.absoluteString?.lowercased().hasSuffix("jpeg") == true ||
-               assetPath?.absoluteString?.lowercased().hasSuffix("png") == true) else {
-            return
-        }
+        DispatchQueue.main.async {
+            picker.dismiss(animated: true)
+            
+            if picker.sourceType == .photoLibrary {
+                let assetPath = info[UIImagePickerController.InfoKey.imageURL] as? NSURL
+                
+                guard (assetPath?.absoluteString?.lowercased().hasSuffix("jpg") == true ||
+                       assetPath?.absoluteString?.lowercased().hasSuffix("jpeg") == true ||
+                       assetPath?.absoluteString?.lowercased().hasSuffix("png") == true) else {
+                    return
+                }
+            }
 
-        guard let image = info[.editedImage] as? UIImage else {
-            return
+            guard let image = info[.editedImage] as? UIImage else {
+                return
+            }
+            
+            self.setPreviewImage(image: image)
+            self.delegate?.notifyPhotoSelected(photo: image)
         }
-        
-        self.setPreviewImage(image: image)
-        
-        self.delegate?.notifyPhotoSelected(photo: image)
     }
 }
