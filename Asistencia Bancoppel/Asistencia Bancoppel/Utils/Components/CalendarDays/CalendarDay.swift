@@ -9,10 +9,10 @@ import UIKit
 
 class CalendarDay: UIView {
     
-    var viewDayHeight: CGFloat  = Dimensions.margin90
-    var viewDayWidth: CGFloat = Dimensions.margin90
-    var viewHeaderHeight: CGFloat = Dimensions.margin30
-    var viewHeaderWidth: CGFloat = Dimensions.margin90
+    var viewDayHeight: CGFloat  = Dimensions.margin80
+    var viewDayWidth: CGFloat = Dimensions.margin80
+    var viewHeaderHeight: CGFloat = Dimensions.margin20
+    var viewHeaderWidth: CGFloat = Dimensions.margin80
     
     lazy var contentView: UIView = {
        let view = UIView()
@@ -33,7 +33,7 @@ class CalendarDay: UIView {
      lazy var labelTitleDay: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .robotoBold(ofSize: 14)
+        label.font = .robotoBold(ofSize: 10)
         label.textColor = GlobalConstants.BancoppelColors.grayBex1
          label.textAlignment = .center
         
@@ -43,7 +43,7 @@ class CalendarDay: UIView {
      lazy var labelNumberDay: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .robotoBold(ofSize: 40)
+        label.font = .robotoBold(ofSize: 30)
         label.textColor = GlobalConstants.BancoppelColors.grayBex10
         label.textAlignment = .center
         

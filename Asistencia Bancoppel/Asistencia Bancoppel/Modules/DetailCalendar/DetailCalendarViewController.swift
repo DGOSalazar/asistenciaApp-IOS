@@ -10,19 +10,11 @@ import UIKit
 class DetailCalendarViewController: UIViewController {
     
     var mockPeopleOne: UserAttendanceDataModel = UserAttendanceDataModel(name: "Rodrigo", fullname: "Rodrigo Joel Ramirez Hernandez", email: "joel.ramirez@coppel.com", position: UserPositionEnum.iosDev, profilePhotoURL: "", profilePhoto: UIImage(named: "profile"), employee: 1, team: "minuts")
-                                                                         
+    
     var mockPeopleTwo: UserAttendanceDataModel = UserAttendanceDataModel(name: "Joel", fullname: "Joel Hernandez", email: "joel.hernandez@coppel.com", position: UserPositionEnum.iosDev, profilePhotoURL: "", profilePhoto: UIImage(named: "profile"), employee: 1, team: "minuts")
     
     private var usersAttendingToday: [UserAttendanceDataModel] = []
     private var usersTableHeigthConstraint = NSLayoutConstraint()
-    
-    private let headerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-        
-    }()
     
     private lazy var navigationBarView: TopNavigationBarView = {
         let nav = TopNavigationBarView(title: "Calendario",
@@ -37,7 +29,7 @@ class DetailCalendarViewController: UIViewController {
     private let stackDays: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 5
+        stack.spacing = 10
         stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -45,40 +37,40 @@ class DetailCalendarViewController: UIViewController {
     }()
     
     private let dayOne: CalendarDay = {
-       let day = CalendarDay()
-       day.translatesAutoresizingMaskIntoConstraints = false
-       day.labelNumberDay.text = "22"
+        let day = CalendarDay()
+        day.translatesAutoresizingMaskIntoConstraints = false
+        day.labelNumberDay.text = "22"
         day.labelTitleDay.text = "Lunes"
         return day
     }()
     
     private let dayTwo: CalendarDay = {
-       let day = CalendarDay(notCurrentDay: false)
-       day.translatesAutoresizingMaskIntoConstraints = false
+        let day = CalendarDay(notCurrentDay: false)
+        day.translatesAutoresizingMaskIntoConstraints = false
         day.labelNumberDay.text = "23"
         day.labelTitleDay.text = "Martes"
         return day
     }()
     
     private let dayThree: CalendarDay = {
-       let day = CalendarDay()
-       day.translatesAutoresizingMaskIntoConstraints = false
+        let day = CalendarDay()
+        day.translatesAutoresizingMaskIntoConstraints = false
         day.labelNumberDay.text = "24"
         day.labelTitleDay.text = "Miercoles"
         return day
     }()
     
     private let dayFour: CalendarDay = {
-       let day = CalendarDay()
-       day.translatesAutoresizingMaskIntoConstraints = false
+        let day = CalendarDay()
+        day.translatesAutoresizingMaskIntoConstraints = false
         day.labelNumberDay.text = "25"
         day.labelTitleDay.text = "Jueves"
         return day
     }()
     
     private let dayFive: CalendarDay = {
-       let day = CalendarDay()
-       day.translatesAutoresizingMaskIntoConstraints = false
+        let day = CalendarDay()
+        day.translatesAutoresizingMaskIntoConstraints = false
         day.labelNumberDay.text = "26"
         day.labelTitleDay.text = "Viernes"
         return day
@@ -172,14 +164,13 @@ class DetailCalendarViewController: UIViewController {
     }
     
     private func addComponents() {
-        [headerView ,labelQuestionName, labelQuestionDay, stackDays, buttonRegisterAsistencia, labelAsistentes, tableViewPeople].forEach{view.addSubview($0)}
-        headerView.addSubview(navigationBarView)
+        [navigationBarView ,labelQuestionName, labelQuestionDay, stackDays, buttonRegisterAsistencia, labelAsistentes, tableViewPeople].forEach{view.addSubview($0)}
         stackDays.addArrangedSubview(dayOne)
         stackDays.addArrangedSubview(dayTwo)
         stackDays.addArrangedSubview(dayThree)
         stackDays.addArrangedSubview(dayFour)
         stackDays.addArrangedSubview(dayFive)
-       
+        
     }
     
     private func autoLayout() {
@@ -188,57 +179,54 @@ class DetailCalendarViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            navigationBarView.topAnchor.constraint(equalTo: headerView.topAnchor),
-            navigationBarView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-            navigationBarView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            navigationBarView.topAnchor.constraint(equalTo: view.topAnchor),
+            navigationBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dayOne.heightAnchor.constraint(equalToConstant: dayOne.viewDayHeight),
+            dayTwo.heightAnchor.constraint(equalToConstant: dayTwo.viewDayHeight),
+            dayThree.heightAnchor.constraint(equalToConstant: dayThree.viewDayHeight),
+            dayFive.heightAnchor.constraint(equalToConstant: dayFour.viewDayHeight),
+            dayFour.heightAnchor.constraint(equalToConstant: dayFour.viewDayHeight),
             
-                                     dayOne.heightAnchor.constraint(equalToConstant: dayOne.viewDayHeight),
-                                     dayTwo.heightAnchor.constraint(equalToConstant: dayTwo.viewDayHeight),
-                                     dayThree.heightAnchor.constraint(equalToConstant: dayThree.viewDayHeight),
-                                     dayFive.heightAnchor.constraint(equalToConstant: dayFour.viewDayHeight),
-                                     dayFour.heightAnchor.constraint(equalToConstant: dayFour.viewDayHeight),
-                                     
-                                     dayOne.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
-                                     dayTwo.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
-                                     dayThree.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
-                                     dayFive.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
-                                     dayFour.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
-                                     
-                                     
+            dayOne.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+            dayTwo.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+            dayThree.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+            dayFive.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
+            dayFour.widthAnchor.constraint(equalToConstant: dayOne.viewDayWidth),
             
-                                     labelQuestionName.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Dimensions.margin30),
-                                      labelQuestionName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.margin15),
-                                      labelQuestionDay.topAnchor.constraint(equalTo: labelQuestionName.bottomAnchor, constant: 2),
-                                      labelQuestionDay.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.margin20),
-                                     
-                                     stackDays.topAnchor.constraint(equalTo: labelQuestionDay.bottomAnchor, constant: Dimensions.margin30),
-                                     stackDays.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.margin10),
-                                     stackDays.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.margin10),
-                                     //stackDays.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-                                     
-                                     buttonRegisterAsistencia.topAnchor.constraint(equalTo: stackDays.bottomAnchor, constant: Dimensions.margin30),
-                                     buttonRegisterAsistencia.heightAnchor.constraint(equalToConstant: Dimensions.margin70),
-                                     buttonRegisterAsistencia.widthAnchor.constraint(equalToConstant: 220),
-                                     buttonRegisterAsistencia.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     
-                                     labelAsistentes.topAnchor.constraint(equalTo: buttonRegisterAsistencia.bottomAnchor, constant: Dimensions.margin30),
-                                     labelAsistentes.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.margin30),
-                                     
-                                     tableViewPeople.topAnchor.constraint(equalTo: labelAsistentes.bottomAnchor, constant: Dimensions.margin20),
-                                     tableViewPeople.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: Dimensions.margin30),
-                                     tableViewPeople.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -Dimensions.margin30),
-                                     usersTableHeigthConstraint
-                                      
-                                      ])
+            
+            
+            labelQuestionName.topAnchor.constraint(equalTo: navigationBarView.bottomAnchor, constant: Dimensions.margin30),
+            labelQuestionName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.margin15),
+            labelQuestionDay.topAnchor.constraint(equalTo: labelQuestionName.bottomAnchor, constant: 2),
+            labelQuestionDay.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.margin20),
+            
+            /*
+             stackDays.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.margin10),
+             stackDays.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.margin10),*/
+            stackDays.topAnchor.constraint(equalTo: labelQuestionDay.bottomAnchor, constant: Dimensions.margin30),
+            stackDays.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            buttonRegisterAsistencia.topAnchor.constraint(equalTo: stackDays.bottomAnchor, constant: Dimensions.margin30),
+            buttonRegisterAsistencia.heightAnchor.constraint(equalToConstant: Dimensions.margin70),
+            buttonRegisterAsistencia.widthAnchor.constraint(equalToConstant: 220),
+            buttonRegisterAsistencia.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            labelAsistentes.topAnchor.constraint(equalTo: buttonRegisterAsistencia.bottomAnchor, constant: Dimensions.margin30),
+            labelAsistentes.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.margin30),
+            
+            tableViewPeople.topAnchor.constraint(equalTo: labelAsistentes.bottomAnchor, constant: Dimensions.margin20),
+            tableViewPeople.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: Dimensions.margin30),
+            tableViewPeople.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -Dimensions.margin30),
+            usersTableHeigthConstraint
+            
+        ])
     }
     
     private func updateTableHeight() {
         DispatchQueue.main.async {
-                self.usersTableHeigthConstraint.constant = CGFloat(Double(self.usersAttendingToday.count) * AccountCell.rowHeight)
+            self.usersTableHeigthConstraint.constant = CGFloat(Double(self.usersAttendingToday.count) * AccountCell.rowHeight)
         }
     }
     
@@ -255,13 +243,13 @@ extension DetailCalendarViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard !usersAttendingToday.isEmpty else { return UITableViewCell() }
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: AccountCell.reuseID, for: indexPath) as? AccountCell
         
         guard let nonNilCell = cell else { return UITableViewCell() }
         
         nonNilCell.configure(with: usersAttendingToday[indexPath.row])
-
+        
         return nonNilCell
     }
     
